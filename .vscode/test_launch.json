@@ -1,0 +1,53 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "NS Dev",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "debug",
+            "program": "lib/dev.dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "NS Dev profile",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "profile",
+            "program": "lib/dev.dart",
+            "args": [
+                "--flavor",
+                "dev",
+            ]
+        },
+        {
+            "name": "NS Web",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "debug",
+            "program": "lib/dev.dart",
+            "args": [
+                "--flavor",
+                "dev",
+                "-d",
+                "chrome",
+                "--web-port",
+                "3000",
+            ]
+        },
+        {
+            "name": "NS Prod",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "debug",
+            "program": "lib/prod.dart",
+            "args": [
+                "--flavor",
+                "prod",
+            ]
+        },
+    ]
+}
