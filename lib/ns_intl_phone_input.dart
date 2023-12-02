@@ -1,8 +1,11 @@
+library ns_intl_phone_input;
+
 import 'dart:convert';
 
 import 'package:ns_intl_phone_input/src/data/models/country.dart';
 
 import 'src/raw/raw_countries_js.dart';
+export 'src/presentation/phone_input.dart';
 
 void main() {
   final countries = rawCountries
