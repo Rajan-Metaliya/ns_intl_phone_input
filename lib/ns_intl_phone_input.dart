@@ -1,18 +1,21 @@
-import 'package:ns_intl_phone_input/src/utils/raw_contries_js.dart';
+import 'package:ns_intl_phone_input/src/data/models/country.dart';
+import 'package:ns_intl_phone_input/src/data/usecases/validate_country.dart';
+import 'package:ns_intl_phone_input/src/data/usecases/validate_format.dart';
+import 'package:ns_intl_phone_input/src/data/utils/extensions.dart';
+
+import 'src/raw/raw_countries.dart';
 
 void main() {
-  for (int i = 0; i < rawCountriesJs.length; i++) {
-    var country = rawCountriesJs[i][0];
+  final countries = rawCountries
+      .map(
+        (e) => CountryModel.fromRawData(e),
+      )
+      .toSet()
+      .nestedMap();
 
-    print('''
-     CountyModel(
-      countryName: $country,
-      iso2Code: 'AF',
-      intlDialCode: '93',
-      format: 'xxx xxx xxxx',
-      areaCodes: [],
-      regions: [],
-  ),
-''');
-  }
+  final validateCountry = ValidateCountryImpl(countries: countries);
+  final validateFormat = ValidateFormatImpl(countries: countries);
+
+  // print(validateFormat('+1', '88888888888'));
+  print(countries);
 }
