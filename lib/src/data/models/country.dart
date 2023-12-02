@@ -7,25 +7,16 @@ part 'country.g.dart';
 @JsonSerializable()
 class CountryModel extends domain.CountryEntity {
   CountryModel({
-    required final String countryName,
-    required final Set<String> regions,
-    required final String iso2Code,
-    required final String intlDialCode,
-    final String? format,
-    final int? orderPriority,
-    final Set<String>? areaCodes,
-  }) : super(
-          countryName: countryName,
-          regions: regions,
-          iso2Code: iso2Code,
-          intlDialCode: intlDialCode,
-          format: format,
-          orderPriority: orderPriority,
-          areaCodes: areaCodes,
-        );
+    required super.countryName,
+    required super.regions,
+    required super.iso2Code,
+    required super.intlDialCode,
+    super.format,
+    super.orderPriority,
+    super.areaCodes,
+  });
 
-  static domain.CountryEntity fromRawData(List<Object> list) =>
-      domain.CountryEntity(
+  factory CountryModel.fromRawData(List<Object> list) => CountryModel(
         countryName: RetrieveValue(list)[0],
         regions: RetrieveValue<List<String>>(list)[1].toSet(),
         iso2Code: RetrieveValue(list)[2],
@@ -36,6 +27,11 @@ class CountryModel extends domain.CountryEntity {
       );
 
   Map<String, dynamic> toJson() => _$CountryModelToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
 }
 
 extension RetrieveValue<T> on List {

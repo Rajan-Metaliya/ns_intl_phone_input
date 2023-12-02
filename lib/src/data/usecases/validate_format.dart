@@ -1,31 +1,19 @@
 import 'dart:math';
 
-import '../../domain/entities/country.dart';
+import 'package:ns_intl_phone_input/src/data/utils/extensions.dart';
+
 import '../../domain/usecases/validate_format.dart' as domain;
 
 class ValidateFormatImpl implements domain.ValidateFormat {
   @override
-  final Map<String, CountryEntity> countries;
-
-  ValidateFormatImpl({required this.countries});
-
-  @override
-  String call(String number) {
-    // final dialCodeGroup = countries[countryCode];
-    // if (dialCodeGroup == null) {
-    //   throw CountryNotFoundException();
-    // } else {
-    //   final format = dialCodeGroup;
-    //   if (format == null) {
-    //     // todo: handle this in presentation layer
-    //     throw FormatNotFoundException();
-    //   } else {
-    //     final regex = RegExp(format);
-    //     if (regex.hasMatch(number)) return 'valid';
-    //   }
-    // }
-
-    return 'error';
+  String call({
+    required String numberWithoutCountryCode,
+    required String format,
+  }) {
+    return NumberMatcher.match(numberWithoutCountryCode, format)
+        ? ''
+        // todo: add proper error messages
+        : 'invalid format';
   }
 }
 
@@ -34,18 +22,22 @@ enum CountryCodeValidationResult {
 }
 
 class NumberMatcher {
-  // This is a temporary solution. Ideally we should use regex for this.
+  // todo:  This is a temporary solution. Ideally we should use regex for this.
   // continuing with this approach for now, since converting dot format to regex
   // will take time
   static bool match(String number, String format) {
+    if (number.fetchDigits.length > 15) {
+      return false;
+    }
+
     if (number.length > format.length) {
       return false;
     }
 
-    int mMax = max(number.length, format.length);
+    int mMin = min(number.length, format.length);
     int pointer = 0;
 
-    while (pointer < mMax) {
+    while (pointer < mMin) {
       final currNumberChar = number[pointer];
       final currFormatChar = format[pointer];
       if (currFormatChar == '.') {
@@ -60,8 +52,4 @@ class NumberMatcher {
 
     return true;
   }
-}
-
-void main() {
-  print(NumberMatcher.match('(88) 88888888', '(..) ........'));
 }

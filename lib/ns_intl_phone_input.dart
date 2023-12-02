@@ -11,9 +11,10 @@ void main() {
       )
       .toList()
     ..sort((a, b) => a.countryName.compareTo(b.countryName));
+  // final countriesMap = countries.processedMap();
 
-  // final validateCountry = ValidateCountryImpl(countries: countries);
-  // final validateFormat = ValidateFormatImpl(countries: countries);
+  // final QueryFormat queryFormat = QueryFormatImpl(countries: countriesMap);
+  // final ValidateFormat validateFormat = ValidateFormatImpl(countries: countriesMap);
 
   // print(validateFormat('+1', '88888888888'));
   for (int i = 100; i < countries.length; i++) {
@@ -37,4 +38,5 @@ void main() {
     }
     print("),");
   }
+  // print(countriesMap);
 }
