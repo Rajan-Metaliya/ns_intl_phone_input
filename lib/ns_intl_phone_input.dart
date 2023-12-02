@@ -1,21 +1,40 @@
-import 'package:ns_intl_phone_input/src/data/models/country.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/validate_country.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/validate_format.dart';
-import 'package:ns_intl_phone_input/src/data/utils/extensions.dart';
+import 'dart:convert';
 
-import 'src/raw/raw_countries.dart';
+import 'package:ns_intl_phone_input/src/data/models/country.dart';
+
+import 'src/raw/raw_countries_js.dart';
 
 void main() {
   final countries = rawCountries
       .map(
         (e) => CountryModel.fromRawData(e),
       )
-      .toSet()
-      .nestedMap();
+      .toList()
+    ..sort((a, b) => a.countryName.compareTo(b.countryName));
 
-  final validateCountry = ValidateCountryImpl(countries: countries);
-  final validateFormat = ValidateFormatImpl(countries: countries);
+  // final validateCountry = ValidateCountryImpl(countries: countries);
+  // final validateFormat = ValidateFormatImpl(countries: countries);
 
   // print(validateFormat('+1', '88888888888'));
-  print(countries);
+  for (int i = 100; i < countries.length; i++) {
+    final value = countries[i];
+    print("CountryEntity(");
+    print("countryName: '${value.countryName}', ");
+    print(
+        "regions: ${json.encode(value.regions.toList()).replaceAll('[', '{').replaceAll(']', '}')}, ");
+    print("iso2Code: '${value.iso2Code}',");
+    print(" intlDialCode: '${value.intlDialCode}', ");
+
+    if (value.format != null) {
+      print("format: '${value.format}', ");
+    }
+    if (value.orderPriority != null) {
+      print("orderPriority: ${value.orderPriority}, ");
+    }
+    if (value.areaCodes != null) {
+      print(
+          "areaCodes: ${json.encode(value.areaCodes!.toList()).replaceAll('[', '{').replaceAll(']', '}')}, ");
+    }
+    print("),");
+  }
 }

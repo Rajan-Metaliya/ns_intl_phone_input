@@ -1,11 +1,7 @@
 import 'dart:math';
 
-import 'package:ns_intl_phone_input/src/data/exceptions/format_not_found_exception.dart';
-import 'package:ns_intl_phone_input/src/data/utils/extensions.dart';
-
 import '../../domain/entities/country.dart';
 import '../../domain/usecases/validate_format.dart' as domain;
-import '../exceptions/country_not_found_exception.dart';
 
 class ValidateFormatImpl implements domain.ValidateFormat {
   @override
@@ -15,19 +11,19 @@ class ValidateFormatImpl implements domain.ValidateFormat {
 
   @override
   String call(String number) {
-    final dialCodeGroup = countries[countryCode];
-    if (dialCodeGroup == null) {
-      throw CountryNotFoundException();
-    } else {
-      final format = dialCodeGroup;
-      if (format == null) {
-        // todo: handle this in presentation layer
-        throw FormatNotFoundException();
-      } else {
-        final regex = RegExp(format);
-        if (regex.hasMatch(number)) return 'valid';
-      }
-    }
+    // final dialCodeGroup = countries[countryCode];
+    // if (dialCodeGroup == null) {
+    //   throw CountryNotFoundException();
+    // } else {
+    //   final format = dialCodeGroup;
+    //   if (format == null) {
+    //     // todo: handle this in presentation layer
+    //     throw FormatNotFoundException();
+    //   } else {
+    //     final regex = RegExp(format);
+    //     if (regex.hasMatch(number)) return 'valid';
+    //   }
+    // }
 
     return 'error';
   }
