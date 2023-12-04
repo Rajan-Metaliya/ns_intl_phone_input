@@ -14,7 +14,7 @@ class ConstructLookupMapImpl implements ConstructLookupMap {
         countriesMap[intlDialCode] = country;
       } else {
         for (final region in areaCodes) {
-          countriesMap['$intlDialCode$region'] = country;
+          countriesMap['$intlDialCode $region'] = country;
         }
       }
     }

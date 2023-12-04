@@ -1,47 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/change_country.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/format.dart';
-import 'package:ns_intl_phone_input/src/data/utils/extensions.dart';
 import 'package:ns_intl_phone_input/src/domain/entities/country.dart';
-import 'package:ns_intl_phone_input/src/domain/usecases/change_country.dart';
-import 'package:ns_intl_phone_input/src/domain/usecases/format.dart';
 
-import '../data/usecases/query_format.dart';
-import '../domain/usecases/query_format.dart';
 import '../raw/raw_countries.dart';
 
 // todo: fix selection: selection does not work
-class PhoneInput extends StatelessWidget {
-  late final Format _format;
-  late final ChangeCountry _changeCountry;
-  final Iterable<CountryEntity> _countries = rawCountries;
-  late final _countriesLookupMap = ConstructLookupMapImpl()(_countries);
-  late final QueryFormat _queryFormat = QueryFormatImpl();
-  late final TextEditingController _textController;
+class PhoneInput extends StatefulWidget {
+  const PhoneInput({super.key});
 
-  PhoneInput({super.key}) {
-    _format = FormatImpl();
-    _changeCountry = ChangeCountryImpl();
+  @override
+  State<PhoneInput> createState() => _PhoneInputState();
+}
 
-    _textController = TextEditingController();
+class _PhoneInputState extends State<PhoneInput> {
+  late final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
 
-    _textController.addListener(() {
-      final mFormat = _queryFormat(
-        countriesLookupMap: _countriesLookupMap,
-        number: _textController.text,
-      );
+  var textEditingController = TextEditingController(text: "");
 
-      final String formattedNumber = _format(
-        number: _textController.text,
-        format: mFormat,
-      );
+  late CountryEntity selectedCountry;
 
-      _textController.value = _textController.value.copyWith(
-        text: formattedNumber,
-      );
+  String? dropDownValue;
+
+  var maskFormatter = MaskTextInputFormatter(
+    mask: '...-..-....',
+    filter: {".": RegExp(r'[0-9]')},
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _onDropDownChange('91');
+    textEditingController.addListener(() {
+      _onTextChange(textEditingController.text);
     });
+  }
+
+  _onTextChange(String? value) {
+    setState(() {});
+
+    if (value == null || value.isEmpty) {
+      return;
+    }
+
+    final unmastedValue = maskFormatter.getUnmaskedText();
+
+    for (final country in rawCountries) {
+      if (selectedCountry.intlDialCode == country.intlDialCode) {
+        if (country.areaCodes == null || country.areaCodes!.isEmpty) {
+          continue;
+        } else {
+          for (final region in country.areaCodes!) {
+            if (unmastedValue.startsWith(region)) {
+              selectedCountry = country;
+              dropDownValue = '${country.intlDialCode} $region';
+              return;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  _onDropDownChange(String? value) {
+    final values = value!.split(" ");
+
+    var initialText = '';
+    if (values.length > 1) {
+      initialText = values.last;
+    }
+    setState(() {});
+    textEditingController.clear();
+    selectedCountry = _countriesLookupMap[value]!;
+    dropDownValue = value;
+
+    maskFormatter.updateMask(
+      mask: selectedCountry.format,
+      filter: {".": RegExp(r'[0-9]')},
+      newValue: TextEditingValue(text: initialText),
+    );
+
+    textEditingController.text = maskFormatter.getMaskedText();
+    setState(() {});
   }
 
   @override
@@ -50,40 +90,24 @@ class PhoneInput extends StatelessWidget {
       children: [
         Expanded(
           child: DropdownButtonFormField<String>(
-            value: '91',
-            items: _countriesLookupMap.entries
+            value: dropDownValue,
+            items: _countriesLookupMap.keys
                 .map(
-                  (e) => DropdownMenuItem(
-                    value: e.key,
-                    child: Text('+${e.key} (${e.value.iso2Code})'),
+                  (e) => DropdownMenuItem<String>(
+                    value: e,
+                    child: Text('+$e ${_countriesLookupMap[e]!.countryName}'),
                   ),
                 )
                 .toList(),
-            onChanged: (value) {
-              final changed = _changeCountry(
-                countriesLookupMap: _countriesLookupMap,
-                number: _textController.text.fetchDigits,
-                newCountry: value,
-              );
-
-              final formatted = _format(
-                number: changed,
-                format: _queryFormat(
-                  countriesLookupMap: _countriesLookupMap,
-                  number: changed,
-                ),
-              );
-
-              _textController.text = formatted;
-            },
+            onChanged: _onDropDownChange,
           ),
         ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.6,
-          child: TextField(
-            selectionControls: CustomMaterialTextSelectionHandleControls(),
-            maxLength: 15,
-            controller: _textController,
+          child: TextFormField(
+            maxLength: selectedCountry.format?.length,
+            controller: textEditingController,
+            inputFormatters: [maskFormatter],
             decoration: const InputDecoration(
               hintText: 'Phone Number',
             ),
@@ -91,15 +115,5 @@ class PhoneInput extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class CustomMaterialTextSelectionHandleControls
-    extends MaterialTextSelectionControls with TextSelectionHandleControls {
-  @override
-  void handleCopy(TextSelectionDelegate delegate,
-      [ClipboardStatusNotifier? clipboardStatus]) {
-    final digits = delegate.textEditingValue.text.fetchDigits;
-    Clipboard.setData(ClipboardData(text: digits));
   }
 }
