@@ -8,7 +8,6 @@ import 'package:ns_intl_phone_input/src/domain/entities/country.dart';
 import 'package:ns_intl_phone_input/src/domain/usecases/change_country.dart';
 import 'package:ns_intl_phone_input/src/domain/usecases/format.dart';
 
-import '../data/models/country.dart';
 import '../data/usecases/query_format.dart';
 import '../domain/usecases/query_format.dart';
 import '../raw/raw_countries.dart';
@@ -17,7 +16,7 @@ import '../raw/raw_countries.dart';
 class PhoneInput extends StatelessWidget {
   late final Format _format;
   late final ChangeCountry _changeCountry;
-  late final Iterable<CountryEntity> _countries;
+  final Iterable<CountryEntity> _countries = rawCountries;
   late final _countriesLookupMap = ConstructLookupMapImpl()(_countries);
   late final QueryFormat _queryFormat = QueryFormatImpl();
   late final TextEditingController _textController;
@@ -25,11 +24,6 @@ class PhoneInput extends StatelessWidget {
   PhoneInput({super.key}) {
     _format = FormatImpl();
     _changeCountry = ChangeCountryImpl();
-    _countries = rawCountries
-        .map(
-          (e) => CountryModel.fromRawData(e),
-        )
-        .cast<CountryEntity>();
 
     _textController = TextEditingController();
 

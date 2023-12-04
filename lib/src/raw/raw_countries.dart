@@ -15,1346 +15,1711 @@
 // Sub-regions:
 // ['north-america', 'south-america', 'central-america', 'carribean',
 //  'eu-union', 'ex-ussr', 'ex-yugos', 'baltic', 'middle-east', 'north-africa']
+import 'package:ns_intl_phone_input/src/domain/entities/country.dart';
 
-const rawCountries = [
-  [
-    'Afghanistan',
-    ['asia'],
-    'af',
-    '93'
-  ],
-  [
-    'Albania',
-    ['europe'],
-    'al',
-    '355'
-  ],
-  [
-    'Algeria',
-    ['africa', 'north-africa'],
-    'dz',
-    '213'
-  ],
-  [
-    'Andorra',
-    ['europe'],
-    'ad',
-    '376'
-  ],
-  [
-    'Angola',
-    ['africa'],
-    'ao',
-    '244'
-  ],
-  [
-    'Antigua and Barbuda',
-    ['america', 'carribean'],
-    'ag',
-    '1268'
-  ],
-  [
-    'Argentina',
-    ['america', 'south-america'],
-    'ar',
-    '54',
-    '(..) ........',
-    0,
-    ['11', '221', '223', '261', '264', '2652', '280', '2905', '291', '2920', '2966', '299', '341', '342', '343', '351', '376', '379', '381', '3833', '385', '387', '388' ]
-  ],
-  [
-    'Armenia',
-    ['asia', 'ex-ussr'],
-    'am',
-    '374',
-    '.. ......'
-  ],
-  [
-    'Aruba',
-    ['america', 'carribean'],
-    'aw',
-    '297'
-  ],
-  [
-    'Australia',
-    ['oceania'],
-    'au',
-    '61',
-    '(..) .... ....',
-    0, ['2', '3', '4', '7', '8', '02', '03', '04', '07', '08']
-  ],
-  [
-    'Austria',
-    ['europe', 'eu-union'],
-    'at',
-    '43'
-  ],
-  [
-    'Azerbaijan',
-    ['asia', 'ex-ussr'],
-    'az',
-    '994',
-    '(..) ... .. ..'
-  ],
-  [
-    'Bahamas',
-    ['america', 'carribean'],
-    'bs',
-    '1242'
-  ],
-  [
-    'Bahrain',
-    ['middle-east'],
-    'bh',
-    '973'
-  ],
-  [
-    'Bangladesh',
-    ['asia'],
-    'bd',
-    '880'
-  ],
-  [
-    'Barbados',
-    ['america', 'carribean'],
-    'bb',
-    '1246'
-  ],
-  [
-    'Belarus',
-    ['europe', 'ex-ussr'],
-    'by',
-    '375',
-    '(..) ... .. ..'
-  ],
-  [
-    'Belgium',
-    ['europe', 'eu-union'],
-    'be',
-    '32',
-    '... .. .. ..'
-  ],
-  [
-    'Belize',
-    ['america', 'central-america'],
-    'bz',
-    '501'
-  ],
-  [
-    'Benin',
-    ['africa'],
-    'bj',
-    '229'
-  ],
-  [
-    'Bhutan',
-    ['asia'],
-    'bt',
-    '975'
-  ],
-  [
-    'Bolivia',
-    ['america', 'south-america'],
-    'bo',
-    '591'
-  ],
-  [
-    'Bosnia and Herzegovina',
-    ['europe', 'ex-yugos'],
-    'ba',
-    '387'
-  ],
-  [
-    'Botswana',
-    ['africa'],
-    'bw',
-    '267'
-  ],
-  [
-    'Brazil',
-    ['america', 'south-america'],
-    'br',
-    '55',
-    '(..) .........',
-  ],
-  [
-    'British Indian Ocean Territory',
-    ['asia'],
-    'io',
-    '246'
-  ],
-  [
-    'Brunei',
-    ['asia'],
-    'bn',
-    '673'
-  ],
-  [
-    'Bulgaria',
-    ['europe', 'eu-union'],
-    'bg',
-    '359'
-  ],
-  [
-    'Burkina Faso',
-    ['africa'],
-    'bf',
-    '226'
-  ],
-  [
-    'Burundi',
-    ['africa'],
-    'bi',
-    '257'
-  ],
-  [
-    'Cambodia',
-    ['asia'],
-    'kh',
-    '855'
-  ],
-  [
-    'Cameroon',
-    ['africa'],
-    'cm',
-    '237'
-  ],
-  [
-    'Canada',
-    ['america', 'north-america'],
-    'ca',
-    '1',
-    '(...) ...-....',
-    1, ['204', '226', '236', '249', '250', '289', '306', '343', '365', '387', '403', '416', '418', '431', '437', '438', '450', '506', '514', '519', '548', '579', '581', '587', '604', '613', '639', '647', '672', '705', '709', '742', '778', '780', '782', '807', '819', '825', '867', '873', '902', '905']
-  ],
-  [
-    'Cape Verde',
-    ['africa'],
-    'cv',
-    '238'
-  ],
-  [
-    'Caribbean Netherlands',
-    ['america', 'carribean'],
-    'bq',
-    '599',
-    '',
-    1
-  ],
-  [
-    'Central African Republic',
-    ['africa'],
-    'cf',
-    '236'
-  ],
-  [
-    'Chad',
-    ['africa'],
-    'td',
-    '235'
-  ],
-  [
-    'Chile',
-    ['america', 'south-america'],
-    'cl',
-    '56'
-  ],
-  [
-    'China',
-    ['asia'],
-    'cn',
-    '86',
-    '..-.........'
-  ],
-  [
-    'Colombia',
-    ['america', 'south-america'],
-    'co',
-    '57',
-    '... ... ....'
-  ],
-  [
-    'Comoros',
-    ['africa'],
-    'km',
-    '269'
-  ],
-  [
-    'Congo',
-    ['africa'],
-    'cd',
-    '243'
-  ],
-  [
-    'Congo',
-    ['africa'],
-    'cg',
-    '242'
-  ],
-  [
-    'Costa Rica',
-    ['america', 'central-america'],
-    'cr',
-    '506',
-    '....-....'
-  ],
-  [
-    'Côte d’Ivoire',
-    ['africa'],
-    'ci',
-    '225',
-    '.. .. .. ..'
-  ],
-  [
-    'Croatia',
-    ['europe', 'eu-union', 'ex-yugos'],
-    'hr',
-    '385'
-  ],
-  [
-    'Cuba',
-    ['america', 'carribean'],
-    'cu',
-    '53'
-  ],
-  [
-    'Curaçao',
-    ['america', 'carribean'],
-    'cw',
-    '599',
-    '',
-    0
-  ],
-  [
-    'Cyprus',
-    ['europe', 'eu-union'],
-    'cy',
-    '357',
-    '.. ......'
-  ],
-  [
-    'Czech Republic',
-    ['europe', 'eu-union'],
-    'cz',
-    '420',
-    '... ... ...'
-  ],
-  [
-    'Denmark',
-    ['europe', 'eu-union', 'baltic'],
-    'dk',
-    '45',
-    '.. .. .. ..'
-  ],
-  [
-    'Djibouti',
-    ['africa'],
-    'dj',
-    '253'
-  ],
-  [
-    'Dominica',
-    ['america', 'carribean'],
-    'dm',
-    '1767'
-  ],
-  [
-    'Dominican Republic',
-    ['america', 'carribean'],
-    'do',
-    '1',
-    '',
-    2, ['809', '829', '849']
-  ],
-  [
-    'Ecuador',
-    ['america', 'south-america'],
-    'ec',
-    '593'
-  ],
-  [
-    'Egypt',
-    ['africa', 'north-africa'],
-    'eg',
-    '20'
-  ],
-  [
-    'El Salvador',
-    ['america', 'central-america'],
-    'sv',
-    '503',
-    '....-....'
-  ],
-  [
-    'Equatorial Guinea',
-    ['africa'],
-    'gq',
-    '240'
-  ],
-  [
-    'Eritrea',
-    ['africa'],
-    'er',
-    '291'
-  ],
-  [
-    'Estonia',
-    ['europe', 'eu-union', 'ex-ussr', 'baltic'],
-    'ee',
-    '372',
-    '.... ......'
-  ],
-  [
-    'Ethiopia',
-    ['africa'],
-    'et',
-    '251'
-  ],
-  [
-    'Fiji',
-    ['oceania'],
-    'fj',
-    '679'
-  ],
-  [
-    'Finland',
-    ['europe', 'eu-union', 'baltic'],
-    'fi',
-    '358',
-    '.. ... .. ..'
-  ],
-  [
-    'France',
-    ['europe', 'eu-union'],
-    'fr',
-    '33',
-    '. .. .. .. ..'
-  ],
-  [
-    'French Guiana',
-    ['america', 'south-america'],
-    'gf',
-    '594'
-  ],
-  [
-    'French Polynesia',
-    ['oceania'],
-    'pf',
-    '689'
-  ],
-  [
-    'Gabon',
-    ['africa'],
-    'ga',
-    '241'
-  ],
-  [
-    'Gambia',
-    ['africa'],
-    'gm',
-    '220'
-  ],
-  [
-    'Georgia',
-    ['asia', 'ex-ussr'],
-    'ge',
-    '995'
-  ],
-  [
-    'Germany',
-    ['europe', 'eu-union', 'baltic'],
-    'de',
-    '49',
-    '.... ........'
-  ],
-  [
-    'Ghana',
-    ['africa'],
-    'gh',
-    '233'
-  ],
-  [
-    'Greece',
-    ['europe', 'eu-union'],
-    'gr',
-    '30'
-  ],
-  [
-    'Grenada',
-    ['america', 'carribean'],
-    'gd',
-    '1473'
-  ],
-  [
-    'Guadeloupe',
-    ['america', 'carribean'],
-    'gp',
-    '590',
-    '',
-    0
-  ],
-  [
-    'Guam',
-    ['oceania'],
-    'gu',
-    '1671'
-  ],
-  [
-    'Guatemala',
-    ['america', 'central-america'],
-    'gt',
-    '502',
-    '....-....'
-  ],
-  [
-    'Guinea',
-    ['africa'],
-    'gn',
-    '224'
-  ],
-  [
-    'Guinea-Bissau',
-    ['africa'],
-    'gw',
-    '245'
-  ],
-  [
-    'Guyana',
-    ['america', 'south-america'],
-    'gy',
-    '592'
-  ],
-  [
-    'Haiti',
-    ['america', 'carribean'],
-    'ht',
-    '509',
-    '....-....'
-  ],
-  [
-    'Honduras',
-    ['america', 'central-america'],
-    'hn',
-    '504'
-  ],
-  [
-    'Hong Kong',
-    ['asia'],
-    'hk',
-    '852',
-    '.... ....'
-  ],
-  [
-    'Hungary',
-    ['europe', 'eu-union'],
-    'hu',
-    '36'
-  ],
-  [
-    'Iceland',
-    ['europe'],
-    'is',
-    '354',
-    '... ....'
-  ],
-  [
-    'India',
-    ['asia'],
-    'in',
-    '91',
-    '.....-.....'
-  ],
-  [
-    'Indonesia',
-    ['asia'],
-    'id',
-    '62'
-  ],
-  [
-    'Iran',
-    ['middle-east'],
-    'ir',
-    '98',
-    '... ... ....'
-  ],
-  [
-    'Iraq',
-    ['middle-east'],
-    'iq',
-    '964'
-  ],
-  [
-    'Ireland',
-    ['europe', 'eu-union'],
-    'ie',
-    '353',
-    '.. .......'
-  ],
-  [
-    'Israel',
-    ['middle-east'],
-    'il',
-    '972',
-    '... ... ....'
-  ],
-  [
-    'Italy',
-    ['europe', 'eu-union'],
-    'it',
-    '39',
-    '... .......',
-    0
-  ],
-  [
-    'Jamaica',
-    ['america', 'carribean'],
-    'jm',
-    '1876'
-  ],
-  [
-    'Japan',
-    ['asia'],
-    'jp',
-    '81',
-    '.. .... ....'
-  ],
-  [
-    'Jordan',
-    ['middle-east'],
-    'jo',
-    '962'
-  ],
-  [
-    'Kazakhstan',
-    ['asia', 'ex-ussr'],
-    'kz',
-    '7',
-    '... ...-..-..',
-    1, ['310', '311', '312', '313', '315', '318', '321', '324', '325', '326', '327', '336', '7172', '73622']
-  ],
-  [
-    'Kenya',
-    ['africa'],
-    'ke',
-    '254'
-  ],
-  [
-    'Kiribati',
-    ['oceania'],
-    'ki',
-    '686'
-  ],
-  [
-    'Kosovo',
-    ['europe', 'ex-yugos'],
-    'xk',
-    '383'
-  ],
-  [
-    'Kuwait',
-    ['middle-east'],
-    'kw',
-    '965'
-  ],
-  [
-    'Kyrgyzstan',
-    ['asia', 'ex-ussr'],
-    'kg',
-    '996',
-    '... ... ...'
-  ],
-  [
-    'Laos',
-    ['asia'],
-    'la',
-    '856'
-  ],
-  [
-    'Latvia',
-    ['europe', 'eu-union', 'ex-ussr', 'baltic'],
-    'lv',
-    '371',
-    '.. ... ...'
-  ],
-  [
-    'Lebanon',
-    ['middle-east'],
-    'lb',
-    '961'
-  ],
-  [
-    'Lesotho',
-    ['africa'],
-    'ls',
-    '266'
-  ],
-  [
-    'Liberia',
-    ['africa'],
-    'lr',
-    '231'
-  ],
-  [
-    'Libya',
-    ['africa', 'north-africa'],
-    'ly',
-    '218'
-  ],
-  [
-    'Liechtenstein',
-    ['europe'],
-    'li',
-    '423'
-  ],
-  [
-    'Lithuania',
-    ['europe', 'eu-union', 'ex-ussr', 'baltic'],
-    'lt',
-    '370'
-  ],
-  [
-    'Luxembourg',
-    ['europe', 'eu-union'],
-    'lu',
-    '352'
-  ],
-  [
-    'Macau',
-    ['asia'],
-    'mo',
-    '853'
-  ],
-  [
-    'Macedonia',
-    ['europe', 'ex-yugos'],
-    'mk',
-    '389'
-  ],
-  [
-    'Madagascar',
-    ['africa'],
-    'mg',
-    '261'
-  ],
-  [
-    'Malawi',
-    ['africa'],
-    'mw',
-    '265'
-  ],
-  [
-    'Malaysia',
-    ['asia'],
-    'my',
-    '60',
-    '..-....-....'
-  ],
-  [
-    'Maldives',
-    ['asia'],
-    'mv',
-    '960'
-  ],
-  [
-    'Mali',
-    ['africa'],
-    'ml',
-    '223'
-  ],
-  [
-    'Malta',
-    ['europe', 'eu-union'],
-    'mt',
-    '356'
-  ],
-  [
-    'Marshall Islands',
-    ['oceania'],
-    'mh',
-    '692'
-  ],
-  [
-    'Martinique',
-    ['america', 'carribean'],
-    'mq',
-    '596'
-  ],
-  [
-    'Mauritania',
-    ['africa'],
-    'mr',
-    '222'
-  ],
-  [
-    'Mauritius',
-    ['africa'],
-    'mu',
-    '230'
-  ],
-  [
-    'Mexico',
-    ['america', 'central-america'],
-    'mx',
-    '52',
-    '... ... ....',
-    0, ['55', '81', '33', '656', '664', '998', '774', '229']
-  ],
-  [
-    'Micronesia',
-    ['oceania'],
-    'fm',
-    '691'
-  ],
-  [
-    'Moldova',
-    ['europe'],
-    'md',
-    '373',
-    '(..) ..-..-..'
-  ],
-  [
-    'Monaco',
-    ['europe'],
-    'mc',
-    '377'
-  ],
-  [
-    'Mongolia',
-    ['asia'],
-    'mn',
-    '976'
-  ],
-  [
-    'Montenegro',
-    ['europe', 'ex-yugos'],
-    'me',
-    '382'
-  ],
-  [
-    'Morocco',
-    ['africa', 'north-africa'],
-    'ma',
-    '212'
-  ],
-  [
-    'Mozambique',
-    ['africa'],
-    'mz',
-    '258'
-  ],
-  [
-    'Myanmar',
-    ['asia'],
-    'mm',
-    '95'
-  ],
-  [
-    'Namibia',
-    ['africa'],
-    'na',
-    '264'
-  ],
-  [
-    'Nauru',
-    ['africa'],
-    'nr',
-    '674'
-  ],
-  [
-    'Nepal',
-    ['asia'],
-    'np',
-    '977'
-  ],
-  [
-    'Netherlands',
-    ['europe', 'eu-union'],
-    'nl',
-    '31',
-    '.. ........'
-  ],
-  [
-    'New Caledonia',
-    ['oceania'],
-    'nc',
-    '687'
-  ],
-  [
-    'New Zealand',
-    ['oceania'],
-    'nz',
-    '64',
-    '...-...-....'
-  ],
-  [
-    'Nicaragua',
-    ['america', 'central-america'],
-    'ni',
-    '505'
-  ],
-  [
-    'Niger',
-    ['africa'],
-    'ne',
-    '227'
-  ],
-  [
-    'Nigeria',
-    ['africa'],
-    'ng',
-    '234'
-  ],
-  [
-    'North Korea',
-    ['asia'],
-    'kp',
-    '850'
-  ],
-  [
-    'Norway',
-    ['europe', 'baltic'],
-    'no',
-    '47',
-    '... .. ...'
-  ],
-  [
-    'Oman',
-    ['middle-east'],
-    'om',
-    '968'
-  ],
-  [
-    'Pakistan',
-    ['asia'],
-    'pk',
-    '92',
-    '...-.......'
-  ],
-  [
-    'Palau',
-    ['oceania'],
-    'pw',
-    '680'
-  ],
-  [
-    'Palestine',
-    ['middle-east'],
-    'ps',
-    '970'
-  ],
-  [
-    'Panama',
-    ['america', 'central-america'],
-    'pa',
-    '507'
-  ],
-  [
-    'Papua New Guinea',
-    ['oceania'],
-    'pg',
-    '675'
-  ],
-  [
-    'Paraguay',
-    ['america', 'south-america'],
-    'py',
-    '595'
-  ],
-  [
-    'Peru',
-    ['america', 'south-america'],
-    'pe',
-    '51'
-  ],
-  [
-    'Philippines',
-    ['asia'],
-    'ph',
-    '63',
-    '.... .......'
-  ],
-  [
-    'Poland',
-    ['europe', 'eu-union', 'baltic'],
-    'pl',
-    '48',
-    '...-...-...'
-  ],
-  [
-    'Portugal',
-    ['europe', 'eu-union'],
-    'pt',
-    '351'
-  ],
-  [
-    'Puerto Rico',
-    ['america', 'carribean'],
-    'pr',
-    '1',
-    '',
-    3, ['787', '939']
-  ],
-  [
-    'Qatar',
-    ['middle-east'],
-    'qa',
-    '974'
-  ],
-  [
-    'Réunion',
-    ['africa'],
-    're',
-    '262'
-  ],
-  [
-    'Romania',
-    ['europe', 'eu-union'],
-    'ro',
-    '40'
-  ],
-  [
-    'Russia',
-    ['europe', 'asia', 'ex-ussr', 'baltic'],
-    'ru',
-    '7',
-    '(...) ...-..-..',
-    0
-  ],
-  [
-    'Rwanda',
-    ['africa'],
-    'rw',
-    '250'
-  ],
-  [
-    'Saint Kitts and Nevis',
-    ['america', 'carribean'],
-    'kn',
-    '1869'
-  ],
-  [
-    'Saint Lucia',
-    ['america', 'carribean'],
-    'lc',
-    '1758'
-  ],
-  [
-    'Saint Vincent and the Grenadines',
-    ['america', 'carribean'],
-    'vc',
-    '1784'
-  ],
-  [
-    'Samoa',
-    ['oceania'],
-    'ws',
-    '685'
-  ],
-  [
-    'San Marino',
-    ['europe'],
-    'sm',
-    '378'
-  ],
-  [
-    'São Tomé and Príncipe',
-    ['africa'],
-    'st',
-    '239'
-  ],
-  [
-    'Saudi Arabia',
-    ['middle-east'],
-    'sa',
-    '966'
-  ],
-  [
-    'Senegal',
-    ['africa'],
-    'sn',
-    '221'
-  ],
-  [
-    'Serbia',
-    ['europe', 'ex-yugos'],
-    'rs',
-    '381'
-  ],
-  [
-    'Seychelles',
-    ['africa'],
-    'sc',
-    '248'
-  ],
-  [
-    'Sierra Leone',
-    ['africa'],
-    'sl',
-    '232'
-  ],
-  [
-    'Singapore',
-    ['asia'],
-    'sg',
-    '65',
-    '....-....'
-  ],
-  [
-    'Slovakia',
-    ['europe', 'eu-union'],
-    'sk',
-    '421'
-  ],
-  [
-    'Slovenia',
-    ['europe', 'eu-union', 'ex-yugos'],
-    'si',
-    '386'
-  ],
-  [
-    'Solomon Islands',
-    ['oceania'],
-    'sb',
-    '677'
-  ],
-  [
-    'Somalia',
-    ['africa'],
-    'so',
-    '252'
-  ],
-  [
-    'South Africa',
-    ['africa'],
-    'za',
-    '27'
-  ],
-  [
-    'South Korea',
-    ['asia'],
-    'kr',
-    '82',
-    '... .... ....'
-  ],
-  [
-    'South Sudan',
-    ['africa', 'north-africa'],
-    'ss',
-    '211'
-  ],
-  [
-    'Spain',
-    ['europe', 'eu-union'],
-    'es',
-    '34',
-    '... ... ...'
-  ],
-  [
-    'Sri Lanka',
-    ['asia'],
-    'lk',
-    '94'
-  ],
-  [
-    'Sudan',
-    ['africa'],
-    'sd',
-    '249'
-  ],
-  [
-    'Suriname',
-    ['america', 'south-america'],
-    'sr',
-    '597'
-  ],
-  [
-    'Swaziland',
-    ['africa'],
-    'sz',
-    '268'
-  ],
-  [
-    'Sweden',
-    ['europe', 'eu-union', 'baltic'],
-    'se',
-    '46',
-    '(...) ...-...'
-  ],
-  [
-    'Switzerland',
-    ['europe'],
-    'ch',
-    '41',
-    '.. ... .. ..'
-  ],
-  [
-    'Syria',
-    ['middle-east'],
-    'sy',
-    '963'
-  ],
-  [
-    'Taiwan',
-    ['asia'],
-    'tw',
-    '886'
-  ],
-  [
-    'Tajikistan',
-    ['asia', 'ex-ussr'],
-    'tj',
-    '992'
-  ],
-  [
-    'Tanzania',
-    ['africa'],
-    'tz',
-    '255'
-  ],
-  [
-    'Thailand',
-    ['asia'],
-    'th',
-    '66'
-  ],
-  [
-    'Timor-Leste',
-    ['asia'],
-    'tl',
-    '670'
-  ],
-  [
-    'Togo',
-    ['africa'],
-    'tg',
-    '228'
-  ],
-  [
-    'Tonga',
-    ['oceania'],
-    'to',
-    '676'
-  ],
-  [
-    'Trinidad and Tobago',
-    ['america', 'carribean'],
-    'tt',
-    '1868'
-  ],
-  [
-    'Tunisia',
-    ['africa', 'north-africa'],
-    'tn',
-    '216'
-  ],
-  [
-    'Turkey',
-    ['europe'],
-    'tr',
-    '90',
-    '... ... .. ..'
-  ],
-  [
-    'Turkmenistan',
-    ['asia', 'ex-ussr'],
-    'tm',
-    '993'
-  ],
-  [
-    'Tuvalu',
-    ['asia'],
-    'tv',
-    '688'
-  ],
-  [
-    'Uganda',
-    ['africa'],
-    'ug',
-    '256'
-  ],
-  [
-    'Ukraine',
-    ['europe', 'ex-ussr'],
-    'ua',
-    '380',
-    '(..) ... .. ..'
-  ],
-  [
-    'United Arab Emirates',
-    ['middle-east'],
-    'ae',
-    '971'
-  ],
-  [
-    'United Kingdom',
-    ['europe', 'eu-union'],
-    'gb',
-    '44',
-    '.... ......'
-  ],
-  [
-    'United States',
-    ['america', 'north-america'],
-    'us',
-    '1',
-    '(...) ...-....',
-    0, ['907', '205', '251', '256', '334', '479', '501', '870', '480', '520', '602', '623', '928', '209', '213', '310', '323', '408', '415', '510', '530', '559', '562', '619', '626', '650', '661', '707', '714', '760', '805', '818', '831', '858', '909', '916', '925', '949', '951', '303', '719', '970', '203', '860', '202', '302', '239', '305', '321', '352', '386', '407', '561', '727', '772', '813', '850', '863', '904', '941', '954', '229', '404', '478', '706', '770', '912', '808', '319', '515', '563', '641', '712', '208', '217', '309', '312', '618', '630', '708', '773', '815', '847', '219', '260', '317', '574', '765', '812', '316', '620', '785', '913', '270', '502', '606', '859', '225', '318', '337', '504', '985', '413', '508', '617', '781', '978', '301', '410', '207', '231', '248', '269', '313', '517', '586', '616', '734', '810', '906', '989', '218', '320', '507', '612', '651', '763', '952', '314', '417', '573', '636', '660', '816', '228', '601', '662', '406', '252', '336', '704', '828', '910', '919', '701', '308', '402', '603', '201', '609', '732', '856', '908', '973', '505', '575', '702', '775', '212', '315', '516', '518', '585', '607', '631', '716', '718', '845', '914', '216', '330', '419', '440', '513', '614', '740', '937', '405', '580', '918', '503', '541', '215', '412', '570', '610', '717', '724', '814', '401', '803', '843', '864', '605', '423', '615', '731', '865', '901', '931', '210', '214', '254', '281', '325', '361', '409', '432', '512', '713', '806', '817', '830', '903', '915', '936', '940', '956', '972', '979', '435', '801', '276', '434', '540', '703', '757', '804', '802', '206', '253', '360', '425', '509', '262', '414', '608', '715', '920', '304', '307']
-  ],
-  [
-    'Uruguay',
-    ['america', 'south-america'],
-    'uy',
-    '598'
-  ],
-  [
-    'Uzbekistan',
-    ['asia', 'ex-ussr'],
-    'uz',
-    '998',
-    '.. ... .. ..'
-  ],
-  [
-    'Vanuatu',
-    ['oceania'],
-    'vu',
-    '678'
-  ],
-  [
-    'Vatican City',
-    ['europe'],
-    'va',
-    '39',
-    '.. .... ....',
-    1
-  ],
-  [
-    'Venezuela',
-    ['america', 'south-america'],
-    've',
-    '58'
-  ],
-  [
-    'Vietnam',
-    ['asia'],
-    'vn',
-    '84'
-  ],
-  [
-    'Yemen',
-    ['middle-east'],
-    'ye',
-    '967'
-  ],
-  [
-    'Zambia',
-    ['africa'],
-    'zm',
-    '260'
-  ],
-  [
-    'Zimbabwe',
-    ['africa'],
-    'zw',
-    '263'
-  ]
+List<CountryEntity> rawCountries = [
+  CountryEntity(
+    countryName: 'Afghanistan',
+    regions: {"asia"},
+    iso2Code: 'af',
+    intlDialCode: '93',
+  ),
+  CountryEntity(
+    countryName: 'Albania',
+    regions: {"europe"},
+    iso2Code: 'al',
+    intlDialCode: '355',
+  ),
+  CountryEntity(
+    countryName: 'Algeria',
+    regions: {"africa", "north-africa"},
+    iso2Code: 'dz',
+    intlDialCode: '213',
+  ),
+  CountryEntity(
+    countryName: 'Andorra',
+    regions: {"europe"},
+    iso2Code: 'ad',
+    intlDialCode: '376',
+  ),
+  CountryEntity(
+    countryName: 'Angola',
+    regions: {"africa"},
+    iso2Code: 'ao',
+    intlDialCode: '244',
+  ),
+  CountryEntity(
+    countryName: 'Antigua and Barbuda',
+    regions: {"america", "carribean"},
+    iso2Code: 'ag',
+    intlDialCode: '1268',
+  ),
+  CountryEntity(
+    countryName: 'Argentina',
+    regions: {"america", "south-america"},
+    iso2Code: 'ar',
+    intlDialCode: '54',
+    format: '(..) ........',
+    orderPriority: 0,
+    areaCodes: {
+      "11",
+      "221",
+      "223",
+      "261",
+      "264",
+      "2652",
+      "280",
+      "2905",
+      "291",
+      "2920",
+      "2966",
+      "299",
+      "341",
+      "342",
+      "343",
+      "351",
+      "376",
+      "379",
+      "381",
+      "3833",
+      "385",
+      "387",
+      "388"
+    },
+  ),
+  CountryEntity(
+    countryName: 'Argentina',
+    regions: {"america", "south-america"},
+    iso2Code: 'ar',
+    intlDialCode: '54',
+    format: '(..) ........',
+    orderPriority: 0,
+    areaCodes: {
+      "11",
+      "221",
+      "223",
+      "261",
+      "264",
+      "2652",
+      "280",
+      "2905",
+      "291",
+      "2920",
+      "2966",
+      "299",
+      "341",
+      "342",
+      "343",
+      "351",
+      "376",
+      "379",
+      "381",
+      "3833",
+      "385",
+      "387",
+      "388"
+    },
+  ),
+  CountryEntity(
+    countryName: 'Armenia',
+    regions: {"asia", "ex-ussr"},
+    iso2Code: 'am',
+    intlDialCode: '374',
+    format: '.. ......',
+  ),
+  CountryEntity(
+    countryName: 'Aruba',
+    regions: {"america", "carribean"},
+    iso2Code: 'aw',
+    intlDialCode: '297',
+  ),
+  CountryEntity(
+    countryName: 'Australia',
+    regions: {"oceania"},
+    iso2Code: 'au',
+    intlDialCode: '61',
+    format: '(..) .... ....',
+    orderPriority: 0,
+    areaCodes: {"2", "3", "4", "7", "8", "02", "03", "04", "07", "08"},
+  ),
+  CountryEntity(
+    countryName: 'Austria',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'at',
+    intlDialCode: '43',
+  ),
+  CountryEntity(
+    countryName: 'Azerbaijan',
+    regions: {"asia", "ex-ussr"},
+    iso2Code: 'az',
+    intlDialCode: '994',
+    format: '(..) ... .. ..',
+  ),
+  CountryEntity(
+    countryName: 'Bahamas',
+    regions: {"america", "carribean"},
+    iso2Code: 'bs',
+    intlDialCode: '1242',
+  ),
+  CountryEntity(
+    countryName: 'Bahrain',
+    regions: {"middle-east"},
+    iso2Code: 'bh',
+    intlDialCode: '973',
+  ),
+  CountryEntity(
+    countryName: 'Bangladesh',
+    regions: {"asia"},
+    iso2Code: 'bd',
+    intlDialCode: '880',
+  ),
+  CountryEntity(
+    countryName: 'Barbados',
+    regions: {"america", "carribean"},
+    iso2Code: 'bb',
+    intlDialCode: '1246',
+  ),
+  CountryEntity(
+    countryName: 'Belarus',
+    regions: {"europe", "ex-ussr"},
+    iso2Code: 'by',
+    intlDialCode: '375',
+    format: '(..) ... .. ..',
+  ),
+  CountryEntity(
+    countryName: 'Belgium',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'be',
+    intlDialCode: '32',
+    format: '... .. .. ..',
+  ),
+  CountryEntity(
+    countryName: 'Belize',
+    regions: {"america", "central-america"},
+    iso2Code: 'bz',
+    intlDialCode: '501',
+  ),
+  CountryEntity(
+    countryName: 'Benin',
+    regions: {"africa"},
+    iso2Code: 'bj',
+    intlDialCode: '229',
+  ),
+  CountryEntity(
+    countryName: 'Bhutan',
+    regions: {"asia"},
+    iso2Code: 'bt',
+    intlDialCode: '975',
+  ),
+  CountryEntity(
+    countryName: 'Bolivia',
+    regions: {"america", "south-america"},
+    iso2Code: 'bo',
+    intlDialCode: '591',
+  ),
+  CountryEntity(
+    countryName: 'Bosnia and Herzegovina',
+    regions: {"europe", "ex-yugos"},
+    iso2Code: 'ba',
+    intlDialCode: '387',
+  ),
+  CountryEntity(
+    countryName: 'Botswana',
+    regions: {"africa"},
+    iso2Code: 'bw',
+    intlDialCode: '267',
+  ),
+  CountryEntity(
+    countryName: 'Brazil',
+    regions: {"america", "south-america"},
+    iso2Code: 'br',
+    intlDialCode: '55',
+    format: '(..) .........',
+  ),
+  CountryEntity(
+    countryName: 'British Indian Ocean Territory',
+    regions: {"asia"},
+    iso2Code: 'io',
+    intlDialCode: '246',
+  ),
+  CountryEntity(
+    countryName: 'Brunei',
+    regions: {"asia"},
+    iso2Code: 'bn',
+    intlDialCode: '673',
+  ),
+  CountryEntity(
+    countryName: 'Bulgaria',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'bg',
+    intlDialCode: '359',
+  ),
+  CountryEntity(
+    countryName: 'Burkina Faso',
+    regions: {"africa"},
+    iso2Code: 'bf',
+    intlDialCode: '226',
+  ),
+  CountryEntity(
+    countryName: 'Burundi',
+    regions: {"africa"},
+    iso2Code: 'bi',
+    intlDialCode: '257',
+  ),
+  CountryEntity(
+    countryName: 'Cambodia',
+    regions: {"asia"},
+    iso2Code: 'kh',
+    intlDialCode: '855',
+  ),
+  CountryEntity(
+    countryName: 'Cameroon',
+    regions: {"africa"},
+    iso2Code: 'cm',
+    intlDialCode: '237',
+  ),
+  CountryEntity(
+    countryName: 'Canada',
+    regions: {"america", "north-america"},
+    iso2Code: 'ca',
+    intlDialCode: '1',
+    format: '(...) ...-....',
+    orderPriority: 1,
+    areaCodes: {
+      "204",
+      "226",
+      "236",
+      "249",
+      "250",
+      "289",
+      "306",
+      "343",
+      "365",
+      "387",
+      "403",
+      "416",
+      "418",
+      "431",
+      "437",
+      "438",
+      "450",
+      "506",
+      "514",
+      "519",
+      "548",
+      "579",
+      "581",
+      "587",
+      "604",
+      "613",
+      "639",
+      "647",
+      "672",
+      "705",
+      "709",
+      "742",
+      "778",
+      "780",
+      "782",
+      "807",
+      "819",
+      "825",
+      "867",
+      "873",
+      "902",
+      "905"
+    },
+  ),
+  CountryEntity(
+    countryName: 'Cape Verde',
+    regions: {"africa"},
+    iso2Code: 'cv',
+    intlDialCode: '238',
+  ),
+  CountryEntity(
+    countryName: 'Caribbean Netherlands',
+    regions: {"america", "carribean"},
+    iso2Code: 'bq',
+    intlDialCode: '599',
+    format: '',
+    orderPriority: 1,
+  ),
+  CountryEntity(
+    countryName: 'Central African Republic',
+    regions: {"africa"},
+    iso2Code: 'cf',
+    intlDialCode: '236',
+  ),
+  CountryEntity(
+    countryName: 'Chad',
+    regions: {"africa"},
+    iso2Code: 'td',
+    intlDialCode: '235',
+  ),
+  CountryEntity(
+    countryName: 'Chile',
+    regions: {"america", "south-america"},
+    iso2Code: 'cl',
+    intlDialCode: '56',
+  ),
+  CountryEntity(
+    countryName: 'China',
+    regions: {"asia"},
+    iso2Code: 'cn',
+    intlDialCode: '86',
+    format: '..-.........',
+  ),
+  CountryEntity(
+    countryName: 'Colombia',
+    regions: {"america", "south-america"},
+    iso2Code: 'co',
+    intlDialCode: '57',
+    format: '... ... ....',
+  ),
+  CountryEntity(
+    countryName: 'Comoros',
+    regions: {"africa"},
+    iso2Code: 'km',
+    intlDialCode: '269',
+  ),
+  CountryEntity(
+    countryName: 'Congo',
+    regions: {"africa"},
+    iso2Code: 'cd',
+    intlDialCode: '243',
+  ),
+  CountryEntity(
+    countryName: 'Congo',
+    regions: {"africa"},
+    iso2Code: 'cg',
+    intlDialCode: '242',
+  ),
+  CountryEntity(
+    countryName: 'Costa Rica',
+    regions: {"america", "central-america"},
+    iso2Code: 'cr',
+    intlDialCode: '506',
+    format: '....-....',
+  ),
+  CountryEntity(
+    countryName: 'Croatia',
+    regions: {"europe", "eu-union", "ex-yugos"},
+    iso2Code: 'hr',
+    intlDialCode: '385',
+  ),
+  CountryEntity(
+    countryName: 'Cuba',
+    regions: {"america", "carribean"},
+    iso2Code: 'cu',
+    intlDialCode: '53',
+  ),
+  CountryEntity(
+    countryName: 'Curaçao',
+    regions: {"america", "carribean"},
+    iso2Code: 'cw',
+    intlDialCode: '599',
+    format: '',
+    orderPriority: 0,
+  ),
+  CountryEntity(
+    countryName: 'Cyprus',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'cy',
+    intlDialCode: '357',
+    format: '.. ......',
+  ),
+  CountryEntity(
+    countryName: 'Czech Republic',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'cz',
+    intlDialCode: '420',
+    format: '... ... ...',
+  ),
+  CountryEntity(
+    countryName: 'Côte d’Ivoire',
+    regions: {"africa"},
+    iso2Code: 'ci',
+    intlDialCode: '225',
+    format: '.. .. .. ..',
+  ),
+  CountryEntity(
+    countryName: 'Denmark',
+    regions: {"europe", "eu-union", "baltic"},
+    iso2Code: 'dk',
+    intlDialCode: '45',
+    format: '.. .. .. ..',
+  ),
+  CountryEntity(
+    countryName: 'Djibouti',
+    regions: {"africa"},
+    iso2Code: 'dj',
+    intlDialCode: '253',
+  ),
+  CountryEntity(
+    countryName: 'Dominica',
+    regions: {"america", "carribean"},
+    iso2Code: 'dm',
+    intlDialCode: '1767',
+  ),
+  CountryEntity(
+    countryName: 'Dominican Republic',
+    regions: {"america", "carribean"},
+    iso2Code: 'do',
+    intlDialCode: '1',
+    format: '',
+    orderPriority: 2,
+    areaCodes: {"809", "829", "849"},
+  ),
+  CountryEntity(
+    countryName: 'Ecuador',
+    regions: {"america", "south-america"},
+    iso2Code: 'ec',
+    intlDialCode: '593',
+  ),
+  CountryEntity(
+    countryName: 'Egypt',
+    regions: {"africa", "north-africa"},
+    iso2Code: 'eg',
+    intlDialCode: '20',
+  ),
+  CountryEntity(
+    countryName: 'El Salvador',
+    regions: {"america", "central-america"},
+    iso2Code: 'sv',
+    intlDialCode: '503',
+    format: '....-....',
+  ),
+  CountryEntity(
+    countryName: 'Equatorial Guinea',
+    regions: {"africa"},
+    iso2Code: 'gq',
+    intlDialCode: '240',
+  ),
+  CountryEntity(
+    countryName: 'Eritrea',
+    regions: {"africa"},
+    iso2Code: 'er',
+    intlDialCode: '291',
+  ),
+  CountryEntity(
+    countryName: 'Estonia',
+    regions: {"europe", "eu-union", "ex-ussr", "baltic"},
+    iso2Code: 'ee',
+    intlDialCode: '372',
+    format: '.... ......',
+  ),
+  CountryEntity(
+    countryName: 'Ethiopia',
+    regions: {"africa"},
+    iso2Code: 'et',
+    intlDialCode: '251',
+  ),
+  CountryEntity(
+    countryName: 'Fiji',
+    regions: {"oceania"},
+    iso2Code: 'fj',
+    intlDialCode: '679',
+  ),
+  CountryEntity(
+    countryName: 'Finland',
+    regions: {"europe", "eu-union", "baltic"},
+    iso2Code: 'fi',
+    intlDialCode: '358',
+    format: '.. ... .. ..',
+  ),
+  CountryEntity(
+    countryName: 'France',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'fr',
+    intlDialCode: '33',
+    format: '. .. .. .. ..',
+  ),
+  CountryEntity(
+    countryName: 'French Guiana',
+    regions: {"america", "south-america"},
+    iso2Code: 'gf',
+    intlDialCode: '594',
+  ),
+  CountryEntity(
+    countryName: 'French Polynesia',
+    regions: {"oceania"},
+    iso2Code: 'pf',
+    intlDialCode: '689',
+  ),
+  CountryEntity(
+    countryName: 'Gabon',
+    regions: {"africa"},
+    iso2Code: 'ga',
+    intlDialCode: '241',
+  ),
+  CountryEntity(
+    countryName: 'Gambia',
+    regions: {"africa"},
+    iso2Code: 'gm',
+    intlDialCode: '220',
+  ),
+  CountryEntity(
+    countryName: 'Georgia',
+    regions: {"asia", "ex-ussr"},
+    iso2Code: 'ge',
+    intlDialCode: '995',
+  ),
+  CountryEntity(
+    countryName: 'Germany',
+    regions: {"europe", "eu-union", "baltic"},
+    iso2Code: 'de',
+    intlDialCode: '49',
+    format: '.... ........',
+  ),
+  CountryEntity(
+    countryName: 'Ghana',
+    regions: {"africa"},
+    iso2Code: 'gh',
+    intlDialCode: '233',
+  ),
+  CountryEntity(
+    countryName: 'Greece',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'gr',
+    intlDialCode: '30',
+  ),
+  CountryEntity(
+    countryName: 'Grenada',
+    regions: {"america", "carribean"},
+    iso2Code: 'gd',
+    intlDialCode: '1473',
+  ),
+  CountryEntity(
+    countryName: 'Guadeloupe',
+    regions: {"america", "carribean"},
+    iso2Code: 'gp',
+    intlDialCode: '590',
+    format: '',
+    orderPriority: 0,
+  ),
+  CountryEntity(
+    countryName: 'Guam',
+    regions: {"oceania"},
+    iso2Code: 'gu',
+    intlDialCode: '1671',
+  ),
+  CountryEntity(
+    countryName: 'Guatemala',
+    regions: {"america", "central-america"},
+    iso2Code: 'gt',
+    intlDialCode: '502',
+    format: '....-....',
+  ),
+  CountryEntity(
+    countryName: 'Guinea',
+    regions: {"africa"},
+    iso2Code: 'gn',
+    intlDialCode: '224',
+  ),
+  CountryEntity(
+    countryName: 'Guinea-Bissau',
+    regions: {"africa"},
+    iso2Code: 'gw',
+    intlDialCode: '245',
+  ),
+  CountryEntity(
+    countryName: 'Guyana',
+    regions: {"america", "south-america"},
+    iso2Code: 'gy',
+    intlDialCode: '592',
+  ),
+  CountryEntity(
+    countryName: 'Haiti',
+    regions: {"america", "carribean"},
+    iso2Code: 'ht',
+    intlDialCode: '509',
+    format: '....-....',
+  ),
+  CountryEntity(
+    countryName: 'Honduras',
+    regions: {"america", "central-america"},
+    iso2Code: 'hn',
+    intlDialCode: '504',
+  ),
+  CountryEntity(
+    countryName: 'Hong Kong',
+    regions: {"asia"},
+    iso2Code: 'hk',
+    intlDialCode: '852',
+    format: '.... ....',
+  ),
+  CountryEntity(
+    countryName: 'Hungary',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'hu',
+    intlDialCode: '36',
+  ),
+  CountryEntity(
+    countryName: 'Iceland',
+    regions: {"europe"},
+    iso2Code: 'is',
+    intlDialCode: '354',
+    format: '... ....',
+  ),
+  CountryEntity(
+    countryName: 'India',
+    regions: {"asia"},
+    iso2Code: 'in',
+    intlDialCode: '91',
+    format: '.....-.....',
+  ),
+  CountryEntity(
+    countryName: 'Indonesia',
+    regions: {"asia"},
+    iso2Code: 'id',
+    intlDialCode: '62',
+  ),
+  CountryEntity(
+    countryName: 'Iran',
+    regions: {"middle-east"},
+    iso2Code: 'ir',
+    intlDialCode: '98',
+    format: '... ... ....',
+  ),
+  CountryEntity(
+    countryName: 'Iraq',
+    regions: {"middle-east"},
+    iso2Code: 'iq',
+    intlDialCode: '964',
+  ),
+  CountryEntity(
+    countryName: 'Ireland',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'ie',
+    intlDialCode: '353',
+    format: '.. .......',
+  ),
+  CountryEntity(
+    countryName: 'Israel',
+    regions: {"middle-east"},
+    iso2Code: 'il',
+    intlDialCode: '972',
+    format: '... ... ....',
+  ),
+  CountryEntity(
+    countryName: 'Italy',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'it',
+    intlDialCode: '39',
+    format: '... .......',
+    orderPriority: 0,
+  ),
+  CountryEntity(
+    countryName: 'Jamaica',
+    regions: {"america", "carribean"},
+    iso2Code: 'jm',
+    intlDialCode: '1876',
+  ),
+  CountryEntity(
+    countryName: 'Japan',
+    regions: {"asia"},
+    iso2Code: 'jp',
+    intlDialCode: '81',
+    format: '.. .... ....',
+  ),
+  CountryEntity(
+    countryName: 'Jordan',
+    regions: {"middle-east"},
+    iso2Code: 'jo',
+    intlDialCode: '962',
+  ),
+  CountryEntity(
+    countryName: 'Kazakhstan',
+    regions: {"asia", "ex-ussr"},
+    iso2Code: 'kz',
+    intlDialCode: '7',
+    format: '... ...-..-..',
+    orderPriority: 1,
+    areaCodes: {
+      "310",
+      "311",
+      "312",
+      "313",
+      "315",
+      "318",
+      "321",
+      "324",
+      "325",
+      "326",
+      "327",
+      "336",
+      "7172",
+      "73622"
+    },
+  ),
+  CountryEntity(
+    countryName: 'Kenya',
+    regions: {"africa"},
+    iso2Code: 'ke',
+    intlDialCode: '254',
+  ),
+  CountryEntity(
+    countryName: 'Kiribati',
+    regions: {"oceania"},
+    iso2Code: 'ki',
+    intlDialCode: '686',
+  ),
+  CountryEntity(
+    countryName: 'Kosovo',
+    regions: {"europe", "ex-yugos"},
+    iso2Code: 'xk',
+    intlDialCode: '383',
+  ),
+  CountryEntity(
+    countryName: 'Kuwait',
+    regions: {"middle-east"},
+    iso2Code: 'kw',
+    intlDialCode: '965',
+  ),
+  CountryEntity(
+    countryName: 'Kyrgyzstan',
+    regions: {"asia", "ex-ussr"},
+    iso2Code: 'kg',
+    intlDialCode: '996',
+    format: '... ... ...',
+  ),
+  CountryEntity(
+    countryName: 'Laos',
+    regions: {"asia"},
+    iso2Code: 'la',
+    intlDialCode: '856',
+  ),
+  CountryEntity(
+    countryName: 'Latvia',
+    regions: {"europe", "eu-union", "ex-ussr", "baltic"},
+    iso2Code: 'lv',
+    intlDialCode: '371',
+    format: '.. ... ...',
+  ),
+  CountryEntity(
+    countryName: 'Lebanon',
+    regions: {"middle-east"},
+    iso2Code: 'lb',
+    intlDialCode: '961',
+  ),
+  CountryEntity(
+    countryName: 'Lesotho',
+    regions: {"africa"},
+    iso2Code: 'ls',
+    intlDialCode: '266',
+  ),
+  CountryEntity(
+    countryName: 'Liberia',
+    regions: {"africa"},
+    iso2Code: 'lr',
+    intlDialCode: '231',
+  ),
+  CountryEntity(
+    countryName: 'Libya',
+    regions: {"africa", "north-africa"},
+    iso2Code: 'ly',
+    intlDialCode: '218',
+  ),
+  CountryEntity(
+    countryName: 'Liechtenstein',
+    regions: {"europe"},
+    iso2Code: 'li',
+    intlDialCode: '423',
+  ),
+  CountryEntity(
+    countryName: 'Lithuania',
+    regions: {"europe", "eu-union", "ex-ussr", "baltic"},
+    iso2Code: 'lt',
+    intlDialCode: '370',
+  ),
+  CountryEntity(
+    countryName: 'Luxembourg',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'lu',
+    intlDialCode: '352',
+  ),
+  CountryEntity(
+    countryName: 'Macau',
+    regions: {"asia"},
+    iso2Code: 'mo',
+    intlDialCode: '853',
+  ),
+  CountryEntity(
+    countryName: 'Macedonia',
+    regions: {"europe", "ex-yugos"},
+    iso2Code: 'mk',
+    intlDialCode: '389',
+  ),
+  CountryEntity(
+    countryName: 'Madagascar',
+    regions: {"africa"},
+    iso2Code: 'mg',
+    intlDialCode: '261',
+  ),
+  CountryEntity(
+    countryName: 'Malawi',
+    regions: {"africa"},
+    iso2Code: 'mw',
+    intlDialCode: '265',
+  ),
+  CountryEntity(
+    countryName: 'Malaysia',
+    regions: {"asia"},
+    iso2Code: 'my',
+    intlDialCode: '60',
+    format: '..-....-....',
+  ),
+  CountryEntity(
+    countryName: 'Maldives',
+    regions: {"asia"},
+    iso2Code: 'mv',
+    intlDialCode: '960',
+  ),
+  CountryEntity(
+    countryName: 'Mali',
+    regions: {"africa"},
+    iso2Code: 'ml',
+    intlDialCode: '223',
+  ),
+  CountryEntity(
+    countryName: 'Malta',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'mt',
+    intlDialCode: '356',
+  ),
+  CountryEntity(
+    countryName: 'Marshall Islands',
+    regions: {"oceania"},
+    iso2Code: 'mh',
+    intlDialCode: '692',
+  ),
+  CountryEntity(
+    countryName: 'Martinique',
+    regions: {"america", "carribean"},
+    iso2Code: 'mq',
+    intlDialCode: '596',
+  ),
+  CountryEntity(
+    countryName: 'Mauritania',
+    regions: {"africa"},
+    iso2Code: 'mr',
+    intlDialCode: '222',
+  ),
+  CountryEntity(
+    countryName: 'Mauritius',
+    regions: {"africa"},
+    iso2Code: 'mu',
+    intlDialCode: '230',
+  ),
+  CountryEntity(
+    countryName: 'Mexico',
+    regions: {"america", "central-america"},
+    iso2Code: 'mx',
+    intlDialCode: '52',
+    format: '... ... ....',
+    orderPriority: 0,
+    areaCodes: {"55", "81", "33", "656", "664", "998", "774", "229"},
+  ),
+  CountryEntity(
+    countryName: 'Micronesia',
+    regions: {"oceania"},
+    iso2Code: 'fm',
+    intlDialCode: '691',
+  ),
+  CountryEntity(
+    countryName: 'Moldova',
+    regions: {"europe"},
+    iso2Code: 'md',
+    intlDialCode: '373',
+    format: '(..) ..-..-..',
+  ),
+  CountryEntity(
+    countryName: 'Monaco',
+    regions: {"europe"},
+    iso2Code: 'mc',
+    intlDialCode: '377',
+  ),
+  CountryEntity(
+    countryName: 'Mongolia',
+    regions: {"asia"},
+    iso2Code: 'mn',
+    intlDialCode: '976',
+  ),
+  CountryEntity(
+    countryName: 'Montenegro',
+    regions: {"europe", "ex-yugos"},
+    iso2Code: 'me',
+    intlDialCode: '382',
+  ),
+  CountryEntity(
+    countryName: 'Morocco',
+    regions: {"africa", "north-africa"},
+    iso2Code: 'ma',
+    intlDialCode: '212',
+  ),
+  CountryEntity(
+    countryName: 'Mozambique',
+    regions: {"africa"},
+    iso2Code: 'mz',
+    intlDialCode: '258',
+  ),
+  CountryEntity(
+    countryName: 'Myanmar',
+    regions: {"asia"},
+    iso2Code: 'mm',
+    intlDialCode: '95',
+  ),
+  CountryEntity(
+    countryName: 'Namibia',
+    regions: {"africa"},
+    iso2Code: 'na',
+    intlDialCode: '264',
+  ),
+  CountryEntity(
+    countryName: 'Nauru',
+    regions: {"africa"},
+    iso2Code: 'nr',
+    intlDialCode: '674',
+  ),
+  CountryEntity(
+    countryName: 'Nepal',
+    regions: {"asia"},
+    iso2Code: 'np',
+    intlDialCode: '977',
+  ),
+  CountryEntity(
+    countryName: 'Netherlands',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'nl',
+    intlDialCode: '31',
+    format: '.. ........',
+  ),
+  CountryEntity(
+    countryName: 'New Caledonia',
+    regions: {"oceania"},
+    iso2Code: 'nc',
+    intlDialCode: '687',
+  ),
+  CountryEntity(
+    countryName: 'New Zealand',
+    regions: {"oceania"},
+    iso2Code: 'nz',
+    intlDialCode: '64',
+    format: '...-...-....',
+  ),
+  CountryEntity(
+    countryName: 'Nicaragua',
+    regions: {"america", "central-america"},
+    iso2Code: 'ni',
+    intlDialCode: '505',
+  ),
+  CountryEntity(
+    countryName: 'Niger',
+    regions: {"africa"},
+    iso2Code: 'ne',
+    intlDialCode: '227',
+  ),
+  CountryEntity(
+    countryName: 'Nigeria',
+    regions: {"africa"},
+    iso2Code: 'ng',
+    intlDialCode: '234',
+  ),
+  CountryEntity(
+    countryName: 'North Korea',
+    regions: {"asia"},
+    iso2Code: 'kp',
+    intlDialCode: '850',
+  ),
+  CountryEntity(
+    countryName: 'Norway',
+    regions: {"europe", "baltic"},
+    iso2Code: 'no',
+    intlDialCode: '47',
+    format: '... .. ...',
+  ),
+  CountryEntity(
+    countryName: 'Oman',
+    regions: {"middle-east"},
+    iso2Code: 'om',
+    intlDialCode: '968',
+  ),
+  CountryEntity(
+    countryName: 'Pakistan',
+    regions: {"asia"},
+    iso2Code: 'pk',
+    intlDialCode: '92',
+    format: '...-.......',
+  ),
+  CountryEntity(
+    countryName: 'Palau',
+    regions: {"oceania"},
+    iso2Code: 'pw',
+    intlDialCode: '680',
+  ),
+  CountryEntity(
+    countryName: 'Palestine',
+    regions: {"middle-east"},
+    iso2Code: 'ps',
+    intlDialCode: '970',
+  ),
+  CountryEntity(
+    countryName: 'Panama',
+    regions: {"america", "central-america"},
+    iso2Code: 'pa',
+    intlDialCode: '507',
+  ),
+  CountryEntity(
+    countryName: 'Papua New Guinea',
+    regions: {"oceania"},
+    iso2Code: 'pg',
+    intlDialCode: '675',
+  ),
+  CountryEntity(
+    countryName: 'Paraguay',
+    regions: {"america", "south-america"},
+    iso2Code: 'py',
+    intlDialCode: '595',
+  ),
+  CountryEntity(
+    countryName: 'Peru',
+    regions: {"america", "south-america"},
+    iso2Code: 'pe',
+    intlDialCode: '51',
+  ),
+  CountryEntity(
+    countryName: 'Philippines',
+    regions: {"asia"},
+    iso2Code: 'ph',
+    intlDialCode: '63',
+    format: '.... .......',
+  ),
+  CountryEntity(
+    countryName: 'Poland',
+    regions: {"europe", "eu-union", "baltic"},
+    iso2Code: 'pl',
+    intlDialCode: '48',
+    format: '...-...-...',
+  ),
+  CountryEntity(
+    countryName: 'Portugal',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'pt',
+    intlDialCode: '351',
+  ),
+  CountryEntity(
+    countryName: 'Puerto Rico',
+    regions: {"america", "carribean"},
+    iso2Code: 'pr',
+    intlDialCode: '1',
+    format: '',
+    orderPriority: 3,
+    areaCodes: {"787", "939"},
+  ),
+  CountryEntity(
+    countryName: 'Qatar',
+    regions: {"middle-east"},
+    iso2Code: 'qa',
+    intlDialCode: '974',
+  ),
+  CountryEntity(
+    countryName: 'Romania',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'ro',
+    intlDialCode: '40',
+  ),
+  CountryEntity(
+    countryName: 'Russia',
+    regions: {"europe", "asia", "ex-ussr", "baltic"},
+    iso2Code: 'ru',
+    intlDialCode: '7',
+    format: '(...) ...-..-..',
+    orderPriority: 0,
+  ),
+  CountryEntity(
+    countryName: 'Rwanda',
+    regions: {"africa"},
+    iso2Code: 'rw',
+    intlDialCode: '250',
+  ),
+  CountryEntity(
+    countryName: 'Réunion',
+    regions: {"africa"},
+    iso2Code: 're',
+    intlDialCode: '262',
+  ),
+  CountryEntity(
+    countryName: 'Saint Kitts and Nevis',
+    regions: {"america", "carribean"},
+    iso2Code: 'kn',
+    intlDialCode: '1869',
+  ),
+  CountryEntity(
+    countryName: 'Saint Lucia',
+    regions: {"america", "carribean"},
+    iso2Code: 'lc',
+    intlDialCode: '1758',
+  ),
+  CountryEntity(
+    countryName: 'Saint Vincent and the Grenadines',
+    regions: {"america", "carribean"},
+    iso2Code: 'vc',
+    intlDialCode: '1784',
+  ),
+  CountryEntity(
+    countryName: 'Samoa',
+    regions: {"oceania"},
+    iso2Code: 'ws',
+    intlDialCode: '685',
+  ),
+  CountryEntity(
+    countryName: 'San Marino',
+    regions: {"europe"},
+    iso2Code: 'sm',
+    intlDialCode: '378',
+  ),
+  CountryEntity(
+    countryName: 'Saudi Arabia',
+    regions: {"middle-east"},
+    iso2Code: 'sa',
+    intlDialCode: '966',
+  ),
+  CountryEntity(
+    countryName: 'Senegal',
+    regions: {"africa"},
+    iso2Code: 'sn',
+    intlDialCode: '221',
+  ),
+  CountryEntity(
+    countryName: 'Serbia',
+    regions: {"europe", "ex-yugos"},
+    iso2Code: 'rs',
+    intlDialCode: '381',
+  ),
+  CountryEntity(
+    countryName: 'Seychelles',
+    regions: {"africa"},
+    iso2Code: 'sc',
+    intlDialCode: '248',
+  ),
+  CountryEntity(
+    countryName: 'Sierra Leone',
+    regions: {"africa"},
+    iso2Code: 'sl',
+    intlDialCode: '232',
+  ),
+  CountryEntity(
+    countryName: 'Singapore',
+    regions: {"asia"},
+    iso2Code: 'sg',
+    intlDialCode: '65',
+    format: '....-....',
+  ),
+  CountryEntity(
+    countryName: 'Slovakia',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'sk',
+    intlDialCode: '421',
+  ),
+  CountryEntity(
+    countryName: 'Slovenia',
+    regions: {"europe", "eu-union", "ex-yugos"},
+    iso2Code: 'si',
+    intlDialCode: '386',
+  ),
+  CountryEntity(
+    countryName: 'Solomon Islands',
+    regions: {"oceania"},
+    iso2Code: 'sb',
+    intlDialCode: '677',
+  ),
+  CountryEntity(
+    countryName: 'Somalia',
+    regions: {"africa"},
+    iso2Code: 'so',
+    intlDialCode: '252',
+  ),
+  CountryEntity(
+    countryName: 'South Africa',
+    regions: {"africa"},
+    iso2Code: 'za',
+    intlDialCode: '27',
+  ),
+  CountryEntity(
+    countryName: 'South Korea',
+    regions: {"asia"},
+    iso2Code: 'kr',
+    intlDialCode: '82',
+    format: '... .... ....',
+  ),
+  CountryEntity(
+    countryName: 'South Sudan',
+    regions: {"africa", "north-africa"},
+    iso2Code: 'ss',
+    intlDialCode: '211',
+  ),
+  CountryEntity(
+    countryName: 'Spain',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'es',
+    intlDialCode: '34',
+    format: '... ... ...',
+  ),
+  CountryEntity(
+    countryName: 'Sri Lanka',
+    regions: {"asia"},
+    iso2Code: 'lk',
+    intlDialCode: '94',
+  ),
+  CountryEntity(
+    countryName: 'Sudan',
+    regions: {"africa"},
+    iso2Code: 'sd',
+    intlDialCode: '249',
+  ),
+  CountryEntity(
+    countryName: 'Suriname',
+    regions: {"america", "south-america"},
+    iso2Code: 'sr',
+    intlDialCode: '597',
+  ),
+  CountryEntity(
+    countryName: 'Swaziland',
+    regions: {"africa"},
+    iso2Code: 'sz',
+    intlDialCode: '268',
+  ),
+  CountryEntity(
+    countryName: 'Sweden',
+    regions: {"europe", "eu-union", "baltic"},
+    iso2Code: 'se',
+    intlDialCode: '46',
+    format: '(...) ...-...',
+  ),
+  CountryEntity(
+    countryName: 'Switzerland',
+    regions: {"europe"},
+    iso2Code: 'ch',
+    intlDialCode: '41',
+    format: '.. ... .. ..',
+  ),
+  CountryEntity(
+    countryName: 'Syria',
+    regions: {"middle-east"},
+    iso2Code: 'sy',
+    intlDialCode: '963',
+  ),
+  CountryEntity(
+    countryName: 'São Tomé and Príncipe',
+    regions: {"africa"},
+    iso2Code: 'st',
+    intlDialCode: '239',
+  ),
+  CountryEntity(
+    countryName: 'Taiwan',
+    regions: {"asia"},
+    iso2Code: 'tw',
+    intlDialCode: '886',
+  ),
+  CountryEntity(
+    countryName: 'Tajikistan',
+    regions: {"asia", "ex-ussr"},
+    iso2Code: 'tj',
+    intlDialCode: '992',
+  ),
+  CountryEntity(
+    countryName: 'Tanzania',
+    regions: {"africa"},
+    iso2Code: 'tz',
+    intlDialCode: '255',
+  ),
+  CountryEntity(
+    countryName: 'Thailand',
+    regions: {"asia"},
+    iso2Code: 'th',
+    intlDialCode: '66',
+  ),
+  CountryEntity(
+    countryName: 'Timor-Leste',
+    regions: {"asia"},
+    iso2Code: 'tl',
+    intlDialCode: '670',
+  ),
+  CountryEntity(
+    countryName: 'Togo',
+    regions: {"africa"},
+    iso2Code: 'tg',
+    intlDialCode: '228',
+  ),
+  CountryEntity(
+    countryName: 'Tonga',
+    regions: {"oceania"},
+    iso2Code: 'to',
+    intlDialCode: '676',
+  ),
+  CountryEntity(
+    countryName: 'Trinidad and Tobago',
+    regions: {"america", "carribean"},
+    iso2Code: 'tt',
+    intlDialCode: '1868',
+  ),
+  CountryEntity(
+    countryName: 'Tunisia',
+    regions: {"africa", "north-africa"},
+    iso2Code: 'tn',
+    intlDialCode: '216',
+  ),
+  CountryEntity(
+    countryName: 'Turkey',
+    regions: {"europe"},
+    iso2Code: 'tr',
+    intlDialCode: '90',
+    format: '... ... .. ..',
+  ),
+  CountryEntity(
+    countryName: 'Turkmenistan',
+    regions: {"asia", "ex-ussr"},
+    iso2Code: 'tm',
+    intlDialCode: '993',
+  ),
+  CountryEntity(
+    countryName: 'Tuvalu',
+    regions: {"asia"},
+    iso2Code: 'tv',
+    intlDialCode: '688',
+  ),
+  CountryEntity(
+    countryName: 'Uganda',
+    regions: {"africa"},
+    iso2Code: 'ug',
+    intlDialCode: '256',
+  ),
+  CountryEntity(
+    countryName: 'Ukraine',
+    regions: {"europe", "ex-ussr"},
+    iso2Code: 'ua',
+    intlDialCode: '380',
+    format: '(..) ... .. ..',
+  ),
+  CountryEntity(
+    countryName: 'United Arab Emirates',
+    regions: {"middle-east"},
+    iso2Code: 'ae',
+    intlDialCode: '971',
+  ),
+  CountryEntity(
+    countryName: 'United Kingdom',
+    regions: {"europe", "eu-union"},
+    iso2Code: 'gb',
+    intlDialCode: '44',
+    format: '.... ......',
+  ),
+  CountryEntity(
+    countryName: 'United States',
+    regions: {"america", "north-america"},
+    iso2Code: 'us',
+    intlDialCode: '1',
+    format: '(...) ...-....',
+    orderPriority: 0,
+    areaCodes: {
+      "907",
+      "205",
+      "251",
+      "256",
+      "334",
+      "479",
+      "501",
+      "870",
+      "480",
+      "520",
+      "602",
+      "623",
+      "928",
+      "209",
+      "213",
+      "310",
+      "323",
+      "408",
+      "415",
+      "510",
+      "530",
+      "559",
+      "562",
+      "619",
+      "626",
+      "650",
+      "661",
+      "707",
+      "714",
+      "760",
+      "805",
+      "818",
+      "831",
+      "858",
+      "909",
+      "916",
+      "925",
+      "949",
+      "951",
+      "303",
+      "719",
+      "970",
+      "203",
+      "860",
+      "202",
+      "302",
+      "239",
+      "305",
+      "321",
+      "352",
+      "386",
+      "407",
+      "561",
+      "727",
+      "772",
+      "813",
+      "850",
+      "863",
+      "904",
+      "941",
+      "954",
+      "229",
+      "404",
+      "478",
+      "706",
+      "770",
+      "912",
+      "808",
+      "319",
+      "515",
+      "563",
+      "641",
+      "712",
+      "208",
+      "217",
+      "309",
+      "312",
+      "618",
+      "630",
+      "708",
+      "773",
+      "815",
+      "847",
+      "219",
+      "260",
+      "317",
+      "574",
+      "765",
+      "812",
+      "316",
+      "620",
+      "785",
+      "913",
+      "270",
+      "502",
+      "606",
+      "859",
+      "225",
+      "318",
+      "337",
+      "504",
+      "985",
+      "413",
+      "508",
+      "617",
+      "781",
+      "978",
+      "301",
+      "410",
+      "207",
+      "231",
+      "248",
+      "269",
+      "313",
+      "517",
+      "586",
+      "616",
+      "734",
+      "810",
+      "906",
+      "989",
+      "218",
+      "320",
+      "507",
+      "612",
+      "651",
+      "763",
+      "952",
+      "314",
+      "417",
+      "573",
+      "636",
+      "660",
+      "816",
+      "228",
+      "601",
+      "662",
+      "406",
+      "252",
+      "336",
+      "704",
+      "828",
+      "910",
+      "919",
+      "701",
+      "308",
+      "402",
+      "603",
+      "201",
+      "609",
+      "732",
+      "856",
+      "908",
+      "973",
+      "505",
+      "575",
+      "702",
+      "775",
+      "212",
+      "315",
+      "516",
+      "518",
+      "585",
+      "607",
+      "631",
+      "716",
+      "718",
+      "845",
+      "914",
+      "216",
+      "330",
+      "419",
+      "440",
+      "513",
+      "614",
+      "740",
+      "937",
+      "405",
+      "580",
+      "918",
+      "503",
+      "541",
+      "215",
+      "412",
+      "570",
+      "610",
+      "717",
+      "724",
+      "814",
+      "401",
+      "803",
+      "843",
+      "864",
+      "605",
+      "423",
+      "615",
+      "731",
+      "865",
+      "901",
+      "931",
+      "210",
+      "214",
+      "254",
+      "281",
+      "325",
+      "361",
+      "409",
+      "432",
+      "512",
+      "713",
+      "806",
+      "817",
+      "830",
+      "903",
+      "915",
+      "936",
+      "940",
+      "956",
+      "972",
+      "979",
+      "435",
+      "801",
+      "276",
+      "434",
+      "540",
+      "703",
+      "757",
+      "804",
+      "802",
+      "206",
+      "253",
+      "360",
+      "425",
+      "509",
+      "262",
+      "414",
+      "608",
+      "715",
+      "920",
+      "304",
+      "307"
+    },
+  ),
+  CountryEntity(
+    countryName: 'Uruguay',
+    regions: {"america", "south-america"},
+    iso2Code: 'uy',
+    intlDialCode: '598',
+  ),
+  CountryEntity(
+    countryName: 'Uzbekistan',
+    regions: {"asia", "ex-ussr"},
+    iso2Code: 'uz',
+    intlDialCode: '998',
+    format: '.. ... .. ..',
+  ),
+  CountryEntity(
+    countryName: 'Vanuatu',
+    regions: {"oceania"},
+    iso2Code: 'vu',
+    intlDialCode: '678',
+  ),
+  CountryEntity(
+    countryName: 'Vatican City',
+    regions: {"europe"},
+    iso2Code: 'va',
+    intlDialCode: '39',
+    format: '.. .... ....',
+    orderPriority: 1,
+  ),
+  CountryEntity(
+    countryName: 'Venezuela',
+    regions: {"america", "south-america"},
+    iso2Code: 've',
+    intlDialCode: '58',
+  ),
+  CountryEntity(
+    countryName: 'Vietnam',
+    regions: {"asia"},
+    iso2Code: 'vn',
+    intlDialCode: '84',
+  ),
+  CountryEntity(
+    countryName: 'Yemen',
+    regions: {"middle-east"},
+    iso2Code: 'ye',
+    intlDialCode: '967',
+  ),
+  CountryEntity(
+    countryName: 'Zambia',
+    regions: {"africa"},
+    iso2Code: 'zm',
+    intlDialCode: '260',
+  ),
+  CountryEntity(
+    countryName: 'Zimbabwe',
+    regions: {"africa"},
+    iso2Code: 'zw',
+    intlDialCode: '263',
+  ),
 ];

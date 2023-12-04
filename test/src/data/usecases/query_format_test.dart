@@ -1,6 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ns_intl_phone_input/src/data/models/country.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map.dart';
 import 'package:ns_intl_phone_input/src/data/usecases/query_format.dart';
 import 'package:ns_intl_phone_input/src/domain/usecases/construct_lookup_map.dart';
 import 'package:ns_intl_phone_input/src/domain/usecases/query_format.dart';
@@ -12,11 +10,9 @@ void main() {
 
   setUp(() {
     queryFormat = QueryFormatImpl();
-    countriesLookupMap = ConstructLookupMapImpl()(
-      rawCountries.map(
-        (e) => CountryModel.fromRawData(e),
-      ),
-    );
+    countriesLookupMap = {
+      for (final country in rawCountries) country.intlDialCode: country,
+    };
   });
   group(
       'query format test: check if right query format is fetched based on '
