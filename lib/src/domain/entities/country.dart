@@ -8,6 +8,8 @@ class CountryEntity {
   ///for ex. in/
   final String iso2Code;
 
+  final String flag;
+
   ///for ex. 91/
   final String intlDialCode;
 
@@ -25,6 +27,7 @@ class CountryEntity {
     required this.regions,
     required this.iso2Code,
     required this.intlDialCode,
+    this.flag = '🏳️',
     this.format,
     this.orderPriority,
     this.areaCodes,
