@@ -91,14 +91,15 @@ class _PhoneInputState extends State<PhoneInput> {
         Expanded(
           child: DropdownButtonFormField<String>(
             value: dropDownValue,
-            items: _countriesLookupMap.keys
-                .map(
-                  (e) => DropdownMenuItem<String>(
-                    value: e,
-                    child: Text('+$e ${_countriesLookupMap[e]!.countryName}'),
-                  ),
-                )
-                .toList(),
+            items: _countriesLookupMap.keys.map(
+              (e) {
+                final country = _countriesLookupMap[e]!;
+                return DropdownMenuItem<String>(
+                  value: e,
+                  child: Text('${country.flag} +$e ${country.countryName}'),
+                );
+              },
+            ).toList(),
             onChanged: _onDropDownChange,
           ),
         ),
