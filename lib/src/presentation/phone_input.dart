@@ -87,30 +87,39 @@ class _PhoneInputState extends State<PhoneInput> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      textBaseline: TextBaseline.alphabetic,
       children: [
         Expanded(
-          child: DropdownButtonFormField<String>(
-            value: dropDownValue,
-            items: _countriesLookupMap.keys.map(
-              (e) {
-                final country = _countriesLookupMap[e]!;
-                return DropdownMenuItem<String>(
-                  value: e,
-                  child: Text('${country.flag} +$e ${country.countryName}'),
-                );
-              },
-            ).toList(),
-            onChanged: _onDropDownChange,
+          flex: 4,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 0),
+            child: DropdownButtonFormField<String>(
+              value: dropDownValue,
+              items: _countriesLookupMap.keys.map(
+                (e) {
+                  final country = _countriesLookupMap[e]!;
+                  return DropdownMenuItem<String>(
+                    value: e,
+                    child: Text(
+                      '${country.flag} ${country.iso2Code} +$e',
+                      maxLines: 2,
+                    ),
+                  );
+                },
+              ).toList(),
+              onChanged: _onDropDownChange,
+            ),
           ),
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.6,
+        Expanded(
+          flex: 6,
           child: TextFormField(
             maxLength: selectedCountry.format?.length,
             controller: textEditingController,
             inputFormatters: [maskFormatter],
             decoration: const InputDecoration(
               hintText: 'Phone Number',
+              counterText: '',
             ),
           ),
         ),

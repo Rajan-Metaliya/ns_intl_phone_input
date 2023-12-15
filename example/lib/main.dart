@@ -7,8 +7,9 @@ void main() {
       home: Scaffold(
         appBar: AppBar(),
         body: Center(
-          child: Center(
-            child: PhoneInput(),
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: const PhoneInput(),
           ),
         ),
       ),
