@@ -24,6 +24,10 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: "AppleColorEmoji"
+      fonts:
+        - asset: assets/fonts/apple_color_emoji.ttf
 
   # To add assets to your package, add an assets section, like this:
   # assets:

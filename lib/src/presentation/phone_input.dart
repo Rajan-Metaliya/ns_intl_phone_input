@@ -4,6 +4,7 @@ import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map.dart'
 import 'package:ns_intl_phone_input/src/domain/entities/country.dart';
 
 import '../raw/raw_countries.dart';
+import 'widgets/font_text_widget.dart';
 
 // todo: fix selection: selection does not work
 class PhoneInput extends StatefulWidget {
@@ -89,26 +90,33 @@ class _PhoneInputState extends State<PhoneInput> {
     return Row(
       textBaseline: TextBaseline.alphabetic,
       children: [
-        Expanded(
-          flex: 4,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 0),
-            child: DropdownButtonFormField<String>(
-              value: dropDownValue,
-              items: _countriesLookupMap.keys.map(
-                (e) {
-                  final country = _countriesLookupMap[e]!;
-                  return DropdownMenuItem<String>(
-                    value: e,
-                    child: Text(
-                      '${country.flag} ${country.iso2Code} +$e',
-                      maxLines: 2,
-                    ),
-                  );
-                },
-              ).toList(),
-              onChanged: _onDropDownChange,
-            ),
+        SizedBox(
+          width: 170,
+          child: DropdownButtonFormField<String>(
+            value: dropDownValue,
+            items: _countriesLookupMap.keys.map(
+              (e) {
+                final country = _countriesLookupMap[e]!;
+                return DropdownMenuItem<String>(
+                  value: e,
+                  child: Row(
+                    children: [
+                      FontTextWidget(text: country.flag),
+                      const SizedBox(width: 8),
+                      Text(
+                        '${country.iso2Code} +$e',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 2,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ).toList(),
+            onChanged: _onDropDownChange,
           ),
         ),
         Expanded(
