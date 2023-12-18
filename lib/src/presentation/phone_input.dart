@@ -101,15 +101,20 @@ class _PhoneInputState extends State<PhoneInput> {
                   value: e,
                   child: Row(
                     children: [
-                      FontTextWidget(text: country.flag),
-                      const SizedBox(width: 8),
-                      Text(
-                        '${country.iso2Code} +$e',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                        child: FontTextWidget(text: country.flag),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          '${country.iso2Code.toUpperCase()} +$e',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 2,
                         ),
-                        maxLines: 2,
                       ),
                     ],
                   ),
@@ -121,13 +126,16 @@ class _PhoneInputState extends State<PhoneInput> {
         ),
         Expanded(
           flex: 6,
-          child: TextFormField(
-            maxLength: selectedCountry.format?.length,
-            controller: textEditingController,
-            inputFormatters: [maskFormatter],
-            decoration: const InputDecoration(
-              hintText: 'Phone Number',
-              counterText: '',
+          child: Container(
+            padding: const EdgeInsets.only(left: 20),
+            child: TextFormField(
+              maxLength: selectedCountry.format?.length,
+              controller: textEditingController,
+              inputFormatters: [maskFormatter],
+              decoration: const InputDecoration(
+                hintText: 'Phone Number',
+                counterText: '',
+              ),
             ),
           ),
         ),
