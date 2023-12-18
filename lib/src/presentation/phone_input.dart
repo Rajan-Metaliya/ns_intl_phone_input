@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map.dart';
@@ -87,16 +88,114 @@ class _PhoneInputState extends State<PhoneInput> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      textBaseline: TextBaseline.alphabetic,
-      children: [
-        SizedBox(
-          width: 170,
-          child: DropdownButtonFormField<String>(
+    if (kIsWeb && MediaQuery.of(context).size.width > 600) {
+      return WebWidget(
+        countriesLookupMap: _countriesLookupMap,
+        onDropDownChange: _onDropDownChange,
+        textEditingController: textEditingController,
+        maskFormatter: maskFormatter,
+        dropDownValue: dropDownValue,
+        selectedCountry: selectedCountry,
+      );
+    } else {
+      return Row(
+        textBaseline: TextBaseline.alphabetic,
+        children: [
+          SizedBox(
+            width: 170,
+            child: DropdownButtonFormField<String>(
+              value: dropDownValue,
+              items: _countriesLookupMap.keys.map(
+                (e) {
+                  final country = _countriesLookupMap[e]!;
+                  return DropdownMenuItem<String>(
+                    value: e,
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                          child: FontTextWidget(text: country.flag),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Text(
+                            '${country.iso2Code.toUpperCase()} +$e',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 2,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ).toList(),
+              onChanged: _onDropDownChange,
+            ),
+          ),
+          Expanded(
+            flex: 6,
+            child: Container(
+              padding: const EdgeInsets.only(left: 20),
+              child: TextFormField(
+                maxLength: selectedCountry.format?.length,
+                controller: textEditingController,
+                inputFormatters: [maskFormatter],
+                decoration: const InputDecoration(
+                  hintText: 'Phone Number',
+                  counterText: '',
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+  }
+}
+
+class WebWidget extends StatelessWidget {
+  const WebWidget({
+    super.key,
+    required this.countriesLookupMap,
+    required this.onDropDownChange,
+    required this.textEditingController,
+    required this.maskFormatter,
+    required this.dropDownValue,
+    required this.selectedCountry,
+  });
+
+  final Map<String, CountryEntity> countriesLookupMap;
+  final ValueChanged<String?> onDropDownChange;
+  final TextEditingController textEditingController;
+  final MaskTextInputFormatter maskFormatter;
+  final String? dropDownValue;
+  final CountryEntity selectedCountry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 400,
+      constraints: const BoxConstraints(
+        minHeight: 0,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(
+          width: 1.0,
+        ),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          DropdownButtonFormField<String>(
             value: dropDownValue,
-            items: _countriesLookupMap.keys.map(
+            items: countriesLookupMap.keys.map(
               (e) {
-                final country = _countriesLookupMap[e]!;
+                final country = countriesLookupMap[e]!;
                 return DropdownMenuItem<String>(
                   value: e,
                   child: Row(
@@ -108,7 +207,7 @@ class _PhoneInputState extends State<PhoneInput> {
                       Container(
                         padding: const EdgeInsets.only(top: 4),
                         child: Text(
-                          '${country.iso2Code.toUpperCase()} +$e',
+                          '${country.countryName} +$e',
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -121,13 +220,10 @@ class _PhoneInputState extends State<PhoneInput> {
                 );
               },
             ).toList(),
-            onChanged: _onDropDownChange,
+            onChanged: onDropDownChange,
           ),
-        ),
-        Expanded(
-          flex: 6,
-          child: Container(
-            padding: const EdgeInsets.only(left: 20),
+          const SizedBox(height: 10),
+          Container(
             child: TextFormField(
               maxLength: selectedCountry.format?.length,
               controller: textEditingController,
@@ -138,8 +234,8 @@ class _PhoneInputState extends State<PhoneInput> {
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
