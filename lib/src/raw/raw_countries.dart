@@ -377,7 +377,6 @@ List<CountryEntity> rawCountries = [
     iso2Code: 'bq',
     intlDialCode: '599',
     flag: '🇧🇶',
-    format: '',
     orderPriority: 1,
   ),
   CountryEntity(
@@ -466,7 +465,6 @@ List<CountryEntity> rawCountries = [
     iso2Code: 'cw',
     intlDialCode: '599',
     flag: '🇨🇼',
-    format: '',
     orderPriority: 0,
   ),
   CountryEntity(
@@ -521,7 +519,6 @@ List<CountryEntity> rawCountries = [
     iso2Code: 'do',
     intlDialCode: '1',
     flag: '🇩🇴',
-    format: '',
     orderPriority: 2,
     areaCodes: {"809", "829", "849"},
   ),
@@ -669,7 +666,6 @@ List<CountryEntity> rawCountries = [
     iso2Code: 'gp',
     intlDialCode: '590',
     flag: '🇬🇵',
-    format: '',
     orderPriority: 0,
   ),
   CountryEntity(
@@ -1266,7 +1262,6 @@ List<CountryEntity> rawCountries = [
     iso2Code: 'pr',
     intlDialCode: '1',
     flag: '🇵🇷',
-    format: '',
     orderPriority: 3,
     areaCodes: {"787", "939"},
   ),
