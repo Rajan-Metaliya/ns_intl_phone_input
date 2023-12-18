@@ -6,7 +6,6 @@ import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart'
 
 import '../raw/raw_countries.dart';
 
-// todo: fix selection: selection does not work
 class PhoneInput extends StatefulWidget {
   const PhoneInput({super.key});
 
