@@ -18,7 +18,7 @@ class CountrySelectScreen extends StatefulWidget {
 }
 
 class _CountrySelectScreenState extends State<CountrySelectScreen> {
-  late final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
+  final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
 
   late final List<CountryEntity> countries;
 
@@ -63,6 +63,7 @@ class _CountrySelectScreenState extends State<CountrySelectScreen> {
               onChanged: (value) {
                 filterCountries();
               },
+              autofocus: true,
               decoration: const InputDecoration(
                 labelText: 'Search',
                 border: OutlineInputBorder(),

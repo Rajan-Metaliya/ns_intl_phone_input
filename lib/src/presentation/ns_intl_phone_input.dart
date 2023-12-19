@@ -20,7 +20,7 @@ class NsIntlPhoneInput extends StatefulWidget {
 }
 
 class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
-  late final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
+  final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
 
   var textEditingController = TextEditingController(text: "");
 
@@ -49,7 +49,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
       return;
     }
 
-    final unmastedValue = maskFormatter.getUnmaskedText();
+    final unMastedValue = maskFormatter.getUnmaskedText();
 
     for (final country in rawCountries) {
       if (selectedCountry.intlDialCode == country.intlDialCode) {
@@ -57,7 +57,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
           continue;
         } else {
           for (final region in country.areaCodes!) {
-            if (unmastedValue.startsWith(region)) {
+            if (unMastedValue.startsWith(region)) {
               selectedCountry = country;
               dropDownValue = '${country.intlDialCode} $region';
               return;
@@ -116,10 +116,11 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
             maxLength: selectedCountry.format?.length,
             controller: textEditingController,
             inputFormatters: [maskFormatter],
-            decoration: const InputDecoration(
-              hintText: 'Phone Number',
-              counterText: '',
-            ),
+            decoration: widget.phoneFieldDecoration ??
+                const InputDecoration(
+                  hintText: 'Phone Number',
+                  counterText: '',
+                ),
             style: const TextStyle(fontSize: 20),
           ),
         ),

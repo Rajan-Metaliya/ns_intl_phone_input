@@ -44,7 +44,7 @@ class CountryEntity {
     required this.iso2Code,
     required this.intlDialCode,
     this.flag = '🏳️',
-    this.format,
+    this.format = '... ... ... ...',
     this.orderPriority,
     this.areaCodes,
     this.currentAreaCode = '',
