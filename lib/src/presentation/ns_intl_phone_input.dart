@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:ns_intl_phone_input/src/data/enum/country_selection_type_enum.dart';
 import 'package:ns_intl_phone_input/src/data/models/country.dart';
 import 'package:ns_intl_phone_input/src/data/models/country_select_button_options.dart';
 import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map_impl.dart';
+import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart';
 
 import '../raw/raw_countries.dart';
 import 'country_select_dialog.dart';
@@ -13,11 +15,14 @@ class NsIntlPhoneInput extends StatefulWidget {
     Key? key,
     this.phoneFieldDecoration,
     this.countrySelectOption = const CountrySelectOption(),
+    this.countrySelectionType = CountrySelectionTypeEnum.dialog,
   }) : super(key: key);
 
   final InputDecoration? phoneFieldDecoration;
 
   final CountrySelectOption countrySelectOption;
+
+  final CountrySelectionTypeEnum countrySelectionType;
 
   @override
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
@@ -102,22 +107,26 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
         CountrySelectButton(
           selectedCountry: selectedCountry,
           onPressed: () {
-            countrySelectDialog(
-              context,
-              onCountrySelected: (country) {
-                _onDropDownChange(country.dialCode);
-              },
-            );
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => CountrySelectScreen(
-            //       onCountrySelected: (country) {
-            //         _onDropDownChange(country.dialCode);
-            //       },
-            //     ),
-            //   ),
-            // );
+            if (widget.countrySelectionType ==
+                CountrySelectionTypeEnum.dialog) {
+              countrySelectDialog(
+                context,
+                onCountrySelected: (country) {
+                  _onDropDownChange(country.dialCode);
+                },
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CountrySelectScreen(
+                    onCountrySelected: (country) {
+                      _onDropDownChange(country.dialCode);
+                    },
+                  ),
+                ),
+              );
+            }
           },
           options: widget.countrySelectOption,
         ),
