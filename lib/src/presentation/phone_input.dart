@@ -7,7 +7,10 @@ import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart'
 import '../raw/raw_countries.dart';
 
 class PhoneInput extends StatefulWidget {
-  const PhoneInput({super.key});
+  const PhoneInput({
+    Key? key,
+    bool? showCode = false,
+  }) : super(key: key);
 
   @override
   State<PhoneInput> createState() => _PhoneInputState();
@@ -21,6 +24,8 @@ class _PhoneInputState extends State<PhoneInput> {
   late CountryEntity selectedCountry;
 
   String? dropDownValue;
+
+  bool? showCode = false;
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '...-..-....',
@@ -90,7 +95,7 @@ class _PhoneInputState extends State<PhoneInput> {
       textBaseline: TextBaseline.alphabetic,
       children: [
         MaterialButton(
-          padding: const EdgeInsets.only(top: 12),
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
           onPressed: () {
             Navigator.push(
               context,
@@ -104,8 +109,8 @@ class _PhoneInputState extends State<PhoneInput> {
             );
           },
           child: Text(
-            '${selectedCountry.flag} +${selectedCountry.intlDialCode}',
-            style: const TextStyle(fontSize: 20),
+            '${selectedCountry.flag} ${showCode != true ? selectedCountry.iso2Code.toUpperCase() : ''} +${selectedCountry.intlDialCode}',
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
         ),
         Expanded(
