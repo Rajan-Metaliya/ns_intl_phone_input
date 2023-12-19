@@ -17,34 +17,31 @@ class CountrySelectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 12),
-      child: MaterialButton(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
-        onPressed: onPressed,
-        child: (selectedCountry == null)
-            ? Text(
-                options.defaultText,
-                style: options.defaultTextStyle,
-              )
-            : Row(
-                children: [
-                  FontTextWidget(text: selectedCountry?.flag ?? ''),
-                  const SizedBox(width: 10),
-                  if (options.showCode) ...[
-                    Text(
-                      selectedCountry?.iso2Code.toUpperCase() ?? '',
-                      style: options.countryIsoCodeTextStyle,
-                    ),
-                    const SizedBox(width: 10),
-                  ],
+    return MaterialButton(
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+      onPressed: onPressed,
+      child: (selectedCountry == null)
+          ? Text(
+              options.defaultText,
+              style: options.defaultTextStyle,
+            )
+          : Row(
+              children: [
+                FontTextWidget(text: selectedCountry?.flag ?? ''),
+                const SizedBox(width: 10),
+                if (options.showCode) ...[
                   Text(
-                    '+${selectedCountry?.intlDialCode}',
-                    style: options.countryDialCodeTextStyle,
+                    selectedCountry?.iso2Code.toUpperCase() ?? '',
+                    style: options.countryIsoCodeTextStyle,
                   ),
+                  const SizedBox(width: 10),
                 ],
-              ),
-      ),
+                Text(
+                  '+${selectedCountry?.intlDialCode}',
+                  style: options.countryDialCodeTextStyle,
+                ),
+              ],
+            ),
     );
   }
 }
