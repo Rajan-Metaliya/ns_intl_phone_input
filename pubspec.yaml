@@ -1,5 +1,5 @@
 name: ns_intl_phone_input
-description: A new Flutter package project.
+description: Package for international phone number input with country code
 version: 0.0.1
 homepage: none
 
@@ -8,7 +8,6 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  build_runner: ^2.4.7
   flutter:
     sdk: flutter
   mask_text_input_formatter: ^2.7.0
@@ -17,7 +16,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  json_serializable: ^6.7.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

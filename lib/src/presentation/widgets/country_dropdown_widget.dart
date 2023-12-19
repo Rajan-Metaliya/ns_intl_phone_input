@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:ns_intl_phone_input/src/presentation/widgets/font_text_widget.dart';
 
-import '../../domain/entities/country.dart';
+import '../../data/models/country.dart';
 
 class CountryDropDownWidget extends StatelessWidget {
   const CountryDropDownWidget({
@@ -9,27 +9,35 @@ class CountryDropDownWidget extends StatelessWidget {
     required this.country,
   });
 
-  final CountryEntity country;
+  final CountryModel country;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        FontTextWidget(text: country.flag),
-        const SizedBox(width: 8),
-        Text(
-          '${country.iso2Code} +${country.dialCode}',
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
+        Row(
+          children: [
+            FontTextWidget(text: country.flag),
+            const SizedBox(width: 8),
+            Text(
+              '${country.iso2Code.toUpperCase()} +${country.dialCode}',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(width: 8),
+          ],
         ),
-        const Spacer(),
-        Text(
-          country.countryName,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+        Flexible(
+          child: Text(
+            country.countryName,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
       ],
