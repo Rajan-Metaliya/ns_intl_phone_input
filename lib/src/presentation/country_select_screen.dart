@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map.dart';
+import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map_impl.dart';
 import 'package:ns_intl_phone_input/src/presentation/widgets/country_dropdown_widget.dart';
 
-import '../domain/entities/country.dart';
+import '../data/models/country.dart';
 import '../raw/raw_countries.dart';
 
 class CountrySelectScreen extends StatefulWidget {
@@ -11,7 +11,7 @@ class CountrySelectScreen extends StatefulWidget {
     required this.onCountrySelected,
   });
 
-  final Function(CountryEntity) onCountrySelected;
+  final Function(CountryModel) onCountrySelected;
 
   @override
   State<CountrySelectScreen> createState() => _CountrySelectScreenState();
@@ -20,9 +20,9 @@ class CountrySelectScreen extends StatefulWidget {
 class _CountrySelectScreenState extends State<CountrySelectScreen> {
   final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
 
-  late final List<CountryEntity> countries;
+  late final List<CountryModel> countries;
 
-  List<CountryEntity> filteredCountries = [];
+  List<CountryModel> filteredCountries = [];
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -31,13 +31,13 @@ class _CountrySelectScreenState extends State<CountrySelectScreen> {
     countries = _countriesLookupMap.entries
         .map((e) => e.value)
         .toList()
-        .cast<CountryEntity>();
+        .cast<CountryModel>();
 
     filteredCountries = countries;
   }
 
   void filterCountries() {
-    List<CountryEntity> tempCountries = [];
+    List<CountryModel> tempCountries = [];
     tempCountries.addAll(countries);
     if (searchController.text.isNotEmpty) {
       tempCountries

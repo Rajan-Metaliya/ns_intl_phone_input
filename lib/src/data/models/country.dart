@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class CountryEntity {
+class CountryModel {
   ///for ex. India/
   final String countryName;
 
@@ -38,7 +38,7 @@ class CountryEntity {
         iso2Code.toLowerCase().contains(value.toLowerCase());
   }
 
-  CountryEntity({
+  CountryModel({
     required this.countryName,
     required this.regions,
     required this.iso2Code,
@@ -50,7 +50,7 @@ class CountryEntity {
     this.currentAreaCode = '',
   });
 
-  CountryEntity copyWith({
+  CountryModel copyWith({
     String? countryName,
     Set<String>? regions,
     String? iso2Code,
@@ -61,7 +61,7 @@ class CountryEntity {
     Set<String>? areaCodes,
     String? currentAreaCode,
   }) {
-    return CountryEntity(
+    return CountryModel(
       countryName: countryName ?? this.countryName,
       regions: regions ?? this.regions,
       iso2Code: iso2Code ?? this.iso2Code,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ns_intl_phone_input/src/domain/entities/country.dart';
+import 'package:ns_intl_phone_input/src/data/models/country.dart';
 import 'package:ns_intl_phone_input/src/presentation/widgets/font_text_widget.dart';
 
 class CountrySelectButton extends StatelessWidget {
@@ -13,7 +13,7 @@ class CountrySelectButton extends StatelessWidget {
   });
 
   final void Function()? onPressed;
-  final CountryEntity selectedCountry;
+  final CountryModel selectedCountry;
   final bool showCode;
   final TextStyle? countryIsoCodeTextStyle;
   final TextStyle? countryDialCodeTextStyle;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map.dart';
-import 'package:ns_intl_phone_input/src/domain/entities/country.dart';
+import 'package:ns_intl_phone_input/src/data/models/country.dart';
+import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map_impl.dart';
 import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart';
 
 import '../raw/raw_countries.dart';
@@ -28,7 +28,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
 
   var textEditingController = TextEditingController(text: "");
 
-  late CountryEntity selectedCountry;
+  late CountryModel selectedCountry;
 
   String? dropDownValue;
 

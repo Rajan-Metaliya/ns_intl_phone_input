@@ -15,52 +15,52 @@
 // Sub-regions:
 // ['north-america', 'south-america', 'central-america', 'carribean',
 //  'eu-union', 'ex-ussr', 'ex-yugos', 'baltic', 'middle-east', 'north-africa']
-import 'package:ns_intl_phone_input/src/domain/entities/country.dart';
+import 'package:ns_intl_phone_input/src/data/models/country.dart';
 
-List<CountryEntity> rawCountries = [
-  CountryEntity(
+List<CountryModel> rawCountries = [
+  CountryModel(
     countryName: 'Afghanistan',
     regions: {"asia"},
     iso2Code: 'af',
     intlDialCode: '93',
     flag: '🇦🇫',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Albania',
     regions: {"europe"},
     iso2Code: 'al',
     intlDialCode: '355',
     flag: '🇦🇱',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Algeria',
     regions: {"africa", "north-africa"},
     iso2Code: 'dz',
     intlDialCode: '213',
     flag: '🇩🇿',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Andorra',
     regions: {"europe"},
     iso2Code: 'ad',
     intlDialCode: '376',
     flag: '🇦🇩',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Angola',
     regions: {"africa"},
     iso2Code: 'ao',
     intlDialCode: '244',
     flag: '🇦🇴',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Antigua and Barbuda',
     regions: {"america", "carribean"},
     iso2Code: 'ag',
     intlDialCode: '1268',
     flag: '🇦🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Argentina',
     regions: {"america", "south-america"},
     iso2Code: 'ar',
@@ -94,7 +94,7 @@ List<CountryEntity> rawCountries = [
       "388"
     },
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Argentina',
     regions: {"america", "south-america"},
     iso2Code: 'ar',
@@ -128,7 +128,7 @@ List<CountryEntity> rawCountries = [
       "388"
     },
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Armenia',
     regions: {"asia", "ex-ussr"},
     iso2Code: 'am',
@@ -136,14 +136,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇦🇲',
     format: '.. ......',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Aruba',
     regions: {"america", "carribean"},
     iso2Code: 'aw',
     intlDialCode: '297',
     flag: '🇦🇼',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Australia',
     regions: {"oceania"},
     iso2Code: 'au',
@@ -153,14 +153,14 @@ List<CountryEntity> rawCountries = [
     orderPriority: 0,
     areaCodes: {"2", "3", "4", "7", "8", "02", "03", "04", "07", "08"},
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Austria',
     regions: {"europe", "eu-union"},
     iso2Code: 'at',
     intlDialCode: '43',
     flag: '🇦🇹',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Azerbaijan',
     regions: {"asia", "ex-ussr"},
     iso2Code: 'az',
@@ -168,35 +168,35 @@ List<CountryEntity> rawCountries = [
     flag: '🇦🇿',
     format: '(..) ... .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Bahamas',
     regions: {"america", "carribean"},
     iso2Code: 'bs',
     intlDialCode: '1242',
     flag: '🇧🇸',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Bahrain',
     regions: {"middle-east"},
     iso2Code: 'bh',
     intlDialCode: '973',
     flag: '🇧🇭',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Bangladesh',
     regions: {"asia"},
     iso2Code: 'bd',
     intlDialCode: '880',
     flag: '🇧🇩',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Barbados',
     regions: {"america", "carribean"},
     iso2Code: 'bb',
     intlDialCode: '1246',
     flag: '🇧🇧',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Belarus',
     regions: {"europe", "ex-ussr"},
     iso2Code: 'by',
@@ -204,7 +204,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇧🇾',
     format: '(..) ... .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Belgium',
     regions: {"europe", "eu-union"},
     iso2Code: 'be',
@@ -212,49 +212,49 @@ List<CountryEntity> rawCountries = [
     flag: '🇧🇪',
     format: '... .. .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Belize',
     regions: {"america", "central-america"},
     iso2Code: 'bz',
     intlDialCode: '501',
     flag: '🇧🇿',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Benin',
     regions: {"africa"},
     iso2Code: 'bj',
     intlDialCode: '229',
     flag: '🇧🇯',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Bhutan',
     regions: {"asia"},
     iso2Code: 'bt',
     intlDialCode: '975',
     flag: '🇧🇹',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Bolivia',
     regions: {"america", "south-america"},
     iso2Code: 'bo',
     intlDialCode: '591',
     flag: '🇧🇴',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Bosnia and Herzegovina',
     regions: {"europe", "ex-yugos"},
     iso2Code: 'ba',
     intlDialCode: '387',
     flag: '🇧🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Botswana',
     regions: {"africa"},
     iso2Code: 'bw',
     intlDialCode: '267',
     flag: '🇧🇼',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Brazil',
     regions: {"america", "south-america"},
     iso2Code: 'br',
@@ -262,56 +262,56 @@ List<CountryEntity> rawCountries = [
     flag: '🇧🇷',
     format: '(..) .........',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'British Indian Ocean Territory',
     regions: {"asia"},
     iso2Code: 'io',
     intlDialCode: '246',
     flag: '🇮🇴',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Brunei',
     regions: {"asia"},
     iso2Code: 'bn',
     intlDialCode: '673',
     flag: '🇧🇳',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Bulgaria',
     regions: {"europe", "eu-union"},
     iso2Code: 'bg',
     intlDialCode: '359',
     flag: '🇧🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Burkina Faso',
     regions: {"africa"},
     iso2Code: 'bf',
     intlDialCode: '226',
     flag: '🇧🇫',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Burundi',
     regions: {"africa"},
     iso2Code: 'bi',
     intlDialCode: '257',
     flag: '🇧🇮',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Cambodia',
     regions: {"asia"},
     iso2Code: 'kh',
     intlDialCode: '855',
     flag: '🇰🇭',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Cameroon',
     regions: {"africa"},
     iso2Code: 'cm',
     intlDialCode: '237',
     flag: '🇨🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Canada',
     regions: {"america", "north-america"},
     iso2Code: 'ca',
@@ -364,14 +364,14 @@ List<CountryEntity> rawCountries = [
       "905"
     },
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Cape Verde',
     regions: {"africa"},
     iso2Code: 'cv',
     intlDialCode: '238',
     flag: '🇨🇻',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Caribbean Netherlands',
     regions: {"america", "carribean"},
     iso2Code: 'bq',
@@ -379,28 +379,28 @@ List<CountryEntity> rawCountries = [
     flag: '🇧🇶',
     orderPriority: 1,
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Central African Republic',
     regions: {"africa"},
     iso2Code: 'cf',
     intlDialCode: '236',
     flag: '🇨🇫',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Chad',
     regions: {"africa"},
     iso2Code: 'td',
     intlDialCode: '235',
     flag: '🇹🇩',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Chile',
     regions: {"america", "south-america"},
     iso2Code: 'cl',
     intlDialCode: '56',
     flag: '🇨🇱',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'China',
     regions: {"asia"},
     iso2Code: 'cn',
@@ -408,7 +408,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇨🇳',
     format: '..-.........',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Colombia',
     regions: {"america", "south-america"},
     iso2Code: 'co',
@@ -416,28 +416,28 @@ List<CountryEntity> rawCountries = [
     flag: '🇨🇴',
     format: '... ... ....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Comoros',
     regions: {"africa"},
     iso2Code: 'km',
     intlDialCode: '269',
     flag: '🇰🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Congo',
     regions: {"africa"},
     iso2Code: 'cd',
     intlDialCode: '243',
     flag: '🇨🇩',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Congo',
     regions: {"africa"},
     iso2Code: 'cg',
     intlDialCode: '242',
     flag: '🇨🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Costa Rica',
     regions: {"america", "central-america"},
     iso2Code: 'cr',
@@ -445,21 +445,21 @@ List<CountryEntity> rawCountries = [
     flag: '🇨🇷',
     format: '....-....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Croatia',
     regions: {"europe", "eu-union", "ex-yugos"},
     iso2Code: 'hr',
     intlDialCode: '385',
     flag: '🇭🇷',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Cuba',
     regions: {"america", "carribean"},
     iso2Code: 'cu',
     intlDialCode: '53',
     flag: '🇨🇺',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Curaçao',
     regions: {"america", "carribean"},
     iso2Code: 'cw',
@@ -467,7 +467,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇨🇼',
     orderPriority: 0,
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Cyprus',
     regions: {"europe", "eu-union"},
     iso2Code: 'cy',
@@ -475,7 +475,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇨🇾',
     format: '.. ......',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Czech Republic',
     regions: {"europe", "eu-union"},
     iso2Code: 'cz',
@@ -483,7 +483,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇨🇿',
     format: '... ... ...',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Côte d’Ivoire',
     regions: {"africa"},
     iso2Code: 'ci',
@@ -491,7 +491,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇨🇮',
     format: '.. .. .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Denmark',
     regions: {"europe", "eu-union", "baltic"},
     iso2Code: 'dk',
@@ -499,21 +499,21 @@ List<CountryEntity> rawCountries = [
     flag: '🇩🇰',
     format: '.. .. .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Djibouti',
     regions: {"africa"},
     iso2Code: 'dj',
     intlDialCode: '253',
     flag: '🇩🇯',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Dominica',
     regions: {"america", "carribean"},
     iso2Code: 'dm',
     intlDialCode: '1767',
     flag: '🇩🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Dominican Republic',
     regions: {"america", "carribean"},
     iso2Code: 'do',
@@ -522,21 +522,21 @@ List<CountryEntity> rawCountries = [
     orderPriority: 2,
     areaCodes: {"809", "829", "849"},
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Ecuador',
     regions: {"america", "south-america"},
     iso2Code: 'ec',
     intlDialCode: '593',
     flag: '🇪🇨',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Egypt',
     regions: {"africa", "north-africa"},
     iso2Code: 'eg',
     intlDialCode: '20',
     flag: '🇪🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'El Salvador',
     regions: {"america", "central-america"},
     iso2Code: 'sv',
@@ -544,21 +544,21 @@ List<CountryEntity> rawCountries = [
     flag: '🇸🇻',
     format: '....-....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Equatorial Guinea',
     regions: {"africa"},
     iso2Code: 'gq',
     intlDialCode: '240',
     flag: '🇬🇶',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Eritrea',
     regions: {"africa"},
     iso2Code: 'er',
     intlDialCode: '291',
     flag: '🇪🇷',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Estonia',
     regions: {"europe", "eu-union", "ex-ussr", "baltic"},
     iso2Code: 'ee',
@@ -566,21 +566,21 @@ List<CountryEntity> rawCountries = [
     flag: '🇪🇪',
     format: '.... ......',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Ethiopia',
     regions: {"africa"},
     iso2Code: 'et',
     intlDialCode: '251',
     flag: '🇪🇹',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Fiji',
     regions: {"oceania"},
     iso2Code: 'fj',
     intlDialCode: '679',
     flag: '🇫🇯',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Finland',
     regions: {"europe", "eu-union", "baltic"},
     iso2Code: 'fi',
@@ -588,7 +588,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇫🇮',
     format: '.. ... .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'France',
     regions: {"europe", "eu-union"},
     iso2Code: 'fr',
@@ -596,42 +596,42 @@ List<CountryEntity> rawCountries = [
     flag: '🇫🇷',
     format: '. .. .. .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'French Guiana',
     regions: {"america", "south-america"},
     iso2Code: 'gf',
     intlDialCode: '594',
     flag: '🇬🇫',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'French Polynesia',
     regions: {"oceania"},
     iso2Code: 'pf',
     intlDialCode: '689',
     flag: '🇵🇫',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Gabon',
     regions: {"africa"},
     iso2Code: 'ga',
     intlDialCode: '241',
     flag: '🇬🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Gambia',
     regions: {"africa"},
     iso2Code: 'gm',
     intlDialCode: '220',
     flag: '🇬🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Georgia',
     regions: {"asia", "ex-ussr"},
     iso2Code: 'ge',
     intlDialCode: '995',
     flag: '🇬🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Germany',
     regions: {"europe", "eu-union", "baltic"},
     iso2Code: 'de',
@@ -639,28 +639,28 @@ List<CountryEntity> rawCountries = [
     flag: '🇩🇪',
     format: '.... ........',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Ghana',
     regions: {"africa"},
     iso2Code: 'gh',
     intlDialCode: '233',
     flag: '🇬🇭',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Greece',
     regions: {"europe", "eu-union"},
     iso2Code: 'gr',
     intlDialCode: '30',
     flag: '🇬🇷',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Grenada',
     regions: {"america", "carribean"},
     iso2Code: 'gd',
     intlDialCode: '1473',
     flag: '🇬🇩',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Guadeloupe',
     regions: {"america", "carribean"},
     iso2Code: 'gp',
@@ -668,14 +668,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇬🇵',
     orderPriority: 0,
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Guam',
     regions: {"oceania"},
     iso2Code: 'gu',
     intlDialCode: '1671',
     flag: '🇬🇺',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Guatemala',
     regions: {"america", "central-america"},
     iso2Code: 'gt',
@@ -683,28 +683,28 @@ List<CountryEntity> rawCountries = [
     flag: '🇬🇹',
     format: '....-....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Guinea',
     regions: {"africa"},
     iso2Code: 'gn',
     intlDialCode: '224',
     flag: '🇬🇳',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Guinea-Bissau',
     regions: {"africa"},
     iso2Code: 'gw',
     intlDialCode: '245',
     flag: '🇬🇼',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Guyana',
     regions: {"america", "south-america"},
     iso2Code: 'gy',
     intlDialCode: '592',
     flag: '🇬🇾',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Haiti',
     regions: {"america", "carribean"},
     iso2Code: 'ht',
@@ -712,14 +712,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇭🇹',
     format: '....-....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Honduras',
     regions: {"america", "central-america"},
     iso2Code: 'hn',
     intlDialCode: '504',
     flag: '🇭🇳',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Hong Kong',
     regions: {"asia"},
     iso2Code: 'hk',
@@ -727,14 +727,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇭🇰',
     format: '.... ....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Hungary',
     regions: {"europe", "eu-union"},
     iso2Code: 'hu',
     intlDialCode: '36',
     flag: '🇭🇺',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Iceland',
     regions: {"europe"},
     iso2Code: 'is',
@@ -742,7 +742,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇮🇸',
     format: '... ....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'India',
     regions: {"asia"},
     iso2Code: 'in',
@@ -750,14 +750,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇮🇳',
     format: '.....-.....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Indonesia',
     regions: {"asia"},
     iso2Code: 'id',
     intlDialCode: '62',
     flag: '🇮🇩',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Iran',
     regions: {"middle-east"},
     iso2Code: 'ir',
@@ -765,14 +765,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇮🇷',
     format: '... ... ....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Iraq',
     regions: {"middle-east"},
     iso2Code: 'iq',
     intlDialCode: '964',
     flag: '🇮🇶',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Ireland',
     regions: {"europe", "eu-union"},
     iso2Code: 'ie',
@@ -780,7 +780,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇮🇪',
     format: '.. .......',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Israel',
     regions: {"middle-east"},
     iso2Code: 'il',
@@ -788,7 +788,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇮🇱',
     format: '... ... ....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Italy',
     regions: {"europe", "eu-union"},
     iso2Code: 'it',
@@ -797,14 +797,14 @@ List<CountryEntity> rawCountries = [
     format: '... .......',
     orderPriority: 0,
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Jamaica',
     regions: {"america", "carribean"},
     iso2Code: 'jm',
     intlDialCode: '1876',
     flag: '🇯🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Japan',
     regions: {"asia"},
     iso2Code: 'jp',
@@ -812,14 +812,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇯🇵',
     format: '.. .... ....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Jordan',
     regions: {"middle-east"},
     iso2Code: 'jo',
     intlDialCode: '962',
     flag: '🇯🇴',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Kazakhstan',
     regions: {"asia", "ex-ussr"},
     iso2Code: 'kz',
@@ -844,35 +844,35 @@ List<CountryEntity> rawCountries = [
       "73622"
     },
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Kenya',
     regions: {"africa"},
     iso2Code: 'ke',
     intlDialCode: '254',
     flag: '🇰🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Kiribati',
     regions: {"oceania"},
     iso2Code: 'ki',
     intlDialCode: '686',
     flag: '🇰🇮',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Kosovo',
     regions: {"europe", "ex-yugos"},
     iso2Code: 'xk',
     intlDialCode: '383',
     flag: '🇽🇰',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Kuwait',
     regions: {"middle-east"},
     iso2Code: 'kw',
     intlDialCode: '965',
     flag: '🇰🇼',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Kyrgyzstan',
     regions: {"asia", "ex-ussr"},
     iso2Code: 'kg',
@@ -880,14 +880,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇰🇬',
     format: '... ... ...',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Laos',
     regions: {"asia"},
     iso2Code: 'la',
     intlDialCode: '856',
     flag: '🇱🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Latvia',
     regions: {"europe", "eu-union", "ex-ussr", "baltic"},
     iso2Code: 'lv',
@@ -895,84 +895,84 @@ List<CountryEntity> rawCountries = [
     flag: '🇱🇻',
     format: '.. ... ...',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Lebanon',
     regions: {"middle-east"},
     iso2Code: 'lb',
     intlDialCode: '961',
     flag: '🇱🇧',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Lesotho',
     regions: {"africa"},
     iso2Code: 'ls',
     intlDialCode: '266',
     flag: '🇱🇸',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Liberia',
     regions: {"africa"},
     iso2Code: 'lr',
     intlDialCode: '231',
     flag: '🇱🇷',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Libya',
     regions: {"africa", "north-africa"},
     iso2Code: 'ly',
     intlDialCode: '218',
     flag: '🇱🇾',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Liechtenstein',
     regions: {"europe"},
     iso2Code: 'li',
     intlDialCode: '423',
     flag: '🇱🇮',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Lithuania',
     regions: {"europe", "eu-union", "ex-ussr", "baltic"},
     iso2Code: 'lt',
     intlDialCode: '370',
     flag: '🇱🇹',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Luxembourg',
     regions: {"europe", "eu-union"},
     iso2Code: 'lu',
     intlDialCode: '352',
     flag: '🇱🇺',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Macau',
     regions: {"asia"},
     iso2Code: 'mo',
     intlDialCode: '853',
     flag: '🇲🇴',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Macedonia',
     regions: {"europe", "ex-yugos"},
     iso2Code: 'mk',
     intlDialCode: '389',
     flag: '🇲🇰',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Madagascar',
     regions: {"africa"},
     iso2Code: 'mg',
     intlDialCode: '261',
     flag: '🇲🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Malawi',
     regions: {"africa"},
     iso2Code: 'mw',
     intlDialCode: '265',
     flag: '🇲🇼',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Malaysia',
     regions: {"asia"},
     iso2Code: 'my',
@@ -980,56 +980,56 @@ List<CountryEntity> rawCountries = [
     flag: '🇲🇾',
     format: '..-....-....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Maldives',
     regions: {"asia"},
     iso2Code: 'mv',
     intlDialCode: '960',
     flag: '🇲🇻',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Mali',
     regions: {"africa"},
     iso2Code: 'ml',
     intlDialCode: '223',
     flag: '🇲🇱',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Malta',
     regions: {"europe", "eu-union"},
     iso2Code: 'mt',
     intlDialCode: '356',
     flag: '🇲🇹',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Marshall Islands',
     regions: {"oceania"},
     iso2Code: 'mh',
     intlDialCode: '692',
     flag: '🇲🇭',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Martinique',
     regions: {"america", "carribean"},
     iso2Code: 'mq',
     intlDialCode: '596',
     flag: '🇲🇶',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Mauritania',
     regions: {"africa"},
     iso2Code: 'mr',
     intlDialCode: '222',
     flag: '🇲🇷',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Mauritius',
     regions: {"africa"},
     iso2Code: 'mu',
     intlDialCode: '230',
     flag: '🇲🇺',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Mexico',
     regions: {"america", "central-america"},
     iso2Code: 'mx',
@@ -1039,14 +1039,14 @@ List<CountryEntity> rawCountries = [
     orderPriority: 0,
     areaCodes: {"55", "81", "33", "656", "664", "998", "774", "229"},
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Micronesia',
     regions: {"oceania"},
     iso2Code: 'fm',
     intlDialCode: '691',
     flag: '🇫🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Moldova',
     regions: {"europe"},
     iso2Code: 'md',
@@ -1054,70 +1054,70 @@ List<CountryEntity> rawCountries = [
     flag: '🇲🇩',
     format: '(..) ..-..-..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Monaco',
     regions: {"europe"},
     iso2Code: 'mc',
     intlDialCode: '377',
     flag: '🇲🇨',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Mongolia',
     regions: {"asia"},
     iso2Code: 'mn',
     intlDialCode: '976',
     flag: '🇲🇳',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Montenegro',
     regions: {"europe", "ex-yugos"},
     iso2Code: 'me',
     intlDialCode: '382',
     flag: '🇲🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Morocco',
     regions: {"africa", "north-africa"},
     iso2Code: 'ma',
     intlDialCode: '212',
     flag: '🇲🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Mozambique',
     regions: {"africa"},
     iso2Code: 'mz',
     intlDialCode: '258',
     flag: '🇲🇿',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Myanmar',
     regions: {"asia"},
     iso2Code: 'mm',
     intlDialCode: '95',
     flag: '🇲🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Namibia',
     regions: {"africa"},
     iso2Code: 'na',
     intlDialCode: '264',
     flag: '🇳🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Nauru',
     regions: {"africa"},
     iso2Code: 'nr',
     intlDialCode: '674',
     flag: '🇳🇷',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Nepal',
     regions: {"asia"},
     iso2Code: 'np',
     intlDialCode: '977',
     flag: '🇳🇵',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Netherlands',
     regions: {"europe", "eu-union"},
     iso2Code: 'nl',
@@ -1125,14 +1125,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇳🇱',
     format: '.. ........',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'New Caledonia',
     regions: {"oceania"},
     iso2Code: 'nc',
     intlDialCode: '687',
     flag: '🇳🇨',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'New Zealand',
     regions: {"oceania"},
     iso2Code: 'nz',
@@ -1140,35 +1140,35 @@ List<CountryEntity> rawCountries = [
     flag: '🇳🇿',
     format: '...-...-....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Nicaragua',
     regions: {"america", "central-america"},
     iso2Code: 'ni',
     intlDialCode: '505',
     flag: '🇳🇮',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Niger',
     regions: {"africa"},
     iso2Code: 'ne',
     intlDialCode: '227',
     flag: '🇳🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Nigeria',
     regions: {"africa"},
     iso2Code: 'ng',
     intlDialCode: '234',
     flag: '🇳🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'North Korea',
     regions: {"asia"},
     iso2Code: 'kp',
     intlDialCode: '850',
     flag: '🇰🇵',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Norway',
     regions: {"europe", "baltic"},
     iso2Code: 'no',
@@ -1176,14 +1176,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇳🇴',
     format: '... .. ...',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Oman',
     regions: {"middle-east"},
     iso2Code: 'om',
     intlDialCode: '968',
     flag: '🇴🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Pakistan',
     regions: {"asia"},
     iso2Code: 'pk',
@@ -1191,49 +1191,49 @@ List<CountryEntity> rawCountries = [
     flag: '🇵🇰',
     format: '...-.......',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Palau',
     regions: {"oceania"},
     iso2Code: 'pw',
     intlDialCode: '680',
     flag: '🇵🇼',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Palestine',
     regions: {"middle-east"},
     iso2Code: 'ps',
     intlDialCode: '970',
     flag: '🇵🇸',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Panama',
     regions: {"america", "central-america"},
     iso2Code: 'pa',
     intlDialCode: '507',
     flag: '🇵🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Papua New Guinea',
     regions: {"oceania"},
     iso2Code: 'pg',
     intlDialCode: '675',
     flag: '🇵🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Paraguay',
     regions: {"america", "south-america"},
     iso2Code: 'py',
     intlDialCode: '595',
     flag: '🇵🇾',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Peru',
     regions: {"america", "south-america"},
     iso2Code: 'pe',
     intlDialCode: '51',
     flag: '🇵🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Philippines',
     regions: {"asia"},
     iso2Code: 'ph',
@@ -1241,7 +1241,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇵🇭',
     format: '.... .......',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Poland',
     regions: {"europe", "eu-union", "baltic"},
     iso2Code: 'pl',
@@ -1249,14 +1249,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇵🇱',
     format: '...-...-...',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Portugal',
     regions: {"europe", "eu-union"},
     iso2Code: 'pt',
     intlDialCode: '351',
     flag: '🇵🇹',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Puerto Rico',
     regions: {"america", "carribean"},
     iso2Code: 'pr',
@@ -1265,21 +1265,21 @@ List<CountryEntity> rawCountries = [
     orderPriority: 3,
     areaCodes: {"787", "939"},
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Qatar',
     regions: {"middle-east"},
     iso2Code: 'qa',
     intlDialCode: '974',
     flag: '🇶🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Romania',
     regions: {"europe", "eu-union"},
     iso2Code: 'ro',
     intlDialCode: '40',
     flag: '🇷🇴',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Russia',
     regions: {"europe", "asia", "ex-ussr", "baltic"},
     iso2Code: 'ru',
@@ -1288,91 +1288,91 @@ List<CountryEntity> rawCountries = [
     format: '(...) ...-..-..',
     orderPriority: 0,
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Rwanda',
     regions: {"africa"},
     iso2Code: 'rw',
     intlDialCode: '250',
     flag: '🇷🇼',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Réunion',
     regions: {"africa"},
     iso2Code: 're',
     intlDialCode: '262',
     flag: '🇷🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Saint Kitts and Nevis',
     regions: {"america", "carribean"},
     iso2Code: 'kn',
     intlDialCode: '1869',
     flag: '🇰🇳',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Saint Lucia',
     regions: {"america", "carribean"},
     iso2Code: 'lc',
     intlDialCode: '1758',
     flag: '🇱🇨',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Saint Vincent and the Grenadines',
     regions: {"america", "carribean"},
     iso2Code: 'vc',
     intlDialCode: '1784',
     flag: '🇻🇨',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Samoa',
     regions: {"oceania"},
     iso2Code: 'ws',
     intlDialCode: '685',
     flag: '🇼🇸',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'San Marino',
     regions: {"europe"},
     iso2Code: 'sm',
     intlDialCode: '378',
     flag: '🇸🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Saudi Arabia',
     regions: {"middle-east"},
     iso2Code: 'sa',
     intlDialCode: '966',
     flag: '🇸🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Senegal',
     regions: {"africa"},
     iso2Code: 'sn',
     intlDialCode: '221',
     flag: '🇸🇳',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Serbia',
     regions: {"europe", "ex-yugos"},
     iso2Code: 'rs',
     intlDialCode: '381',
     flag: '🇷🇸',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Seychelles',
     regions: {"africa"},
     iso2Code: 'sc',
     intlDialCode: '248',
     flag: '🇸🇨',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Sierra Leone',
     regions: {"africa"},
     iso2Code: 'sl',
     intlDialCode: '232',
     flag: '🇸🇱',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Singapore',
     regions: {"asia"},
     iso2Code: 'sg',
@@ -1380,42 +1380,42 @@ List<CountryEntity> rawCountries = [
     flag: '🇸🇬',
     format: '....-....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Slovakia',
     regions: {"europe", "eu-union"},
     iso2Code: 'sk',
     intlDialCode: '421',
     flag: '🇸🇰',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Slovenia',
     regions: {"europe", "eu-union", "ex-yugos"},
     iso2Code: 'si',
     intlDialCode: '386',
     flag: '🇸🇮',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Solomon Islands',
     regions: {"oceania"},
     iso2Code: 'sb',
     intlDialCode: '677',
     flag: '🇸🇧',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Somalia',
     regions: {"africa"},
     iso2Code: 'so',
     intlDialCode: '252',
     flag: '🇸🇴',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'South Africa',
     regions: {"africa"},
     iso2Code: 'za',
     intlDialCode: '27',
     flag: '🇿🇦',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'South Korea',
     regions: {"asia"},
     iso2Code: 'kr',
@@ -1423,14 +1423,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇰🇷',
     format: '... .... ....',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'South Sudan',
     regions: {"africa", "north-africa"},
     iso2Code: 'ss',
     intlDialCode: '211',
     flag: '🇸🇸',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Spain',
     regions: {"europe", "eu-union"},
     iso2Code: 'es',
@@ -1438,35 +1438,35 @@ List<CountryEntity> rawCountries = [
     flag: '🇪🇸',
     format: '... ... ...',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Sri Lanka',
     regions: {"asia"},
     iso2Code: 'lk',
     intlDialCode: '94',
     flag: '🇱🇰',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Sudan',
     regions: {"africa"},
     iso2Code: 'sd',
     intlDialCode: '249',
     flag: '🇸🇩',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Suriname',
     regions: {"america", "south-america"},
     iso2Code: 'sr',
     intlDialCode: '597',
     flag: '🇸🇷',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Swaziland',
     regions: {"africa"},
     iso2Code: 'sz',
     intlDialCode: '268',
     flag: '🇸🇿',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Sweden',
     regions: {"europe", "eu-union", "baltic"},
     iso2Code: 'se',
@@ -1474,7 +1474,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇸🇪',
     format: '(...) ...-...',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Switzerland',
     regions: {"europe"},
     iso2Code: 'ch',
@@ -1482,84 +1482,84 @@ List<CountryEntity> rawCountries = [
     flag: '🇨🇭',
     format: '.. ... .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Syria',
     regions: {"middle-east"},
     iso2Code: 'sy',
     intlDialCode: '963',
     flag: '🇸🇾',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'São Tomé and Príncipe',
     regions: {"africa"},
     iso2Code: 'st',
     intlDialCode: '239',
     flag: '🇸🇹',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Taiwan',
     regions: {"asia"},
     iso2Code: 'tw',
     intlDialCode: '886',
     flag: '🇹🇼',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Tajikistan',
     regions: {"asia", "ex-ussr"},
     iso2Code: 'tj',
     intlDialCode: '992',
     flag: '🇹🇯',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Tanzania',
     regions: {"africa"},
     iso2Code: 'tz',
     intlDialCode: '255',
     flag: '🇹🇿',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Thailand',
     regions: {"asia"},
     iso2Code: 'th',
     intlDialCode: '66',
     flag: '🇹🇭',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Timor-Leste',
     regions: {"asia"},
     iso2Code: 'tl',
     intlDialCode: '670',
     flag: '🇹🇱',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Togo',
     regions: {"africa"},
     iso2Code: 'tg',
     intlDialCode: '228',
     flag: '🇹🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Tonga',
     regions: {"oceania"},
     iso2Code: 'to',
     intlDialCode: '676',
     flag: '🇹🇴',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Trinidad and Tobago',
     regions: {"america", "carribean"},
     iso2Code: 'tt',
     intlDialCode: '1868',
     flag: '🇹🇹',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Tunisia',
     regions: {"africa", "north-africa"},
     iso2Code: 'tn',
     intlDialCode: '216',
     flag: '🇹🇳',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Turkey',
     regions: {"europe"},
     iso2Code: 'tr',
@@ -1567,28 +1567,28 @@ List<CountryEntity> rawCountries = [
     flag: '🇹🇷',
     format: '... ... .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Turkmenistan',
     regions: {"asia", "ex-ussr"},
     iso2Code: 'tm',
     intlDialCode: '993',
     flag: '🇹🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Tuvalu',
     regions: {"asia"},
     iso2Code: 'tv',
     intlDialCode: '688',
     flag: '🇹🇻',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Uganda',
     regions: {"africa"},
     iso2Code: 'ug',
     intlDialCode: '256',
     flag: '🇺🇬',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Ukraine',
     regions: {"europe", "ex-ussr"},
     iso2Code: 'ua',
@@ -1596,14 +1596,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇺🇦',
     format: '(..) ... .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'United Arab Emirates',
     regions: {"middle-east"},
     iso2Code: 'ae',
     intlDialCode: '971',
     flag: '🇦🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'United Kingdom',
     regions: {"europe", "eu-union"},
     iso2Code: 'gb',
@@ -1611,7 +1611,7 @@ List<CountryEntity> rawCountries = [
     flag: '🇬🇧',
     format: '.... ......',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'United States',
     regions: {"america", "north-america"},
     iso2Code: 'us',
@@ -1863,14 +1863,14 @@ List<CountryEntity> rawCountries = [
       "307"
     },
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Uruguay',
     regions: {"america", "south-america"},
     iso2Code: 'uy',
     intlDialCode: '598',
     flag: '🇺🇾',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Uzbekistan',
     regions: {"asia", "ex-ussr"},
     iso2Code: 'uz',
@@ -1878,14 +1878,14 @@ List<CountryEntity> rawCountries = [
     flag: '🇺🇿',
     format: '.. ... .. ..',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Vanuatu',
     regions: {"oceania"},
     iso2Code: 'vu',
     intlDialCode: '678',
     flag: '🇻🇺',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Vatican City',
     regions: {"europe"},
     iso2Code: 'va',
@@ -1894,35 +1894,35 @@ List<CountryEntity> rawCountries = [
     format: '.. .... ....',
     orderPriority: 1,
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Venezuela',
     regions: {"america", "south-america"},
     iso2Code: 've',
     intlDialCode: '58',
     flag: '🇻🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Vietnam',
     regions: {"asia"},
     iso2Code: 'vn',
     intlDialCode: '84',
     flag: '🇻🇳',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Yemen',
     regions: {"middle-east"},
     iso2Code: 'ye',
     intlDialCode: '967',
     flag: '🇾🇪',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Zambia',
     regions: {"africa"},
     iso2Code: 'zm',
     intlDialCode: '260',
     flag: '🇿🇲',
   ),
-  CountryEntity(
+  CountryModel(
     countryName: 'Zimbabwe',
     regions: {"africa"},
     iso2Code: 'zw',

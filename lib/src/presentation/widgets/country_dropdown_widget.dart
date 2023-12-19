@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:ns_intl_phone_input/src/presentation/widgets/font_text_widget.dart';
 
-import '../../domain/entities/country.dart';
+import '../../data/models/country.dart';
 
 class CountryDropDownWidget extends StatelessWidget {
   const CountryDropDownWidget({
@@ -9,7 +9,7 @@ class CountryDropDownWidget extends StatelessWidget {
     required this.country,
   });
 
-  final CountryEntity country;
+  final CountryModel country;
 
   @override
   Widget build(BuildContext context) {
