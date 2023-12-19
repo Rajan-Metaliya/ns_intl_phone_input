@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ns_intl_phone_input/ns_intl_phone_input.dart';
-import 'package:ns_intl_phone_input/src/data/models/country.dart';
-import 'package:ns_intl_phone_input/src/data/models/country_selection.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     this.countrySelection = countrySelection;
                   });
                 },
+                initialCountryCode: '1',
               ),
               const SizedBox(height: 20),
               Text(

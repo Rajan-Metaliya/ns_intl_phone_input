@@ -15,6 +15,7 @@ class NsIntlPhoneInput extends StatefulWidget {
   const NsIntlPhoneInput({
     Key? key,
     required this.onPhoneChange,
+    required this.initialCountryCode,
     this.phoneFieldDecoration,
     this.countrySelectOption = const CountrySelectOption(),
     this.countrySelectionType = CountrySelectionTypeEnum.dialog,
@@ -28,6 +29,8 @@ class NsIntlPhoneInput extends StatefulWidget {
 
   final Function(CountrySelection) onPhoneChange;
 
+  final String initialCountryCode;
+
   @override
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
 }
@@ -37,7 +40,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
 
   var textEditingController = TextEditingController(text: "");
 
-  late CountryModel selectedCountry;
+  CountryModel? selectedCountry;
 
   String? dropDownValue;
 
@@ -49,7 +52,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   @override
   void initState() {
     super.initState();
-    _onDropDownChange('91');
+    _onDropDownChange(widget.initialCountryCode);
     textEditingController.addListener(() {
       _onTextChange(textEditingController.text);
     });
@@ -58,7 +61,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   _onTextChange(String? value) {
     setState(() {});
 
-    if (value == null || value.isEmpty) {
+    if (value == null || value.isEmpty || selectedCountry == null) {
       return;
     }
 
@@ -66,12 +69,12 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
     widget.onPhoneChange(
       CountrySelection(
         formattedPhoneNumber: value,
-        selectedCountry: selectedCountry,
+        selectedCountry: selectedCountry!,
         unformattedPhoneNumber: unMastedValue,
       ),
     );
     for (final country in rawCountries) {
-      if (selectedCountry.intlDialCode == country.intlDialCode) {
+      if ((selectedCountry?.intlDialCode ?? '') == country.intlDialCode) {
         if (country.areaCodes == null || country.areaCodes!.isEmpty) {
           continue;
         } else {
@@ -88,7 +91,11 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   }
 
   _onDropDownChange(String? value) {
-    final values = value!.split(" ");
+    if (value == null || value.isEmpty) {
+      return;
+    }
+
+    final values = value.split(" ");
 
     var initialText = '';
     if (values.length > 1) {
@@ -96,16 +103,19 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
     }
     setState(() {});
     textEditingController.clear();
-    selectedCountry = _countriesLookupMap[value]!;
-    dropDownValue = value;
+    if (_countriesLookupMap.containsKey(value)) {
+      selectedCountry = _countriesLookupMap[value];
 
-    maskFormatter.updateMask(
-      mask: selectedCountry.format,
-      filter: {".": RegExp(r'[0-9]')},
-      newValue: TextEditingValue(text: initialText),
-    );
+      dropDownValue = value;
 
-    textEditingController.text = maskFormatter.getMaskedText();
+      maskFormatter.updateMask(
+        mask: selectedCountry?.format,
+        filter: {".": RegExp(r'[0-9]')},
+        newValue: TextEditingValue(text: initialText),
+      );
+
+      textEditingController.text = maskFormatter.getMaskedText();
+    }
     setState(() {});
   }
 
@@ -143,7 +153,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
         Expanded(
           flex: 6,
           child: TextFormField(
-            maxLength: selectedCountry.format?.length,
+            maxLength: selectedCountry?.format?.length,
             controller: textEditingController,
             inputFormatters: [maskFormatter],
             decoration: widget.phoneFieldDecoration ??

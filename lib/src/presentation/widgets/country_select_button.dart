@@ -12,7 +12,7 @@ class CountrySelectButton extends StatelessWidget {
   });
 
   final void Function()? onPressed;
-  final CountryModel selectedCountry;
+  final CountryModel? selectedCountry;
   final CountrySelectOption options;
 
   @override
@@ -20,23 +20,28 @@ class CountrySelectButton extends StatelessWidget {
     return MaterialButton(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       onPressed: onPressed,
-      child: Row(
-        children: [
-          FontTextWidget(text: selectedCountry.flag),
-          const SizedBox(width: 10),
-          if (options.showCode) ...[
-            Text(
-              selectedCountry.iso2Code.toUpperCase(),
-              style: options.countryIsoCodeTextStyle,
+      child: (selectedCountry == null)
+          ? Text(
+              options.defaultText,
+              style: options.defaultTextStyle,
+            )
+          : Row(
+              children: [
+                FontTextWidget(text: selectedCountry?.flag ?? ''),
+                const SizedBox(width: 10),
+                if (options.showCode) ...[
+                  Text(
+                    selectedCountry?.iso2Code.toUpperCase() ?? '',
+                    style: options.countryIsoCodeTextStyle,
+                  ),
+                  const SizedBox(width: 10),
+                ],
+                Text(
+                  '+${selectedCountry?.intlDialCode}',
+                  style: options.countryDialCodeTextStyle,
+                ),
+              ],
             ),
-            const SizedBox(width: 10),
-          ],
-          Text(
-            '+${selectedCountry.intlDialCode}',
-            style: options.countryDialCodeTextStyle,
-          ),
-        ],
-      ),
     );
   }
 }
