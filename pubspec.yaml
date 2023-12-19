@@ -1,5 +1,5 @@
 name: ns_intl_phone_input
-description: A new Flutter package project.
+description: Package for international phone number input with country code
 version: 0.0.1
 homepage: none
 
