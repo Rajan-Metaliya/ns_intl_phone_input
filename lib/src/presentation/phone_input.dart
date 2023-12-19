@@ -109,7 +109,7 @@ class _PhoneInputState extends State<PhoneInput> {
             );
           },
           child: Text(
-            '${selectedCountry.flag} ${showCode != true ? selectedCountry.iso2Code.toUpperCase() : ''} +${selectedCountry.intlDialCode}',
+            '${selectedCountry.flag} ${showCode == true ? selectedCountry.iso2Code.toUpperCase() : ''} +${selectedCountry.intlDialCode}',
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
         ),
