@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ns_intl_phone_input/src/utils/constants/constants.dart';
+import 'package:ns_intl_phone_input/lib.dart';
 
 class FontTextWidget extends StatelessWidget {
   const FontTextWidget({
