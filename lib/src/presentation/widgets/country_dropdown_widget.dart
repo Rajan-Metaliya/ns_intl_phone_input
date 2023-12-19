@@ -34,9 +34,10 @@ class CountryDropDownWidget extends StatelessWidget {
           child: Text(
             country.countryName,
             style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                overflow: TextOverflow.ellipsis),
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
       ],

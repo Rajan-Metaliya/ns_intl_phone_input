@@ -25,6 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
     unformattedPhoneNumber: '',
   );
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,22 +38,39 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(20.0),
         child: Container(
           constraints: const BoxConstraints(maxWidth: 400),
-          child: Column(
-            children: [
-              NsIntlPhoneInput(
-                onPhoneChange: (countrySelection) {
-                  setState(() {
-                    this.countrySelection = countrySelection;
-                  });
-                },
-                initialCountryCode: '1',
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Selected Country: $countrySelection',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ],
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                NsIntlPhoneInput(
+                  onPhoneChange: (countrySelection) {
+                    setState(() {
+                      this.countrySelection = countrySelection;
+                    });
+                  },
+                  initialCountryCode: '1',
+                ),
+                const SizedBox(height: 20),
+                MaterialButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Validated')),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Not Validated')),
+                      );
+                    }
+                  },
+                  child: const Text('Submit'),
+                ),
+                Text(
+                  'Selected Country: $countrySelection',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -16,10 +16,22 @@ class NsIntlPhoneInput extends StatefulWidget {
     Key? key,
     required this.onPhoneChange,
     required this.initialCountryCode,
+    this.textEditingController,
+    this.focusNode,
     this.phoneFieldDecoration,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.validationErrorText = 'Please enter a valid phone number',
     this.countrySelectOption = const CountrySelectOption(),
     this.countrySelectionType = CountrySelectionTypeEnum.dialog,
   }) : super(key: key);
+
+  final TextEditingController? textEditingController;
+
+  final FocusNode? focusNode;
+
+  final String validationErrorText;
+
+  final AutovalidateMode autovalidateMode;
 
   final InputDecoration? phoneFieldDecoration;
 
@@ -55,6 +67,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
     _onDropDownChange(widget.initialCountryCode);
     textEditingController.addListener(() {
       _onTextChange(textEditingController.text);
+      widget.textEditingController?.text = textEditingController.text;
     });
   }
 
@@ -123,6 +136,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   Widget build(BuildContext context) {
     return Row(
       textBaseline: TextBaseline.alphabetic,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CountrySelectButton(
           selectedCountry: selectedCountry,
@@ -155,6 +169,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
           child: TextFormField(
             maxLength: selectedCountry?.format?.length,
             controller: textEditingController,
+            focusNode: widget.focusNode,
             inputFormatters: [maskFormatter],
             decoration: widget.phoneFieldDecoration ??
                 const InputDecoration(
@@ -162,6 +177,18 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
                   counterText: '',
                 ),
             style: const TextStyle(fontSize: 20),
+            autovalidateMode: widget.autovalidateMode,
+            validator: (value) {
+              if (selectedCountry == null) {
+                return widget.validationErrorText;
+              } else if (value == null || value.isEmpty) {
+                return widget.validationErrorText;
+              } else if (value.length <
+                  (selectedCountry?.format?.length ?? 15)) {
+                return widget.validationErrorText;
+              }
+              return null;
+            },
           ),
         ),
       ],
