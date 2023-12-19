@@ -11,9 +11,13 @@ class NsIntlPhoneInput extends StatefulWidget {
   const NsIntlPhoneInput({
     Key? key,
     this.phoneFieldDecoration,
+    this.countryIsoCodeTextStyle,
+    this.countryDialCodeTextStyle,
   }) : super(key: key);
 
   final InputDecoration? phoneFieldDecoration;
+  final TextStyle? countryIsoCodeTextStyle;
+  final TextStyle? countryDialCodeTextStyle;
 
   @override
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
@@ -109,6 +113,9 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
               ),
             )
           },
+          showCode: true,
+          countryIsoCodeTextStyle: widget.countryIsoCodeTextStyle,
+          countryDialCodeTextStyle: widget.countryDialCodeTextStyle,
         ),
         Expanded(
           flex: 6,
