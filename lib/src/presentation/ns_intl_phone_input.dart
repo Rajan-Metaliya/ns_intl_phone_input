@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ns_intl_phone_input/src/data/models/country.dart';
+import 'package:ns_intl_phone_input/src/data/models/country_select_button_options.dart';
 import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map_impl.dart';
 import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart';
 
@@ -11,13 +12,12 @@ class NsIntlPhoneInput extends StatefulWidget {
   const NsIntlPhoneInput({
     Key? key,
     this.phoneFieldDecoration,
-    this.countryIsoCodeTextStyle,
-    this.countryDialCodeTextStyle,
+    this.countrySelectOption = const CountrySelectOption(),
   }) : super(key: key);
 
   final InputDecoration? phoneFieldDecoration;
-  final TextStyle? countryIsoCodeTextStyle;
-  final TextStyle? countryDialCodeTextStyle;
+
+  final CountrySelectOption countrySelectOption;
 
   @override
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
@@ -113,9 +113,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
               ),
             )
           },
-          showCode: true,
-          countryIsoCodeTextStyle: widget.countryIsoCodeTextStyle,
-          countryDialCodeTextStyle: widget.countryDialCodeTextStyle,
+          options: widget.countrySelectOption,
         ),
         Expanded(
           flex: 6,
