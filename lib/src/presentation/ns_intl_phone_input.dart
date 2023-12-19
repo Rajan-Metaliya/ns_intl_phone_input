@@ -3,9 +3,9 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ns_intl_phone_input/src/data/models/country.dart';
 import 'package:ns_intl_phone_input/src/data/models/country_select_button_options.dart';
 import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map_impl.dart';
-import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart';
 
 import '../raw/raw_countries.dart';
+import 'country_select_dialog.dart';
 import 'widgets/country_select_button.dart';
 
 class NsIntlPhoneInput extends StatefulWidget {
@@ -101,17 +101,23 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
       children: [
         CountrySelectButton(
           selectedCountry: selectedCountry,
-          onPressed: () => {
-            Navigator.push(
+          onPressed: () {
+            countrySelectDialog(
               context,
-              MaterialPageRoute(
-                builder: (context) => CountrySelectScreen(
-                  onCountrySelected: (country) {
-                    _onDropDownChange(country.dialCode);
-                  },
-                ),
-              ),
-            )
+              onCountrySelected: (country) {
+                _onDropDownChange(country.dialCode);
+              },
+            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => CountrySelectScreen(
+            //       onCountrySelected: (country) {
+            //         _onDropDownChange(country.dialCode);
+            //       },
+            //     ),
+            //   ),
+            // );
           },
           options: widget.countrySelectOption,
         ),
