@@ -9,10 +9,10 @@ import '../raw/raw_countries.dart';
 class PhoneInput extends StatefulWidget {
   const PhoneInput({
     Key? key,
-    bool? showCode = false,
-    bool? verticalLayout = false,
+    this.phoneFieldDecoration,
   }) : super(key: key);
 
+  final InputDecoration? phoneFieldDecoration;
   @override
   State<PhoneInput> createState() => _PhoneInputState();
 }
@@ -25,9 +25,6 @@ class _PhoneInputState extends State<PhoneInput> {
   late CountryEntity selectedCountry;
 
   String? dropDownValue;
-
-  bool? showCode;
-  bool? vertialLayout;
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '...-..-....',
@@ -93,16 +90,12 @@ class _PhoneInputState extends State<PhoneInput> {
 
   @override
   Widget build(BuildContext context) {
-    return vertialLayout != true
-        ? Column(
-            textBaseline: TextBaseline.alphabetic,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MaterialButton(
-                minWidth: double.infinity,
-                padding: const EdgeInsets.fromLTRB(0, 10, 20, 10),
-                onPressed: () {
+    return Row(
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        CountrySelectButton(
+            selectedCountry: selectedCountry,
+            onPressed: () => {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -112,77 +105,46 @@ class _PhoneInputState extends State<PhoneInput> {
                         },
                       ),
                     ),
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '${selectedCountry.flag} +${selectedCountry.intlDialCode}  ',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      showCode != true ? selectedCountry.countryName : '',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              TextFormField(
-                maxLength: selectedCountry.format?.length,
-                controller: textEditingController,
-                inputFormatters: [maskFormatter],
-                decoration: const InputDecoration(
-                  hintText: 'Phone Number',
-                  counterText: '',
-                ),
-                style: const TextStyle(fontSize: 20),
-              ),
-            ],
-          )
-        : Row(
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              MaterialButton(
-                padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CountrySelectScreen(
-                        onCountrySelected: (country) {
-                          _onDropDownChange(country.dialCode);
-                        },
-                      ),
-                    ),
-                  );
-                },
-                child: Text(
-                  '${selectedCountry.flag} ${showCode == true ? selectedCountry.iso2Code.toUpperCase() : ''} +${selectedCountry.intlDialCode}',
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-              ),
-              Expanded(
-                flex: 6,
-                child: TextFormField(
-                  maxLength: selectedCountry.format?.length,
-                  controller: textEditingController,
-                  inputFormatters: [maskFormatter],
-                  decoration: const InputDecoration(
-                    hintText: 'Phone Number',
-                    counterText: '',
-                  ),
-                  style: const TextStyle(fontSize: 20),
-                ),
-              ),
-            ],
-          );
+                  )
+                }),
+        Expanded(
+          flex: 6,
+          child: TextFormField(
+            maxLength: selectedCountry.format?.length,
+            controller: textEditingController,
+            inputFormatters: [maskFormatter],
+            decoration: const InputDecoration(
+              hintText: 'Phone Number',
+              counterText: '',
+            ),
+            style: const TextStyle(fontSize: 20),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CountrySelectButton extends StatelessWidget {
+  const CountrySelectButton(
+      {super.key,
+      required this.onPressed,
+      required this.selectedCountry,
+      this.showCode = false});
+
+  final void Function()? onPressed;
+  final CountryEntity selectedCountry;
+  final bool showCode;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+      onPressed: onPressed,
+      child: Text(
+        '${selectedCountry.flag} ${showCode == true ? selectedCountry.iso2Code.toUpperCase() : ''} +${selectedCountry.intlDialCode}',
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      ),
+    );
   }
 }
