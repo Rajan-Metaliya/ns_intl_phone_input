@@ -18,10 +18,10 @@ class CountryDropDownWidget extends StatelessWidget {
         FontTextWidget(text: country.flag),
         const SizedBox(width: 8),
         Text(
-          '${country.iso2Code} +${country.dialCode}',
+          '${country.iso2Code.toUpperCase()} +${country.dialCode}',
           style: const TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
         ),
         const Spacer(),
