@@ -73,4 +73,19 @@ class CountryModel {
       currentAreaCode: currentAreaCode ?? this.currentAreaCode,
     );
   }
+
+  @override
+  String toString() {
+    return '''CountryModel(
+      countryName: $countryName, 
+      regions: $regions, 
+      iso2Code: $iso2Code, 
+      flag: $flag, 
+      intlDialCode: $intlDialCode, 
+      format: $format, 
+      orderPriority: $orderPriority, 
+      areaCodes: $areaCodes, 
+      currentAreaCode: $currentAreaCode
+      )''';
+  }
 }

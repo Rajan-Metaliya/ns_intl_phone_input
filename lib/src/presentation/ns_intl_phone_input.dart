@@ -6,6 +6,7 @@ import 'package:ns_intl_phone_input/src/data/models/country_select_button_option
 import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map_impl.dart';
 import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart';
 
+import '../data/models/country_selection.dart';
 import '../raw/raw_countries.dart';
 import 'country_select_dialog.dart';
 import 'widgets/country_select_button.dart';
@@ -13,6 +14,7 @@ import 'widgets/country_select_button.dart';
 class NsIntlPhoneInput extends StatefulWidget {
   const NsIntlPhoneInput({
     Key? key,
+    required this.onPhoneChange,
     this.phoneFieldDecoration,
     this.countrySelectOption = const CountrySelectOption(),
     this.countrySelectionType = CountrySelectionTypeEnum.dialog,
@@ -23,6 +25,8 @@ class NsIntlPhoneInput extends StatefulWidget {
   final CountrySelectOption countrySelectOption;
 
   final CountrySelectionTypeEnum countrySelectionType;
+
+  final Function(CountrySelection) onPhoneChange;
 
   @override
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
@@ -59,7 +63,13 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
     }
 
     final unMastedValue = maskFormatter.getUnmaskedText();
-
+    widget.onPhoneChange(
+      CountrySelection(
+        formattedPhoneNumber: value,
+        selectedCountry: selectedCountry,
+        unformattedPhoneNumber: unMastedValue,
+      ),
+    );
     for (final country in rawCountries) {
       if (selectedCountry.intlDialCode == country.intlDialCode) {
         if (country.areaCodes == null || country.areaCodes!.isEmpty) {
