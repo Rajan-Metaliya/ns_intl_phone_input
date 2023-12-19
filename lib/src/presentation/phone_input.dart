@@ -90,6 +90,7 @@ class _PhoneInputState extends State<PhoneInput> {
       textBaseline: TextBaseline.alphabetic,
       children: [
         MaterialButton(
+          padding: const EdgeInsets.only(top: 12),
           onPressed: () {
             Navigator.push(
               context,
@@ -117,6 +118,7 @@ class _PhoneInputState extends State<PhoneInput> {
               hintText: 'Phone Number',
               counterText: '',
             ),
+            style: const TextStyle(fontSize: 20),
           ),
         ),
       ],
