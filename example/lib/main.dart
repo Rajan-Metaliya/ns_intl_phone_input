@@ -9,7 +9,7 @@ void main() {
         body: Center(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 400),
-            child: const PhoneInput(),
+            child: const NsIntlPhoneInput(),
           ),
         ),
       ),

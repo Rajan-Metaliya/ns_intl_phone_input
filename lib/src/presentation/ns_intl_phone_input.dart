@@ -5,19 +5,21 @@ import 'package:ns_intl_phone_input/src/domain/entities/country.dart';
 import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart';
 
 import '../raw/raw_countries.dart';
+import 'widgets/country_select_button.dart';
 
-class PhoneInput extends StatefulWidget {
-  const PhoneInput({
+class NsIntlPhoneInput extends StatefulWidget {
+  const NsIntlPhoneInput({
     Key? key,
     this.phoneFieldDecoration,
   }) : super(key: key);
 
   final InputDecoration? phoneFieldDecoration;
+
   @override
-  State<PhoneInput> createState() => _PhoneInputState();
+  State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
 }
 
-class _PhoneInputState extends State<PhoneInput> {
+class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   late final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
 
   var textEditingController = TextEditingController(text: "");
@@ -94,19 +96,20 @@ class _PhoneInputState extends State<PhoneInput> {
       textBaseline: TextBaseline.alphabetic,
       children: [
         CountrySelectButton(
-            selectedCountry: selectedCountry,
-            onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CountrySelectScreen(
-                        onCountrySelected: (country) {
-                          _onDropDownChange(country.dialCode);
-                        },
-                      ),
-                    ),
-                  )
-                }),
+          selectedCountry: selectedCountry,
+          onPressed: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CountrySelectScreen(
+                  onCountrySelected: (country) {
+                    _onDropDownChange(country.dialCode);
+                  },
+                ),
+              ),
+            )
+          },
+        ),
         Expanded(
           flex: 6,
           child: TextFormField(
@@ -121,30 +124,6 @@ class _PhoneInputState extends State<PhoneInput> {
           ),
         ),
       ],
-    );
-  }
-}
-
-class CountrySelectButton extends StatelessWidget {
-  const CountrySelectButton(
-      {super.key,
-      required this.onPressed,
-      required this.selectedCountry,
-      this.showCode = false});
-
-  final void Function()? onPressed;
-  final CountryEntity selectedCountry;
-  final bool showCode;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
-      onPressed: onPressed,
-      child: Text(
-        '${selectedCountry.flag} ${showCode == true ? selectedCountry.iso2Code.toUpperCase() : ''} +${selectedCountry.intlDialCode}',
-        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-      ),
     );
   }
 }
