@@ -15,6 +15,17 @@ and the Flutter guide for
 
 The Flutter Phone Validation Package by Nonstop IO is a versatile and easy-to-use Flutter package designed to validate phone numbers from more than 200 countries. With this package, users can seamlessly integrate phone number validation into their Flutter applications, enhancing user experience and ensuring data integrity.
 
+## Screenshots
+
+- Widget with Country Code and Phone Number Field:
+  <br><img width="417" alt="Screenshot 2023-12-20 at 4 47 30 PM" src="https://github.com/rajan-nonstopio/ns_intl_phone_input/assets/132648639/b3b827c1-c9b9-4773-980d-8e4a3618372c">
+
+
+- Drop Down Menu Options for Country code list:
+  <br><img width="901" alt="Screenshot 2023-12-20 at 3 04 24 PM" src="https://github.com/rajan-nonstopio/ns_intl_phone_input/assets/132648639/8fb0f20c-e815-4c8d-9b6d-3d182222884a">
+
+- Widget with Country Code , Phone Number Field & Area code format:
+  <br><img width="425" alt="Screenshot 2023-12-20 at 3 05 32 PM" src="https://github.com/rajan-nonstopio/ns_intl_phone_input/assets/132648639/e9032139-4bad-4428-a589-61090aa7db52">
 
 ## Features
 
