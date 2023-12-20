@@ -140,5 +140,13 @@ For a quick start, check out the provided example in the `lib/home` folder with 
 ## Support and Contributions
 
 If you encounter any issues or have suggestions for improvement, feel free to open an issue on the [GitHub repository](https://link-to-github-repo). Contributions are welcome!
+There are couple of ways in which you can contribute.
+
+- Propose any feature, enhancement
+- Report a bug
+- Fix a bug
+- Participate in a discussion and help in decision making
+- Write and improve some documentation. Documentation is super critical and its importance cannot be overstated!
+- Send in a Pull Request :-)
 
 Thank you for choosing the Flutter Phone Validation Package by Nonstop IO. Happy coding!
