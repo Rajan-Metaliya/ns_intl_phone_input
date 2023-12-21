@@ -18,6 +18,7 @@ class NsIntlPhoneInput extends StatefulWidget {
     required this.initialCountryCode,
     this.textEditingController,
     this.focusNode,
+    this.phoneInputFontSize = 16,
     this.phoneFieldDecoration,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.validationErrorText = 'Please enter a valid phone number',
@@ -42,6 +43,8 @@ class NsIntlPhoneInput extends StatefulWidget {
   final Function(CountrySelection) onPhoneChange;
 
   final String initialCountryCode;
+
+  final double phoneInputFontSize;
 
   @override
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
@@ -136,7 +139,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   Widget build(BuildContext context) {
     return Row(
       textBaseline: TextBaseline.alphabetic,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CountrySelectButton(
           selectedCountry: selectedCountry,
@@ -176,7 +179,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
                   hintText: 'Phone Number',
                   counterText: '',
                 ),
-            style: const TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: widget.phoneInputFontSize),
             autovalidateMode: widget.autovalidateMode,
             validator: (value) {
               if (selectedCountry == null) {
