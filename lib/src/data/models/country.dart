@@ -31,10 +31,7 @@ class CountryModel {
   bool isContain(String value) {
     return countryName.toLowerCase().contains(value.toLowerCase()) ||
         intlDialCode.contains(value) ||
-        (areaCodes != null &&
-            areaCodes!.any((element) => element.contains(value))) ||
-        regions.any(
-            (element) => element.toLowerCase().contains(value.toLowerCase())) ||
+        currentAreaCode.contains(value) ||
         iso2Code.toLowerCase().contains(value.toLowerCase());
   }
 
