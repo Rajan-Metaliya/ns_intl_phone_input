@@ -7,6 +7,12 @@ class CountrySelection {
 
   final String unformattedPhoneNumber;
 
+  String get completeFormattedPhoneNumber =>
+      '${selectedCountry.intlDialCode} $formattedPhoneNumber';
+
+  String get completePhoneNumber =>
+      '${selectedCountry.intlDialCode} $unformattedPhoneNumber';
+
   CountrySelection({
     required this.selectedCountry,
     required this.formattedPhoneNumber,

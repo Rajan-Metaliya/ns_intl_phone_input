@@ -34,43 +34,45 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('NsIntlPhoneInput Example',
             style: Theme.of(context).textTheme.titleLarge),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 400),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  NsIntlPhoneInput(
-                    onPhoneChange: (countrySelection) {
-                      setState(() {
-                        this.countrySelection = countrySelection;
-                      });
-                    },
-                    initialCountryCode: '1',
-                  ),
-                  const SizedBox(height: 20),
-                  MaterialButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Validated')),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Not Validated')),
-                        );
-                      }
-                    },
-                    child: const Text('Submit'),
-                  ),
-                  Text(
-                    'Selected Country: $countrySelection',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    NsIntlPhoneInput(
+                      onPhoneChange: (countrySelection) {
+                        setState(() {
+                          this.countrySelection = countrySelection;
+                        });
+                      },
+                      initialCountryCode: '1',
+                    ),
+                    const SizedBox(height: 20),
+                    MaterialButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Validated')),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Not Validated')),
+                          );
+                        }
+                      },
+                      child: const Text('Submit'),
+                    ),
+                    Text(
+                      'Selected Country: $countrySelection',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
