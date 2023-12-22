@@ -24,7 +24,7 @@ The Flutter Phone Validation Package by Nonstop IO is a versatile and easy-to-us
 - Drop Down Menu Options for Country code list:
   <br><img width="901" alt="Screenshot 2023-12-20 at 3 04 24 PM" src="https://github.com/rajan-nonstopio/ns_intl_phone_input/assets/132648639/8fb0f20c-e815-4c8d-9b6d-3d182222884a">
 
-- Widget with Country Code , Phone Number Field & Area code format:
+- Widget with Country Code, Phone Number Field and area code format:
   <br><img width="425" alt="Screenshot 2023-12-20 at 3 05 32 PM" src="https://github.com/rajan-nonstopio/ns_intl_phone_input/assets/132648639/e9032139-4bad-4428-a589-61090aa7db52">
 
 ## Features
@@ -34,7 +34,7 @@ The Flutter Phone Validation Package by Nonstop IO is a versatile and easy-to-us
 - **Comprehensive Validation:** The package supports validation for phone numbers from over 200 countries, ensuring accuracy and inclusivity.
 
 - **Various Number Formats:** Users can input phone numbers in different formats, and the package adapts to validate them accordingly. This includes support for various masks and formats.
-- **Support for area codes of country:** The package provides support for area codes within countries. Users can input phone numbers with area codes, and the package takes this into consideration during validation. This feature enhances the package's flexibility and applicability to regions where area codes are an integral part of phone numbers.
+- **Support for area codes of the country:** The package provides support for area codes within countries. Users can input phone numbers with area codes, and the package considers this during validation. This feature enhances the package's flexibility and applicability to regions where area codes are an integral part of phone numbers.
 
 ## Getting Started
 
@@ -144,18 +144,27 @@ NsIntlPhoneInput(
 
 ## Example
 
-For a quick start, check out the provided example in the `lib/home` folder with `home_screen.dart` file. It demonstrates the integration of the Flutter Phone Validation Package into a sample Flutter application.
+For a quick start, check out the provided example in the `lib/home` folder with the `home_screen.dart` file. It demonstrates the integration of the Flutter Phone Validation Package into a sample Flutter application.
 
 ## Support and Contributions
 
-If you encounter any issues or have suggestions for improvement, feel free to open an issue on the [GitHub repository](https://link-to-github-repo). Contributions are welcome!
-There are couple of ways in which you can contribute.
+If you encounter any issues or have suggestions for improvement, feel free to open an issue on the [GitHub repository](https://github.com/Rajan-Metaliya/ns_intl_phone_input/). Contributions are welcome!
+There are a couple of ways in which you can contribute.
 
 - Propose any feature, enhancement
 - Report a bug
 - Fix a bug
-- Participate in a discussion and help in decision making
-- Write and improve some documentation. Documentation is super critical and its importance cannot be overstated!
+- Participate in a discussion and help in decision-making
+- Write and improve some documentation. Documentation is supercritical and its importance cannot be overstated!
 - Send in a Pull Request :-)
 
 Thank you for choosing the Flutter Phone Validation Package by Nonstop IO. Happy coding!
+
+<br>
+<div align="center" >
+  <p>Thanks to all contributors to this package</p>
+  <a href="https://github.com/Rajan-Metaliya/ns_intl_phone_input/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Rajan-Metaliya/ns_intl_phone_input" />
+</a>
+</div>
+<br>
