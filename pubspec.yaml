@@ -6,7 +6,7 @@ repository: https://github.com/Rajan-Metaliya/ns_intl_phone_inpu
 issue_tracker: https://github.com/Rajan-Metaliya/ns_intl_phone_inpu/issues
 
 environment:
-  sdk: ">=3.1.3 <4.0.0"
+  sdk: ">=2.17.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
