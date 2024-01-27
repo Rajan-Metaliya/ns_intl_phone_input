@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ns_intl_phone_input/ns_intl_phone_input.dart';
 
+const samplePhoneNumber = '9876543210';
+const sampleCountryCode = '91';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -27,6 +30,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
+  final _phoneNumberController = TextEditingController(text: samplePhoneNumber);
+
+  String _countryCode = "1";
+
+  late Function(String dialCode, String phoneNumber) methodP;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // widget binding
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(const Duration(seconds: 2), () {
+        setState(() {
+          _phoneNumberController.text = samplePhoneNumber;
+          _countryCode = sampleCountryCode;
+          methodP.call(_countryCode, _phoneNumberController.text);
+        });
+      });
+    });
+  }
+
+  methodA(String a, String b) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,12 +72,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     NsIntlPhoneInput(
+                      builder: (method) {
+                        methodP = method;
+                      },
                       onPhoneChange: (countrySelection) {
                         setState(() {
                           this.countrySelection = countrySelection;
                         });
                       },
-                      initialCountryCode: '1',
                     ),
                     const SizedBox(height: 20),
                     MaterialButton(

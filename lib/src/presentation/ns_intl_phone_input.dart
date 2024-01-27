@@ -3,20 +3,20 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ns_intl_phone_input/src/data/enum/country_selection_type_enum.dart';
 import 'package:ns_intl_phone_input/src/data/models/country.dart';
 import 'package:ns_intl_phone_input/src/data/models/country_select_button_options.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map_impl.dart';
 import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart';
+import 'package:ns_intl_phone_input/src/presentation/helper/ns_intl_helper.dart';
 
 import '../data/models/country_selection.dart';
-import '../raw/raw_countries.dart';
 import 'country_select_dialog.dart';
 import 'widgets/country_select_button.dart';
+
+typedef BuildCountry = void Function(
+    void Function(String dialCode, String phoneNumber) methodFromChild);
 
 class NsIntlPhoneInput extends StatefulWidget {
   const NsIntlPhoneInput({
     Key? key,
     required this.onPhoneChange,
-    required this.initialCountryCode,
-    this.textEditingController,
     this.focusNode,
     this.phoneInputFontSize = 16,
     this.phoneFieldDecoration,
@@ -24,9 +24,8 @@ class NsIntlPhoneInput extends StatefulWidget {
     this.validationErrorText = 'Please enter a valid phone number',
     this.countrySelectOption = const CountrySelectOption(),
     this.countrySelectionType = CountrySelectionTypeEnum.dialog,
+    required this.builder,
   }) : super(key: key);
-
-  final TextEditingController? textEditingController;
 
   final FocusNode? focusNode;
 
@@ -42,17 +41,15 @@ class NsIntlPhoneInput extends StatefulWidget {
 
   final Function(CountrySelection) onPhoneChange;
 
-  final String initialCountryCode;
-
   final double phoneInputFontSize;
+
+  final BuildCountry builder;
 
   @override
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
 }
 
 class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
-  final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
-
   var textEditingController = TextEditingController(text: "");
 
   CountryModel? selectedCountry;
@@ -67,10 +64,9 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   @override
   void initState() {
     super.initState();
-    _onDropDownChange(widget.initialCountryCode);
+
     textEditingController.addListener(() {
       _onTextChange(textEditingController.text);
-      widget.textEditingController?.text = textEditingController.text;
     });
   }
 
@@ -89,54 +85,72 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
         unformattedPhoneNumber: unMastedValue,
       ),
     );
-    for (final country in rawCountries) {
-      if ((selectedCountry?.intlDialCode ?? '') == country.intlDialCode) {
-        if (country.areaCodes == null || country.areaCodes!.isEmpty) {
-          continue;
-        } else {
-          for (final region in country.areaCodes!) {
-            if (unMastedValue.startsWith(region)) {
-              selectedCountry = country;
-              dropDownValue = '${country.intlDialCode} $region';
-              return;
-            }
-          }
-        }
-      }
-    }
+    selectedCountry = NSIntlPhoneHelper.selectedCountryCode(
+      countryCode: selectedCountry?.intlDialCode ?? '',
+      phoneNumber: unMastedValue,
+    );
+    return;
   }
 
-  _onDropDownChange(String? value) {
-    if (value == null || value.isEmpty) {
-      return;
+  _onDropDownChange(CountryModel country) {
+    selectedCountry = country.copyWith(currentAreaCode: '');
+    dropDownValue = country.intlDialCode;
+
+    maskFormatter.updateMask(
+      mask: selectedCountry?.format,
+      filter: {".": RegExp(r'[0-9]')},
+      newValue: TextEditingValue(text: country.currentAreaCode),
+    );
+
+    textEditingController.text = maskFormatter.getMaskedText();
+    // if (value == null || value.isEmpty) {
+    //   return;
+    // }
+
+    // final values = value.split(" ");
+
+    // var initialText = '';
+    // if (values.length > 1) {
+    //   initialText = values.last;
+    // }
+
+    // textEditingController.clear();
+    // setState(() {});
+
+    // if (_countriesLookupMap.containsKey(value)) {
+    //   selectedCountry = _countriesLookupMap[value];
+
+    //   dropDownValue = value;
+
+    //   maskFormatter.updateMask(
+    //     mask: selectedCountry?.format,
+    //     filter: {".": RegExp(r'[0-9]')},
+    //     newValue: TextEditingValue(text: initialText),
+    //   );
+
+    //   textEditingController.text = maskFormatter.getMaskedText();
+    // }
+  }
+
+  _onValueChange(dialCode, phoneNumber) {
+    CountryModel? country = NSIntlPhoneHelper.selectedCountryCode(
+      countryCode: dialCode,
+      phoneNumber: phoneNumber,
+    );
+
+    if (country != null) {
+      _onDropDownChange(country);
     }
-
-    final values = value.split(" ");
-
-    var initialText = '';
-    if (values.length > 1) {
-      initialText = values.last;
-    }
-    setState(() {});
-    textEditingController.clear();
-    if (_countriesLookupMap.containsKey(value)) {
-      selectedCountry = _countriesLookupMap[value];
-
-      dropDownValue = value;
-
-      maskFormatter.updateMask(
-        mask: selectedCountry?.format,
-        filter: {".": RegExp(r'[0-9]')},
-        newValue: TextEditingValue(text: initialText),
-      );
-
-      textEditingController.text = maskFormatter.getMaskedText();
-    }
-    setState(() {});
+    textEditingController.text = NSIntlPhoneHelper.getMaskedPhoneNumber(
+      countryCode: dialCode,
+      phoneNumber: phoneNumber,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    widget.builder.call(_onValueChange);
+
     return Row(
       textBaseline: TextBaseline.alphabetic,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -149,7 +163,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
               countrySelectDialog(
                 context,
                 onCountrySelected: (country) {
-                  _onDropDownChange(country.dialCode);
+                  _onDropDownChange(country);
                 },
               );
             } else {
@@ -158,7 +172,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
                 MaterialPageRoute(
                   builder: (context) => CountrySelectScreen(
                     onCountrySelected: (country) {
-                      _onDropDownChange(country.dialCode);
+                      _onDropDownChange(country);
                     },
                   ),
                 ),

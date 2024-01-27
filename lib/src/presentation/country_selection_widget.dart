@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ns_intl_phone_input/src/data/models/country.dart';
-import 'package:ns_intl_phone_input/src/data/usecases/construct_lookup_map_impl.dart';
+import 'package:ns_intl_phone_input/src/presentation/helper/ns_intl_helper.dart';
 import 'package:ns_intl_phone_input/src/presentation/widgets/country_dropdown_widget.dart';
-import 'package:ns_intl_phone_input/src/raw/raw_countries.dart';
 
 class CountrySelectionWidget extends StatefulWidget {
   const CountrySelectionWidget({
@@ -17,7 +16,7 @@ class CountrySelectionWidget extends StatefulWidget {
 }
 
 class _CountrySelectionWidgetState extends State<CountrySelectionWidget> {
-  final _countriesLookupMap = ConstructLookupMapImpl()(rawCountries);
+  final _countriesLookupMap = NSIntlPhoneHelper.getAllCountriesMap();
 
   late final List<CountryModel> countries;
 

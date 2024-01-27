@@ -71,6 +71,22 @@ class CountryModel {
     );
   }
 
+
+  factory CountryModel.fromFormattedNumber(String number){
+
+    return CountryModel(
+      countryName: '',
+      regions: {},
+      iso2Code: '',
+      flag: '',
+      intlDialCode: '',
+      format: '',
+      orderPriority: 0,
+      areaCodes: {},
+      currentAreaCode: '',
+    );
+  }
+
   @override
   String toString() {
     return '''CountryModel(
