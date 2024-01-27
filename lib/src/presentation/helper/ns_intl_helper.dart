@@ -97,4 +97,41 @@ class NSIntlPhoneHelper {
 
     return countriesMap;
   }
+
+  /// Returns CountrySelection object for the given country code and phone number
+  ///
+  /// Example:
+  ///  countryCode = '+91'
+  /// phoneNumber = '9876543210'
+  ///
+  /// Returns: CountrySelection(
+  ///  selectedCountry: CountryModel(...),
+  /// formattedPhoneNumber: '98765-43210',
+  /// unformattedPhoneNumber: '9876543210',
+  /// )
+  static CountrySelection? countrySelectionFromPhoneNumber({
+    required String phoneNumber,
+    required String countryCode,
+  }) {
+    final selectedCountry = selectedCountryCode(
+      countryCode: countryCode,
+      phoneNumber: phoneNumber,
+    );
+
+    if (selectedCountry == null) {
+      return null;
+    }
+
+    var maskFormatter = MaskTextInputFormatter(
+      mask: selectedCountry.format,
+      filter: {".": RegExp(r'[0-9]')},
+    );
+    final text = maskFormatter.maskText(phoneNumber);
+
+    return CountrySelection(
+      selectedCountry: selectedCountry,
+      formattedPhoneNumber: text,
+      unformattedPhoneNumber: phoneNumber,
+    );
+  }
 }

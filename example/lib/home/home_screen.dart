@@ -34,8 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String _countryCode = "1";
 
-  late Function(String dialCode, String phoneNumber) methodP;
-
   @override
   void initState() {
     super.initState();
@@ -46,13 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           _phoneNumberController.text = samplePhoneNumber;
           _countryCode = sampleCountryCode;
-          methodP.call(_countryCode, _phoneNumberController.text);
         });
       });
     });
   }
-
-  methodA(String a, String b) {}
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     NsIntlPhoneInput(
-                      builder: (method) {
-                        methodP = method;
+                      builder: () {
+                        return NSIntlPhoneHelper
+                            .countrySelectionFromPhoneNumber(
+                          countryCode: _countryCode,
+                          phoneNumber: _phoneNumberController.text,
+                        );
                       },
                       onPhoneChange: (countrySelection) {
                         setState(() {

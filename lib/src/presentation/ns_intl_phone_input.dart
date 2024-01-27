@@ -10,8 +10,7 @@ import '../data/models/country_selection.dart';
 import 'country_select_dialog.dart';
 import 'widgets/country_select_button.dart';
 
-typedef BuildCountry = void Function(
-    void Function(String dialCode, String phoneNumber) methodFromChild);
+typedef BuildCountry = CountrySelection? Function();
 
 class NsIntlPhoneInput extends StatefulWidget {
   const NsIntlPhoneInput({
@@ -61,6 +60,8 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
     filter: {".": RegExp(r'[0-9]')},
   );
 
+  CountrySelection? _previousCountrySelection;
+
   @override
   void initState() {
     super.initState();
@@ -103,33 +104,6 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
     );
 
     textEditingController.text = maskFormatter.getMaskedText();
-    // if (value == null || value.isEmpty) {
-    //   return;
-    // }
-
-    // final values = value.split(" ");
-
-    // var initialText = '';
-    // if (values.length > 1) {
-    //   initialText = values.last;
-    // }
-
-    // textEditingController.clear();
-    // setState(() {});
-
-    // if (_countriesLookupMap.containsKey(value)) {
-    //   selectedCountry = _countriesLookupMap[value];
-
-    //   dropDownValue = value;
-
-    //   maskFormatter.updateMask(
-    //     mask: selectedCountry?.format,
-    //     filter: {".": RegExp(r'[0-9]')},
-    //     newValue: TextEditingValue(text: initialText),
-    //   );
-
-    //   textEditingController.text = maskFormatter.getMaskedText();
-    // }
   }
 
   _onValueChange(dialCode, phoneNumber) {
@@ -149,7 +123,15 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
 
   @override
   Widget build(BuildContext context) {
-    widget.builder.call(_onValueChange);
+    final countrySelection = widget.builder.call();
+    if (_previousCountrySelection != countrySelection &&
+        countrySelection != null) {
+      _previousCountrySelection = countrySelection;
+      _onValueChange(
+        countrySelection.selectedCountry.intlDialCode,
+        countrySelection.unformattedPhoneNumber,
+      );
+    }
 
     return Row(
       textBaseline: TextBaseline.alphabetic,
