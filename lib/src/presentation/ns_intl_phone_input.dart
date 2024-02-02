@@ -124,13 +124,14 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   @override
   Widget build(BuildContext context) {
     final countrySelection = widget.builder?.call();
-    if (_previousCountrySelection != countrySelection &&
-        countrySelection != null) {
-      _previousCountrySelection = countrySelection;
-      _onValueChange(
-        countrySelection.selectedCountry.intlDialCode,
-        countrySelection.unformattedPhoneNumber,
-      );
+    if (countrySelection != null) {
+      if (!countrySelection.isEqual(_previousCountrySelection)) {
+        _previousCountrySelection = countrySelection;
+        _onValueChange(
+          countrySelection.selectedCountry.intlDialCode,
+          countrySelection.unformattedPhoneNumber,
+        );
+      }
     }
 
     return Row(

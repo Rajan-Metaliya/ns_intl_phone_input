@@ -13,6 +13,21 @@ class CountrySelection {
   String get completePhoneNumber =>
       '${selectedCountry.intlDialCode} $unformattedPhoneNumber';
 
+  bool isValid() {
+    return selectedCountry.iso2Code.isNotEmpty &&
+        formattedPhoneNumber.isNotEmpty &&
+        unformattedPhoneNumber.isNotEmpty &&
+        formattedPhoneNumber.length == selectedCountry.format?.length;
+  }
+
+  bool isEqual(CountrySelection? countrySelection) {
+    if (countrySelection == null) return false;
+    return countrySelection.selectedCountry.iso2Code ==
+            selectedCountry.iso2Code &&
+        countrySelection.formattedPhoneNumber == formattedPhoneNumber &&
+        countrySelection.unformattedPhoneNumber == unformattedPhoneNumber;
+  }
+
   CountrySelection({
     required this.selectedCountry,
     required this.formattedPhoneNumber,
