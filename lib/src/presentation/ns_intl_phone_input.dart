@@ -73,12 +73,15 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
 
   _onTextChange(String? value) {
     setState(() {});
+    print("NsIntlPhoneInput _onTextChange: ${selectedCountry?.countryName}");
 
     if (value == null || value.isEmpty || selectedCountry == null) {
       return;
     }
 
-    final unMastedValue = maskFormatter.getUnmaskedText();
+    final unMastedValue = NSIntlPhoneHelper.getUnMaskedPhoneNumber(
+      phoneNumber: value,
+    );
     widget.onPhoneChange(
       CountrySelection(
         formattedPhoneNumber: value,
@@ -87,14 +90,22 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
       ),
     );
     selectedCountry = NSIntlPhoneHelper.selectedCountryCode(
-      countryCode: selectedCountry?.intlDialCode ?? '',
-      phoneNumber: unMastedValue,
-    );
+          countryCode: selectedCountry?.intlDialCode ?? '',
+          phoneNumber: unMastedValue,
+        ) ??
+        selectedCountry;
+    print("NsIntlPhoneInput _onTextChange 2: $selectedCountry?.countryName}");
     return;
   }
 
-  _onDropDownChange(CountryModel country) {
-    selectedCountry = country.copyWith(currentAreaCode: '');
+  _onDropDownChange(CountryModel country, {bool? isAutoChange = false}) {
+    print("NsIntlPhoneInput _onDropDownChange: ${country.countryName}");
+    if (isAutoChange != true) {
+      selectedCountry = country.copyWith(currentAreaCode: '');
+    } else {
+      selectedCountry = country;
+    }
+
     dropDownValue = country.intlDialCode;
 
     maskFormatter.updateMask(
@@ -107,13 +118,20 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   }
 
   _onValueChange(dialCode, phoneNumber) {
-    CountryModel? country = NSIntlPhoneHelper.selectedCountryCode(
+    selectedCountry = NSIntlPhoneHelper.selectedCountryCode(
       countryCode: dialCode,
       phoneNumber: phoneNumber,
     );
 
-    if (country != null) {
-      _onDropDownChange(country);
+    print("NsIntlPhoneInput _onValueChange: ${selectedCountry?.countryName}");
+
+    if (selectedCountry != null) {
+      maskFormatter.updateMask(
+        mask: selectedCountry?.format,
+        filter: {".": RegExp(r'[0-9]')},
+        newValue: TextEditingValue(text: phoneNumber),
+      );
+      _onDropDownChange(selectedCountry!, isAutoChange: true);
     }
     textEditingController.text = NSIntlPhoneHelper.getMaskedPhoneNumber(
       countryCode: dialCode,
@@ -133,6 +151,8 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
         );
       }
     }
+
+    print("NsIntlPhoneInput build: ${selectedCountry?.countryName ?? 'null'}");
 
     return Row(
       textBaseline: TextBaseline.alphabetic,

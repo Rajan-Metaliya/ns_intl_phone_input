@@ -33,6 +33,17 @@ class NSIntlPhoneHelper {
     return text;
   }
 
+  static String getUnMaskedPhoneNumber({
+    required String phoneNumber,
+  }) {
+    return phoneNumber
+        .replaceAll("-", "")
+        .replaceAll("(", "")
+        .replaceAll(")", "")
+        .replaceAll(" ", "")
+        .replaceAll("+", "");
+  }
+
   /// Returns the country model for the given country code and phone number
   /// If the phone number is empty, the country model for the given country code is returned
   ///
@@ -42,25 +53,29 @@ class NSIntlPhoneHelper {
     String phoneNumber = '',
   }) {
     try {
-      CountryModel selectedCountry = rawCountries.firstWhere(
-        (country) => country.intlDialCode == countryCode,
-      );
-      if (phoneNumber.isEmpty || selectedCountry.areaCodes == null) {
-        return selectedCountry;
+      CountryModel? selectedCountry;
+
+      List<CountryModel> selectedCountries = rawCountries
+          .where(
+            (country) => country.intlDialCode == countryCode,
+          )
+          .toList();
+      if (phoneNumber.isEmpty || selectedCountries.length == 1) {
+        selectedCountry = selectedCountries.first;
       }
-      for (final country in rawCountries) {
-        if ((selectedCountry.intlDialCode) == country.intlDialCode) {
-          if (country.areaCodes == null || country.areaCodes!.isEmpty) {
-            continue;
-          } else {
-            for (final region in country.areaCodes!) {
-              if (phoneNumber.startsWith(region)) {
-                selectedCountry = country;
-              }
+
+      for (final country in selectedCountries) {
+        if (country.areaCodes == null || country.areaCodes!.isEmpty) {
+          continue;
+        } else {
+          for (final region in country.areaCodes!) {
+            if (phoneNumber.startsWith(region)) {
+              selectedCountry = country;
             }
           }
         }
       }
+
       return selectedCountry;
     } catch (e) {
       return null;

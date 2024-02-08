@@ -17,6 +17,9 @@ class CountrySelectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'NsIntlPhoneInput CountrySelectButton build: ${selectedCountry?.countryName ?? 'null'}');
+
     return MaterialButton(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       onPressed: onPressed,
