@@ -73,7 +73,6 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
 
   _onTextChange(String? value) {
     setState(() {});
-    print("NsIntlPhoneInput _onTextChange: ${selectedCountry?.countryName}");
 
     if (value == null || value.isEmpty || selectedCountry == null) {
       return;
@@ -94,12 +93,11 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
           phoneNumber: unMastedValue,
         ) ??
         selectedCountry;
-    print("NsIntlPhoneInput _onTextChange 2: $selectedCountry?.countryName}");
+
     return;
   }
 
   _onDropDownChange(CountryModel country, {bool? isAutoChange = false}) {
-    print("NsIntlPhoneInput _onDropDownChange: ${country.countryName}");
     if (isAutoChange != true) {
       selectedCountry = country.copyWith(currentAreaCode: '');
     } else {
@@ -122,8 +120,6 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
       countryCode: dialCode,
       phoneNumber: phoneNumber,
     );
-
-    print("NsIntlPhoneInput _onValueChange: ${selectedCountry?.countryName}");
 
     if (selectedCountry != null) {
       maskFormatter.updateMask(
@@ -151,8 +147,6 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
         );
       }
     }
-
-    print("NsIntlPhoneInput build: ${selectedCountry?.countryName ?? 'null'}");
 
     return Row(
       textBaseline: TextBaseline.alphabetic,
