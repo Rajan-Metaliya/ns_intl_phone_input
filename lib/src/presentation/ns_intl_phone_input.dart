@@ -146,6 +146,14 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
           countrySelection.unformattedPhoneNumber,
         );
       }
+      }
+    if(_previousCountrySelection != null && countrySelection == null)
+    {
+      textEditingController.clear();
+      selectedCountry = null;
+      dropDownValue = null;
+      setState(() {
+      });
     }
 
     return Row(
