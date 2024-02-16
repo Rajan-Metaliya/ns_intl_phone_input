@@ -146,13 +146,14 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
           countrySelection.unformattedPhoneNumber,
         );
       }
-      if(countrySelection.selectedCountry.intlDialCode == '')
-      {
-        textEditingController.clear();
-        selectedCountry = null;
-        setState(() {
-        });
       }
+    if(_previousCountrySelection != null && countrySelection == null)
+    {
+      textEditingController.clear();
+      selectedCountry = null;
+      dropDownValue = null;
+      setState(() {
+      });
     }
 
     return Row(
