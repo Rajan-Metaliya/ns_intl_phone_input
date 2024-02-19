@@ -30,23 +30,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final _phoneNumberController = TextEditingController(text: samplePhoneNumber);
+  final _phoneNumberController = IntlTextEditingController();
 
-  String _countryCode = "1";
+  final tec = TextEditingController();
+
+  final String _countryCode = "";
 
   @override
   void initState() {
     super.initState();
-
-    // widget binding
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(seconds: 2), () {
-        setState(() {
-          _phoneNumberController.text = samplePhoneNumber;
-          _countryCode = sampleCountryCode;
-        });
-      });
-    });
   }
 
   @override
@@ -66,6 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    TextField(
+                      controller: tec,
+                    ),
                     NsIntlPhoneInput(
                       builder: () {
                         return NSIntlPhoneHelper
@@ -74,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           phoneNumber: _phoneNumberController.text,
                         );
                       },
+                      textEditingController: _phoneNumberController,
                       onPhoneChange: (countrySelection) {
                         setState(() {
                           this.countrySelection = countrySelection;
@@ -81,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     const SizedBox(height: 20),
-                    MaterialButton(
+                    OutlinedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -94,6 +90,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                       },
                       child: const Text('Submit'),
+                    ),
+                    const SizedBox(height: 20),
+                    OutlinedButton(
+                      onPressed: () {
+                        _phoneNumberController.clear();
+                        tec.clear();
+                      },
+                      child: const Text('Clear'),
+                    ),
+                    const SizedBox(height: 20),
+                    OutlinedButton(
+                      onPressed: () {
+                        _phoneNumberController.initialPhone(
+                          phoneNumber: samplePhoneNumber,
+                          intlDialCode: sampleCountryCode,
+                        );
+                        tec.text = samplePhoneNumber;
+                      },
+                      child: const Text('Set Sample Phone Number'),
                     ),
                     Text(
                       'Selected Country: $countrySelection',
