@@ -53,6 +53,9 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   @override
   void initState() {
     super.initState();
+    widget.textEditingController.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
