@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ns_intl_phone_input/src/data/enum/country_selection_type_enum.dart';
-import 'package:ns_intl_phone_input/src/data/models/country_select_button_options.dart';
-import 'package:ns_intl_phone_input/src/presentation/country_select_screen.dart';
-import 'package:ns_intl_phone_input/src/presentation/intl_text_controller.dart';
-
-import '../data/models/country_selection.dart';
-import 'country_select_dialog.dart';
-import 'widgets/country_select_button.dart';
+import 'package:ns_intl_phone_input/ns_intl_phone_input.dart';
 
 typedef BuildCountry = CountrySelection? Function();
 
@@ -54,8 +47,29 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
   void initState() {
     super.initState();
     widget.textEditingController.addListener(() {
-      setState(() {});
+      _notifyListeners(widget.textEditingController.text);
     });
+  }
+
+  void _notifyListeners(text) {
+    final unMastedValue = NSIntlPhoneHelper.getUnMaskedPhoneNumber(
+      phoneNumber: text,
+    );
+
+    final newCountry = NSIntlPhoneHelper.selectedCountryCode(
+          countryCode:
+              widget.textEditingController.selectedCountry?.intlDialCode ?? '',
+          phoneNumber: unMastedValue,
+        ) ??
+        widget.textEditingController.selectedCountry;
+    if (newCountry != null) {
+      if (newCountry.countryName !=
+          widget.textEditingController.selectedCountry?.countryName) {
+        widget.textEditingController.selectedCountry = newCountry;
+      }
+    }
+
+    setState(() {});
   }
 
   @override

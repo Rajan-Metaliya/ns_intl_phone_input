@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   CountrySelection countrySelection = CountrySelection(
-    selectedCountry: CountryModel(
+    selectedCountry: const CountryModel(
       countryName: 'India',
       regions: {'Asia'},
       iso2Code: 'IN',
@@ -58,9 +58,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    TextField(
-                      controller: tec,
-                    ),
                     NsIntlPhoneInput(
                       builder: () {
                         return NSIntlPhoneHelper

@@ -18,29 +18,6 @@ class IntlTextEditingController extends TextEditingController {
     notifyListeners();
   }
 
-  @override
-  void notifyListeners() {
-    final unMastedValue = NSIntlPhoneHelper.getUnMaskedPhoneNumber(
-      phoneNumber: text,
-    );
-
-    final newCountry = NSIntlPhoneHelper.selectedCountryCode(
-          countryCode: selectedCountry?.intlDialCode ?? '',
-          phoneNumber: unMastedValue,
-        ) ??
-        selectedCountry;
-    if (newCountry != null) {
-      if (newCountry.countryName != selectedCountry?.countryName) {
-        print('IntlTextEditingController notifyListeners Changed Country');
-        selectedCountry = newCountry;
-      } else {
-        print('IntlTextEditingController notifyListeners Not Changed Country');
-      }
-    }
-
-    super.notifyListeners();
-  }
-
   void initialPhone({
     required String phoneNumber,
     required String intlDialCode,
