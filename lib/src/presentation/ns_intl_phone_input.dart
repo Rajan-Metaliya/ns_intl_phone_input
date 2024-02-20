@@ -67,6 +67,11 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
           widget.textEditingController.selectedCountry?.countryName) {
         widget.textEditingController.selectedCountry = newCountry;
       }
+      widget.onPhoneChange(CountrySelection(
+        selectedCountry: newCountry,
+        formattedPhoneNumber: text,
+        unformattedPhoneNumber: unMastedValue,
+      ));
     }
 
     setState(() {});
