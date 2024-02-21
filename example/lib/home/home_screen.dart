@@ -59,13 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     NsIntlPhoneInput(
-                      builder: () {
-                        return NSIntlPhoneHelper
-                            .countrySelectionFromPhoneNumber(
-                          countryCode: _countryCode,
-                          phoneNumber: _phoneNumberController.text,
-                        );
-                      },
                       textEditingController: _phoneNumberController,
                       onPhoneChange: (countrySelection) {
                         setState(() {
