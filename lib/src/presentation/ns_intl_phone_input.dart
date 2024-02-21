@@ -15,7 +15,6 @@ class NsIntlPhoneInput extends StatefulWidget {
     this.validationErrorText = 'Please enter a valid phone number',
     this.countrySelectOption = const CountrySelectOption(),
     this.countrySelectionType = CountrySelectionTypeEnum.dialog,
-    this.builder,
   }) : super(key: key);
 
   final FocusNode? focusNode;
@@ -35,8 +34,6 @@ class NsIntlPhoneInput extends StatefulWidget {
   final IntlTextEditingController textEditingController;
 
   final double phoneInputFontSize;
-
-  final BuildCountry? builder;
 
   @override
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
