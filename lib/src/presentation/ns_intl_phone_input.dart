@@ -15,9 +15,12 @@ class NsIntlPhoneInput extends StatefulWidget {
     this.validationErrorText = 'Please enter a valid phone number',
     this.countrySelectOption = const CountrySelectOption(),
     this.countrySelectionType = CountrySelectionTypeEnum.dialog,
+    this.enableValidation = true,
   }) : super(key: key);
 
   final FocusNode? focusNode;
+
+  final bool enableValidation;
 
   final String validationErrorText;
 
@@ -126,6 +129,9 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
             style: TextStyle(fontSize: widget.phoneInputFontSize),
             autovalidateMode: widget.autovalidateMode,
             validator: (value) {
+              if(!widget.enableValidation) {
+                return null;
+              }
               if (widget.textEditingController.selectedCountry == null) {
                 return widget.validationErrorText;
               } else if (value == null || value.isEmpty) {
