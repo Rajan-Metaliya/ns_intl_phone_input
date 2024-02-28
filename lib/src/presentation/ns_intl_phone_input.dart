@@ -130,6 +130,14 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
             autovalidateMode: widget.autovalidateMode,
             validator: (value) {
               if(!widget.enableValidation) {
+                if(value != null) {
+                  if (value.length <
+                      (widget.textEditingController.selectedCountry?.format
+                              ?.length ??
+                          15)) {
+                    return widget.validationErrorText;
+                  }
+                }
                 return null;
               }
               if (widget.textEditingController.selectedCountry == null) {
