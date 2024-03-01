@@ -32,8 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final _phoneNumberController = IntlTextEditingController();
 
-  final tec = TextEditingController();
-
   @override
   void initState() {
     super.initState();
@@ -104,7 +102,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     OutlinedButton(
                       onPressed: () {
                         _phoneNumberController.clear();
-                        tec.clear();
                       },
                       child: const Text('Clear'),
                     ),
@@ -115,7 +112,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           phoneNumber: samplePhoneNumber,
                           intlDialCode: sampleCountryCode,
                         );
-                        tec.text = samplePhoneNumber;
                       },
                       child: const Text('Set Sample Phone Number'),
                     ),

@@ -114,6 +114,20 @@ class _SampleScreenState extends State<SampleScreen> {
 
 ```
 
+#### Initialize Phone
+
+```dart
+    _phoneNumberController.initialPhone(
+      phoneNumber: '9876543210',
+      intlDialCode: '91',
+    );
+```
+
+#### Clear Phone Number with country code
+```dart
+   _phoneNumberController.clear();
+```
+
 ### Phone Number Validation
 
 Validate phone numbers easily with the `onPhoneChange` callback. The package supports various phone number formats.
@@ -122,18 +136,16 @@ Validate phone numbers easily with the `onPhoneChange` callback. The package sup
 MaterialButton(
   onPressed: () {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Validated')),
-      );
+      print('Valid Phone number');
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Not Validated')),
-      );
+      print('Invalid Phone Number');
     }
   },
   child: const Text('Submit'),
 ),
 ```
+
+
 
 ### Customization
 
