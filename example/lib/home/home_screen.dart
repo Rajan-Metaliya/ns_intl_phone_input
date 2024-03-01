@@ -57,8 +57,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     NsIntlPhoneInput(
+                      /// Phone number controller
                       textEditingController: _phoneNumberController,
+
+                      /// Enable or disable validation
                       enableValidation: false,
+                      autovalidateMode: AutovalidateMode.always,
+
+                      /// Country selection options for UI experience
+                      countrySelectOption: const CountrySelectOption(
+                        countryDialCodeTextStyle: TextStyle(),
+                        countryIsoCodeTextStyle: TextStyle(),
+                        defaultText: "000",
+                        defaultTextStyle: TextStyle(),
+                        showCode: false,
+                      ),
+
+                      /// Optional to select country selection as dialog or new screen
+                      countrySelectionType: CountrySelectionTypeEnum.screen,
+                      focusNode: FocusNode(),
+                      phoneFieldDecoration: const InputDecoration(),
+                      phoneInputFontSize: 20,
+                      validationErrorText: "Validation Message",
                       onPhoneChange: (countrySelection) {
                         setState(() {
                           this.countrySelection = countrySelection;

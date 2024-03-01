@@ -31,9 +31,10 @@ The Flutter Phone Validation Package by Nonstop IO is a versatile and easy-to-us
 
 - **Country Selection Dropdown:** Users can choose the desired country code from a dropdown menu, making it easy to validate phone numbers for different regions.
 
-- **Comprehensive Validation:** The package supports validation for phone numbers from over 200 countries, ensuring accuracy and inclusivity.
+- **Comprehensive Validation:** The package supports validation for phone numbers from over 200 countries, ensuring accuracy and inclusively.
 
 - **Various Number Formats:** Users can input phone numbers in different formats, and the package adapts to validate them accordingly. This includes support for various masks and formats.
+
 - **Support for area codes of country:** The package provides support for area codes within countries. Users can input phone numbers with area codes, and the package takes this into consideration during validation. This feature enhances the package's flexibility and applicability to regions where area codes are an integral part of phone numbers.
 
 ## Getting Started
@@ -63,14 +64,13 @@ To use the Flutter Phone Validation Package in your project, follow these simple
 
    ```dart
    NsIntlPhoneInput(
-     onPhoneChange: (CountrySelection countrySelection) {
-       // Handle phone number change
-       // eg:
-       setState(() {
-         this.countrySelection = countrySelection;
-       });
-     },
-     initialCountryCode: '1',
+        textEditingController: _phoneNumberController,
+        enableValidation: false,
+        onPhoneChange: (countrySelection) {
+                        setState(() {
+                          this.countrySelection = countrySelection;
+                        });
+                      },
      // Other customization options...
    ),
    ```
@@ -82,16 +82,35 @@ To use the Flutter Phone Validation Package in your project, follow these simple
 The package provides a user-friendly country selection dropdown, allowing users to choose the relevant country code for phone number validation.
 
 ```dart
-NsIntlPhoneInput(
-  onPhoneChange: (CountrySelection countrySelection) {
-    // Handle phone number change, e.g., update the state
-    setState(() {
-      this.countrySelection = countrySelection;
-    });
-  },
-  initialCountryCode: '1',
-  // Other customization options...
-),
+class SampleScreen extends StatefulWidget {
+  const SampleScreen({super.key});
+
+  @override
+  State<SampleScreen> createState() => _SampleScreenState();
+}
+
+class _SampleScreenState extends State<SampleScreen> {
+  /// Initialize the controller for Intl Text editing
+  final _phoneNumberController = IntlTextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('NsIntlPhoneInput Example',
+              style: Theme.of(context).textTheme.titleLarge),
+        ),
+        body: Center(
+          /// Assign it to NsIntlPhoneInput widget
+          child: NsIntlPhoneInput(
+            textEditingController: _phoneNumberController,
+            onPhoneChange: (countrySelection) {
+              print(countrySelection);
+            },
+          ),
+        ));
+  }
+}
 
 ```
 
@@ -122,24 +141,34 @@ Customize the package to suit your application's needs with various options like
 
 ```dart
 NsIntlPhoneInput(
-  onPhoneChange: (CountrySelection countrySelection) {
-    // Handle phone number change, e.g., update the state
-    setState(() {
-      this.countrySelection = countrySelection;
-    });
-  },
-  initialCountryCode: '1',
-  textEditingController: TextEditingController(text: ""),
-  focusNode: primaryFocus,
-  phoneInputFontSize: 20,
-  autovalidateMode: AutovalidateMode.always,
-  validationErrorText: 'Please enter a valid phone number',
-  countrySelectOption: const CountrySelectOption(
-    showCode: true,
-    countryIsoCodeTextStyle: TextStyle(fontSize: 20),
+      /// Phone number controller
+      textEditingController: _phoneNumberController,
+
+      /// Enable or disable validation
+      enableValidation: false,
+      autovalidateMode: AutovalidateMode.always,
+
+      /// Country selection options for UI experience
+      countrySelectOption: const CountrySelectOption(
+        countryDialCodeTextStyle: TextStyle(),
+        countryIsoCodeTextStyle: TextStyle(),
+        defaultText: "000",
+        defaultTextStyle: TextStyle(),
+        showCode: false,
+      ),
+
+      /// Optional to select country selection as dialog or new screen
+      countrySelectionType: CountrySelectionTypeEnum.screen,
+      focusNode: FocusNode(),
+      phoneFieldDecoration: const InputDecoration(),
+      phoneInputFontSize: 20,
+      validationErrorText: "Validation Message",
+      onPhoneChange: (countrySelection) {
+        setState(() {
+          this.countrySelection = countrySelection;
+        });
+      },
   ),
-  countrySelectionType: CountrySelectionTypeEnum.screen,
-),
 ```
 
 ## Example
@@ -148,7 +177,7 @@ For a quick start, check out the provided example in the `lib/home` folder with 
 
 ## Support and Contributions
 
-If you encounter any issues or have suggestions for improvement, feel free to open an issue on the [GitHub repository](https://link-to-github-repo). Contributions are welcome!
+If you encounter any issues or have suggestions for improvement, feel free to open an issue on the [GitHub repository](https://github.com/Rajan-Metaliya/ns_intl_phone_input/issues). Contributions are welcome!
 There are couple of ways in which you can contribute.
 
 - Propose any feature, enhancement
