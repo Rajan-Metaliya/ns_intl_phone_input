@@ -1,11 +1,10 @@
-import 'package:example/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ns_intl_phone_input/ns_intl_phone_input.dart';
 
 void main() {
   runApp(
     const MaterialApp(
-      home: HomeScreen(),
+      home: SampleScreen(),
     ),
   );
 }
