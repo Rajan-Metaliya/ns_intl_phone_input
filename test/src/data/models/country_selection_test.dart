@@ -7,7 +7,7 @@ void main() {
     () {
       test('CountrySelection instances with different properties are not equal',
           () {
-        final country1 = CountryModel(
+        const country1 = CountryModel(
           countryName: 'India',
           regions: {'Asia'},
           iso2Code: 'in',
@@ -15,7 +15,7 @@ void main() {
           format: '.....-.....',
         );
 
-        final country2 = CountryModel(
+        const country2 = CountryModel(
           countryName: 'USA',
           regions: {'North America'},
           iso2Code: 'us',
@@ -38,7 +38,7 @@ void main() {
       });
 
       test('Test the complete Formatted & UnFormatted Numbers', () {
-        final country = CountryModel(
+        const country = CountryModel(
           countryName: 'India',
           regions: {"asia"},
           iso2Code: 'in',

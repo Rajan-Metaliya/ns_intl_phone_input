@@ -55,7 +55,6 @@ class IntlTextEditingController extends TextEditingController {
 
   @override
   void clear() {
-    print('IntlTextEditingController clear');
     super.clear();
     selectedCountry = null;
     text = '';

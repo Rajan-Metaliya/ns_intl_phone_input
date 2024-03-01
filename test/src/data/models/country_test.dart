@@ -4,7 +4,7 @@ import 'package:ns_intl_phone_input/src/data/models/country.dart';
 void main() {
   group(CountryModel, () {
     test('isContain returns true for matching countryName', () {
-      final country = CountryModel(
+      const country = CountryModel(
           countryName: 'India',
           regions: {'Asia'},
           iso2Code: 'in',
@@ -16,7 +16,7 @@ void main() {
     });
 
     test('isContain returns true for matching intlDialCode', () {
-      final country = CountryModel(
+      const country = CountryModel(
         countryName: 'USA',
         regions: {'North America'},
         iso2Code: 'us',
@@ -27,7 +27,7 @@ void main() {
     });
 
     test('isContain returns true for matching areaCodes', () {
-      final country = CountryModel(
+      const country = CountryModel(
         countryName: 'Dominican Republic',
         regions: {"america", "carribean"},
         iso2Code: 'do',
@@ -41,7 +41,7 @@ void main() {
     });
 
     test('isContain returns true for matching regions', () {
-      final country = CountryModel(
+      const country = CountryModel(
         countryName: 'India',
         regions: {'Asia'},
         iso2Code: 'in',
@@ -52,7 +52,7 @@ void main() {
     });
 
     test('isContain returns true for matching iso2Code', () {
-      final country = CountryModel(
+      const country = CountryModel(
         countryName: 'India',
         regions: {'Asia'},
         iso2Code: 'in',
@@ -63,7 +63,7 @@ void main() {
     });
 
     test('dialCode returns correct value with areaCode', () {
-      final country = CountryModel(
+      const country = CountryModel(
         countryName: 'India',
         regions: {'Asia'},
         iso2Code: 'in',
@@ -76,7 +76,7 @@ void main() {
     });
 
     test('copyWith creates a new instance with updated values', () {
-      final original = CountryModel(
+      const original = CountryModel(
         countryName: 'India',
         regions: {'Asia'},
         iso2Code: 'in',
