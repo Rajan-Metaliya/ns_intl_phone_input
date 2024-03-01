@@ -34,8 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final tec = TextEditingController();
 
-  final String _countryCode = "";
-
   @override
   void initState() {
     super.initState();
@@ -60,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     NsIntlPhoneInput(
                       textEditingController: _phoneNumberController,
+                      enableValidation: false,
                       onPhoneChange: (countrySelection) {
                         setState(() {
                           this.countrySelection = countrySelection;

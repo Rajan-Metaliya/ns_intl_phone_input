@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ns_intl_phone_input/ns_intl_phone_input.dart';
+import 'package:ns_intl_phone_input/src/utils/validation/phone_validation_mixin.dart';
 
 typedef BuildCountry = CountrySelection? Function();
 
@@ -42,7 +43,8 @@ class NsIntlPhoneInput extends StatefulWidget {
   State<NsIntlPhoneInput> createState() => _NsIntlPhoneInputState();
 }
 
-class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
+class _NsIntlPhoneInputState extends State<NsIntlPhoneInput>
+    with PhoneValidationMixin {
   @override
   void initState() {
     super.initState();
@@ -116,35 +118,31 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput> {
         Expanded(
           flex: 6,
           child: TextFormField(
-            maxLength:
-                widget.textEditingController.selectedCountry?.format?.length,
-            controller: widget.textEditingController,
-            focusNode: widget.focusNode,
-            inputFormatters: [widget.textEditingController.maskFormatter],
-            decoration: widget.phoneFieldDecoration ??
-                const InputDecoration(
-                  hintText: 'Phone Number',
-                  counterText: '',
-                ),
-            style: TextStyle(fontSize: widget.phoneInputFontSize),
-            autovalidateMode: widget.autovalidateMode,
-            validator: (value) {
-              if(!widget.enableValidation) {
-                return null;
-              }
-              if (widget.textEditingController.selectedCountry == null) {
-                return widget.validationErrorText;
-              } else if (value == null || value.isEmpty) {
-                return widget.validationErrorText;
-              } else if (value.length <
-                  (widget.textEditingController.selectedCountry?.format
-                          ?.length ??
-                      15)) {
-                return widget.validationErrorText;
-              }
-              return null;
-            },
-          ),
+              maxLength:
+                  widget.textEditingController.selectedCountry?.format?.length,
+              controller: widget.textEditingController,
+              focusNode: widget.focusNode,
+              inputFormatters: [widget.textEditingController.maskFormatter],
+              decoration: widget.phoneFieldDecoration ??
+                  const InputDecoration(
+                    hintText: 'Phone Number',
+                    counterText: '',
+                  ),
+              style: TextStyle(fontSize: widget.phoneInputFontSize),
+              autovalidateMode: widget.autovalidateMode,
+              validator: (value) {
+                if (!widget.enableValidation) {
+                  if ((value == null || value.isEmpty) &&
+                      widget.textEditingController.selectedCountry == null) {
+                    return null;
+                  }
+                }
+                return validatePhone(
+                  selectedCountry: widget.textEditingController.selectedCountry,
+                  validationMessage: widget.validationErrorText,
+                  value: value,
+                );
+              }),
         ),
       ],
     );
