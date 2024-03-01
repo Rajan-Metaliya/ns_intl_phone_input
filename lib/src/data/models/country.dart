@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class CountryModel {
+import 'package:equatable/equatable.dart';
+
+class CountryModel extends Equatable {
   ///for ex. India/
   final String countryName;
 
@@ -35,7 +37,7 @@ class CountryModel {
         iso2Code.toLowerCase().contains(value.toLowerCase());
   }
 
-  CountryModel({
+  const CountryModel({
     required this.countryName,
     required this.regions,
     required this.iso2Code,
@@ -71,6 +73,20 @@ class CountryModel {
     );
   }
 
+  factory CountryModel.fromFormattedNumber(String number) {
+    return const CountryModel(
+      countryName: '',
+      regions: {},
+      iso2Code: '',
+      flag: '',
+      intlDialCode: '',
+      format: '',
+      orderPriority: 0,
+      areaCodes: {},
+      currentAreaCode: '',
+    );
+  }
+
   @override
   String toString() {
     return '''CountryModel(
@@ -85,4 +101,17 @@ class CountryModel {
       currentAreaCode: $currentAreaCode
       )''';
   }
+
+  @override
+  List<Object?> get props => [
+        countryName,
+        regions,
+        iso2Code,
+        flag,
+        intlDialCode,
+        format,
+        orderPriority,
+        areaCodes,
+        currentAreaCode,
+      ];
 }

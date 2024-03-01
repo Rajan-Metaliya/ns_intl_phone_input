@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ns_intl_phone_input/ns_intl_phone_input.dart';
 
+const samplePhoneNumber = '9876543210';
+const sampleCountryCode = '91';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -10,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   CountrySelection countrySelection = CountrySelection(
-    selectedCountry: CountryModel(
+    selectedCountry: const CountryModel(
       countryName: 'India',
       regions: {'Asia'},
       iso2Code: 'IN',
@@ -26,6 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
   );
 
   final _formKey = GlobalKey<FormState>();
+
+  final _phoneNumberController = IntlTextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +55,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     NsIntlPhoneInput(
+                      /// Phone number controller
+                      textEditingController: _phoneNumberController,
+
+                      /// Enable or disable validation
+                      enableValidation: false,
+                      autovalidateMode: AutovalidateMode.always,
+
+                      /// Country selection options for UI experience
+                      countrySelectOption: const CountrySelectOption(
+                        countryDialCodeTextStyle: TextStyle(),
+                        countryIsoCodeTextStyle: TextStyle(),
+                        defaultText: "000",
+                        defaultTextStyle: TextStyle(),
+                        showCode: false,
+                      ),
+
+                      /// Optional to select country selection as dialog or new screen
+                      countrySelectionType: CountrySelectionTypeEnum.screen,
+                      focusNode: FocusNode(),
+                      phoneFieldDecoration: const InputDecoration(),
+                      phoneInputFontSize: 20,
+                      validationErrorText: "Validation Message",
                       onPhoneChange: (countrySelection) {
                         setState(() {
                           this.countrySelection = countrySelection;
                         });
                       },
-                      initialCountryCode: '1',
                     ),
                     const SizedBox(height: 20),
-                    MaterialButton(
+                    OutlinedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -66,6 +97,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                       },
                       child: const Text('Submit'),
+                    ),
+                    const SizedBox(height: 20),
+                    OutlinedButton(
+                      onPressed: () {
+                        _phoneNumberController.clear();
+                      },
+                      child: const Text('Clear'),
+                    ),
+                    const SizedBox(height: 20),
+                    OutlinedButton(
+                      onPressed: () {
+                        _phoneNumberController.initialPhone(
+                          phoneNumber: samplePhoneNumber,
+                          intlDialCode: sampleCountryCode,
+                        );
+                      },
+                      child: const Text('Set Sample Phone Number'),
                     ),
                     Text(
                       'Selected Country: $countrySelection',
