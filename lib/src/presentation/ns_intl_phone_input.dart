@@ -121,6 +121,7 @@ class _NsIntlPhoneInputState extends State<NsIntlPhoneInput>
         Expanded(
           flex: 6,
           child: TextFormField(
+            key: const Key('ns_phone_input_field'),
             maxLength:
                 widget.textEditingController.selectedCountry?.format?.length,
             controller: widget.textEditingController,

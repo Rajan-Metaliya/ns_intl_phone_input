@@ -54,6 +54,7 @@ class _CountrySelectionWidgetState extends State<CountrySelectionWidget> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
+            key: const Key('ns_country_search_field'),
             controller: searchController,
             onChanged: (value) {
               filterCountries();
