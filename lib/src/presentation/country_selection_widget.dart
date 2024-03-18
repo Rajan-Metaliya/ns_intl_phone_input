@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ns_intl_phone_input/src/data/models/country.dart';
-import 'package:ns_intl_phone_input/src/presentation/helper/ns_intl_helper.dart';
-import 'package:ns_intl_phone_input/src/presentation/widgets/country_dropdown_widget.dart';
+
+import '../data/models/country.dart';
+import 'helper/ns_intl_helper.dart';
+import 'widgets/country_dropdown_widget.dart';
 
 class CountrySelectionWidget extends StatefulWidget {
   const CountrySelectionWidget({

@@ -5,11 +5,12 @@ void main() {
   group(CountryModel, () {
     test('isContain returns true for matching countryName', () {
       const country = CountryModel(
-          countryName: 'India',
-          regions: {'Asia'},
-          iso2Code: 'in',
-          intlDialCode: '91',
-          format: '.....-.....');
+        countryName: 'India',
+        regions: {'Asia'},
+        iso2Code: 'in',
+        intlDialCode: '91',
+        format: '.....-.....',
+      );
 
       expect(country.isContain('India'), isTrue);
       expect(country.format, '.....-.....');
@@ -29,12 +30,12 @@ void main() {
     test('isContain returns true for matching areaCodes', () {
       const country = CountryModel(
         countryName: 'Dominican Republic',
-        regions: {"america", "carribean"},
+        regions: {'america', 'carribean'},
         iso2Code: 'do',
         intlDialCode: '1',
         flag: '🇩🇴',
         orderPriority: 2,
-        areaCodes: {"809", "829", "849"},
+        areaCodes: {'809', '829', '849'},
       );
 
       expect(country.isContain('829'), isTrue);

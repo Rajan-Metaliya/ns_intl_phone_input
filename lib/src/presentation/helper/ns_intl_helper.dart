@@ -5,7 +5,8 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../ns_intl_phone_input.dart';
 
 class NSIntlPhoneHelper {
-  /// Returns the masked phone number for the given country code and phone number
+  /// Returns the masked phone number for the given country code and phone
+  ///  number
   ///
   /// Example:
   ///  countryCode = '+91'
@@ -27,7 +28,7 @@ class NSIntlPhoneHelper {
 
     var maskFormatter = MaskTextInputFormatter(
       mask: selectedCountry.format,
-      filter: {".": RegExp(r'[0-9]')},
+      filter: {'.': RegExp(r'[0-9]')},
     );
     final text = maskFormatter.maskText(phoneNumber);
     return text;
@@ -37,15 +38,16 @@ class NSIntlPhoneHelper {
     required String phoneNumber,
   }) {
     return phoneNumber
-        .replaceAll("-", "")
-        .replaceAll("(", "")
-        .replaceAll(")", "")
-        .replaceAll(" ", "")
-        .replaceAll("+", "");
+        .replaceAll('-', '')
+        .replaceAll('(', '')
+        .replaceAll(')', '')
+        .replaceAll(' ', '')
+        .replaceAll('+', '');
   }
 
   /// Returns the country model for the given country code and phone number
-  /// If the phone number is empty, the country model for the given country code is returned
+  /// If the phone number is empty, the country model for the given country
+  /// code is returned
   ///
   ///
   static CountryModel? selectedCountryCode({
@@ -82,7 +84,8 @@ class NSIntlPhoneHelper {
     }
   }
 
-  /// Returns a map of all countries with their international dial code and area codes (if any) as the key
+  /// Returns a map of all countries with their international dial code and
+  /// area codes (if any) as the key
   ///
   /// Example:
   ///   {
@@ -113,7 +116,8 @@ class NSIntlPhoneHelper {
     return countriesMap;
   }
 
-  /// Returns CountrySelection object for the given country code and phone number
+  /// Returns CountrySelection object for the given country code and phone
+  /// number
   ///
   /// Example:
   ///  countryCode = '+91'
@@ -139,7 +143,7 @@ class NSIntlPhoneHelper {
 
     var maskFormatter = MaskTextInputFormatter(
       mask: selectedCountry.format,
-      filter: {".": RegExp(r'[0-9]')},
+      filter: {'.': RegExp(r'[0-9]')},
     );
     final text = maskFormatter.maskText(phoneNumber);
 

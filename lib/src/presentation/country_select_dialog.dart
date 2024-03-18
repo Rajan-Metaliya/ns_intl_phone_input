@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ns_intl_phone_input/src/presentation/country_selection_widget.dart';
 
 import '../data/models/country.dart';
+import 'country_selection_widget.dart';
 
 void countrySelectDialog(
   BuildContext context, {

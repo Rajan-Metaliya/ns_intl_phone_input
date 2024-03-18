@@ -40,7 +40,7 @@ void main() {
       test('Test the complete Formatted & UnFormatted Numbers', () {
         const country = CountryModel(
           countryName: 'India',
-          regions: {"asia"},
+          regions: {'asia'},
           iso2Code: 'in',
           intlDialCode: '91',
           flag: '🇮🇳',
@@ -48,9 +48,10 @@ void main() {
         );
 
         final selection = CountrySelection(
-            selectedCountry: country,
-            formattedPhoneNumber: '98778-78998',
-            unformattedPhoneNumber: '9877878998');
+          selectedCountry: country,
+          formattedPhoneNumber: '98778-78998',
+          unformattedPhoneNumber: '9877878998',
+        );
 
         expect(selection.completePhoneNumber, '91 9877878998');
         expect(selection.completeFormattedPhoneNumber, '91 98778-78998');

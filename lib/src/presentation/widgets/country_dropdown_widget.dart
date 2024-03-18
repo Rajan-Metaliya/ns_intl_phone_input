@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:ns_intl_phone_input/src/presentation/widgets/font_text_widget.dart';
 
 import '../../data/models/country.dart';
+import 'font_text_widget.dart';
 
 class CountryDropDownWidget extends StatelessWidget {
   const CountryDropDownWidget({
