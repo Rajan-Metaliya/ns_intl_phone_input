@@ -10,10 +10,25 @@ void main() {
         iso2Code: 'in',
         intlDialCode: '91',
         format: '.....-.....',
+        currentAreaCode: '91',
+      );
+
+      const country2 = CountryModel(
+        countryName: 'United state of america',
+        regions: {'America'},
+        iso2Code: 'usa',
+        intlDialCode: '1',
+        format: '.....-.....',
+        currentAreaCode: '1',
       );
 
       expect(country.isContain('India'), isTrue);
+      expect(country.isContain('in'), isTrue);
+      expect(country.isContain('91'), isTrue);
       expect(country.format, '.....-.....');
+
+      expect(country2.isContain('1'), isTrue);
+      expect(country2.isContain('USa'), isTrue);
     });
 
     test('isContain returns true for matching intlDialCode', () {
@@ -73,10 +88,14 @@ void main() {
         intlDialCode: '91',
       );
 
-      final updated = original.copyWith(countryName: 'Andorra', flag: '🇦🇩');
+      final updated = original.copyWith(
+        countryName: 'Andorra',
+        flag: '🇦🇩',
+      );
 
       expect(updated.countryName, equals('Andorra'));
       expect(updated.flag, equals('🇦🇩'));
+      expect(updated.copyWith(), updated);
     });
 
     test('Test the toString method', () {

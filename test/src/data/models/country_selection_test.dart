@@ -40,6 +40,11 @@ void main() {
       expect(selection2.isValid(), false);
     });
 
+    // is equal
+    test('CountrySelection phone number is equal or not', () {
+      expect(selection1.isEqual(selection1), true);
+    });
+
     test('Test the complete Formatted & UnFormatted Numbers', () {
       final selection = CountrySelection(
         selectedCountry: country1,
