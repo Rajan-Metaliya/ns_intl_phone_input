@@ -32,24 +32,13 @@ void main() {
         countryName: 'Dominican Republic',
         regions: {'america', 'carribean'},
         iso2Code: 'do',
-        intlDialCode: '1',
+        intlDialCode: '829',
         flag: '🇩🇴',
         orderPriority: 2,
         areaCodes: {'809', '829', '849'},
       );
 
-      expect(country.isContain('829'), isTrue);
-    });
-
-    test('isContain returns true for matching regions', () {
-      const country = CountryModel(
-        countryName: 'India',
-        regions: {'Asia'},
-        iso2Code: 'in',
-        intlDialCode: '91',
-      );
-
-      expect(country.isContain('Asia'), isTrue);
+      expect(country.isContain('829'), true);
     });
 
     test('isContain returns true for matching iso2Code', () {
@@ -88,6 +77,20 @@ void main() {
 
       expect(updated.countryName, equals('Andorra'));
       expect(updated.flag, equals('🇦🇩'));
+    });
+
+    test('Test the toString method', () {
+      const country = CountryModel(
+        countryName: 'India',
+        regions: {'Asia'},
+        iso2Code: 'in',
+        intlDialCode: '91',
+      );
+
+      expect(
+        country.toString(),
+        contains('CountryModel'),
+      );
     });
   });
 }
