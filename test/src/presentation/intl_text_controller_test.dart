@@ -35,7 +35,7 @@ void main() {
       test('intl setCountry', () {
         final controller = IntlTextEditingController(text: '9876543210');
         controller.initialPhone(
-          intlDialCode: '91',
+          intlDialCode: '91123',
           phoneNumber: '9876543210',
         );
 
