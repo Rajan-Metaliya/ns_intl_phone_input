@@ -1,7 +1,6 @@
-## 0.0.1
+## 0.0.3
 
-* Initial release.
-
+* Update test cases
 
 ## 0.0.2 [Breaking changes]
 
@@ -11,3 +10,7 @@
 * Move the most of the country selection logic part into IntlTextEditingController. 
 * Update ReadMe file
 * Update package `mask_text_input_formatter` to ^2.9.0
+
+## 0.0.1
+
+* Initial release.

@@ -1,0 +1,11 @@
+name: Flutter Package Workflow
+description: Build and test a Flutter package.
+
+runs:
+  using: "composite"
+  steps:
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: Rajan-Metaliya/ns_intl_phone_input
