@@ -9,7 +9,7 @@ jobs:
         run: rm -rf coverage
 
       - name: Run tests with coverage
-        uses: flutter test --coverage
+        run: flutter test --coverage
 
       - name: Generate coverage reports
         run: genhtml coverage/lcov.info -o coverage/
