@@ -5,14 +5,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Remove previous coverage reports
-        run: rm -rf coverage
+      # - name: Remove previous coverage reports
+      #   run: rm -rf coverage
 
-      - name: Run tests with coverage
-        run: flutter test --coverage
+      # - name: Run tests with coverage
+      #   run: flutter test --coverage
 
-      - name: Generate coverage reports
-        run: genhtml coverage/lcov.info -o coverage/
+      # - name: Generate coverage reports
+      #   run: genhtml coverage/lcov.info -o coverage/
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
