@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 class CountryModel extends Equatable {
@@ -70,20 +69,6 @@ class CountryModel extends Equatable {
       orderPriority: orderPriority ?? this.orderPriority,
       areaCodes: areaCodes ?? this.areaCodes,
       currentAreaCode: currentAreaCode ?? this.currentAreaCode,
-    );
-  }
-
-  factory CountryModel.fromFormattedNumber(String number) {
-    return const CountryModel(
-      countryName: '',
-      regions: {},
-      iso2Code: '',
-      flag: '',
-      intlDialCode: '',
-      format: '',
-      orderPriority: 0,
-      areaCodes: {},
-      currentAreaCode: '',
     );
   }
 

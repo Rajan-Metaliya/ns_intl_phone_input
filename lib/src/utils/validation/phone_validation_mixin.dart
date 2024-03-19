@@ -1,4 +1,4 @@
-import 'package:ns_intl_phone_input/ns_intl_phone_input.dart';
+import '../../../ns_intl_phone_input.dart';
 
 mixin PhoneValidationMixin {
   String? validatePhone({

@@ -13,6 +13,14 @@ and the Flutter guide for
 
 # Flutter Phone Validation Package by Nonstop IO
 
+<p align="center">
+<a href="https://pub.dev/packages/ns_intl_phone_input"><img src="https://img.shields.io/pub/v/ns_intl_phone_input.svg" alt="Pub"></a>
+<a href="https://codecov.io/gh/Rajan-Metaliya/ns_intl_phone_input" > 
+ <img src="https://codecov.io/gh/Rajan-Metaliya/ns_intl_phone_input/graph/badge.svg?token=COLM0SJLJA"  alt="codecov"/> 
+ </a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>
+
+
 The Flutter Phone Validation Package by Nonstop IO is a versatile and easy-to-use Flutter package designed to validate phone numbers from more than 200 countries. With this package, users can seamlessly integrate phone number validation into their Flutter applications, enhancing user experience and ensuring data integrity.
 
 ## Screenshots

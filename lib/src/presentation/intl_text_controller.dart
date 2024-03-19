@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:ns_intl_phone_input/ns_intl_phone_input.dart';
+
+import '../../ns_intl_phone_input.dart';
 
 class IntlTextEditingController extends TextEditingController {
   IntlTextEditingController({String? text}) : super(text: text);
@@ -9,7 +10,7 @@ class IntlTextEditingController extends TextEditingController {
 
   MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
     mask: '...-..-....',
-    filter: {".": RegExp(r'[0-9]')},
+    filter: {'.': RegExp(r'[0-9]')},
   );
 
   @override
@@ -25,14 +26,15 @@ class IntlTextEditingController extends TextEditingController {
     selectedCountry = NSIntlPhoneHelper.selectedCountryCode(
           countryCode: intlDialCode,
           phoneNumber: NSIntlPhoneHelper.getUnMaskedPhoneNumber(
-              phoneNumber: phoneNumber),
+            phoneNumber: phoneNumber,
+          ),
         ) ??
         selectedCountry;
 
     maskFormatter.updateMask(
       mask: selectedCountry?.format,
-      filter: {".": RegExp(r'[0-9]')},
-      newValue: TextEditingValue(text: selectedCountry?.currentAreaCode ?? ""),
+      filter: {'.': RegExp(r'[0-9]')},
+      newValue: TextEditingValue(text: selectedCountry?.currentAreaCode ?? ''),
     );
 
     text = maskFormatter.maskText(phoneNumber);
@@ -44,8 +46,8 @@ class IntlTextEditingController extends TextEditingController {
     selectedCountry = newCountry;
     maskFormatter.updateMask(
       mask: selectedCountry?.format,
-      filter: {".": RegExp(r'[0-9]')},
-      newValue: TextEditingValue(text: selectedCountry?.currentAreaCode ?? ""),
+      filter: {'.': RegExp(r'[0-9]')},
+      newValue: TextEditingValue(text: selectedCountry?.currentAreaCode ?? ''),
     );
 
     text = maskFormatter.maskText(newCountry?.currentAreaCode ?? '');

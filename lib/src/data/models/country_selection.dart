@@ -1,4 +1,4 @@
-import 'package:ns_intl_phone_input/src/data/models/country.dart';
+import 'country.dart';
 
 class CountrySelection {
   final CountryModel selectedCountry;

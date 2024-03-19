@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ns_intl_phone_input/src/data/models/country.dart';
-import 'package:ns_intl_phone_input/src/data/models/country_select_button_options.dart';
-import 'package:ns_intl_phone_input/src/presentation/widgets/font_text_widget.dart';
+
+import '../../data/models/country.dart';
+import '../../data/models/country_select_button_options.dart';
+import 'font_text_widget.dart';
 
 class CountrySelectButton extends StatelessWidget {
   const CountrySelectButton({

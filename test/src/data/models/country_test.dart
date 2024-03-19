@@ -5,14 +5,30 @@ void main() {
   group(CountryModel, () {
     test('isContain returns true for matching countryName', () {
       const country = CountryModel(
-          countryName: 'India',
-          regions: {'Asia'},
-          iso2Code: 'in',
-          intlDialCode: '91',
-          format: '.....-.....');
+        countryName: 'India',
+        regions: {'Asia'},
+        iso2Code: 'in',
+        intlDialCode: '91',
+        format: '.....-.....',
+        currentAreaCode: '91',
+      );
+
+      const country2 = CountryModel(
+        countryName: 'United state of america',
+        regions: {'America'},
+        iso2Code: 'usa',
+        intlDialCode: '1',
+        format: '.....-.....',
+        currentAreaCode: '1',
+      );
 
       expect(country.isContain('India'), isTrue);
+      expect(country.isContain('in'), isTrue);
+      expect(country.isContain('91'), isTrue);
       expect(country.format, '.....-.....');
+
+      expect(country2.isContain('1'), isTrue);
+      expect(country2.isContain('USa'), isTrue);
     });
 
     test('isContain returns true for matching intlDialCode', () {
@@ -29,26 +45,15 @@ void main() {
     test('isContain returns true for matching areaCodes', () {
       const country = CountryModel(
         countryName: 'Dominican Republic',
-        regions: {"america", "carribean"},
+        regions: {'america', 'carribean'},
         iso2Code: 'do',
-        intlDialCode: '1',
+        intlDialCode: '829',
         flag: '🇩🇴',
         orderPriority: 2,
-        areaCodes: {"809", "829", "849"},
+        areaCodes: {'809', '829', '849'},
       );
 
-      expect(country.isContain('829'), isTrue);
-    });
-
-    test('isContain returns true for matching regions', () {
-      const country = CountryModel(
-        countryName: 'India',
-        regions: {'Asia'},
-        iso2Code: 'in',
-        intlDialCode: '91',
-      );
-
-      expect(country.isContain('Asia'), isTrue);
+      expect(country.isContain('829'), true);
     });
 
     test('isContain returns true for matching iso2Code', () {
@@ -83,10 +88,28 @@ void main() {
         intlDialCode: '91',
       );
 
-      final updated = original.copyWith(countryName: 'Andorra', flag: '🇦🇩');
+      final updated = original.copyWith(
+        countryName: 'Andorra',
+        flag: '🇦🇩',
+      );
 
       expect(updated.countryName, equals('Andorra'));
       expect(updated.flag, equals('🇦🇩'));
+      expect(updated.copyWith(), updated);
+    });
+
+    test('Test the toString method', () {
+      const country = CountryModel(
+        countryName: 'India',
+        regions: {'Asia'},
+        iso2Code: 'in',
+        intlDialCode: '91',
+      );
+
+      expect(
+        country.toString(),
+        contains('CountryModel'),
+      );
     });
   });
 }
