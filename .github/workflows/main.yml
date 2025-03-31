@@ -1,36 +1,36 @@
-name: Codecov Coverage
+name: ns_intl_phone_input tests
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+    branches: [main]
+  push:
+    branches: [main]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.16.0" # Adjust to your Flutter version
+          flutter-version: "3.24.5" # Adjust to your Flutter version
 
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Run Tests with Coverage
+      - name: Run Test Suite with Coverage
         run: flutter test --coverage
 
-      - name: Upload to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v5
         with:
+          files: coverage/lcov.info
+          disable_search: true
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
-          flags: unittests
-          fail_ci_if_error: true
+
+      - name: Run Dart Analysis
+        run: flutter analyze --fatal-infos
+
+      - name: Check Code Formatting
+        run: dart format -o none --set-exit-if-changed .
