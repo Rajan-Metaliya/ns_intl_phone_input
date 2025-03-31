@@ -1,21 +1,27 @@
 name: Workflow for Codecov Action
 on: [push, pull_request]
+
 jobs:
-  build_and_test:
+  test:
+    name: Run tests and collect coverage
     runs-on: ubuntu-latest
-
     steps:
-      # - name: Remove previous coverage reports
-      #   run: rm -rf coverage
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
-      # - name: Run tests with coverage
-      #   run: flutter test --coverage
+      - name: Set up Node
+        uses: actions/setup-node@v4
 
-      # - name: Generate coverage reports
-      #   run: genhtml coverage/lcov.info -o coverage/
+      - name: Install dependencies
+        run: npm install
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
+      - name: Run tests
+        run: npx jest --coverage
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Rajan-Metaliya/ns_intl_phone_input
