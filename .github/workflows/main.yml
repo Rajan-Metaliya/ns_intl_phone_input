@@ -1,21 +1,36 @@
-name: Workflow for Codecov Action
-on: [push, pull_request]
+name: ns_intl_phone_input tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
 jobs:
-  build_and_test:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      # - name: Remove previous coverage reports
-      #   run: rm -rf coverage
-
-      # - name: Run tests with coverage
-      #   run: flutter test --coverage
-
-      # - name: Generate coverage reports
-      #   run: genhtml coverage/lcov.info -o coverage/
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
         with:
+          flutter-version: "3.24.5" # Adjust to your Flutter version
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Test Suite with Coverage
+        run: flutter test --coverage
+
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: coverage/lcov.info
+          disable_search: true
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: Rajan-Metaliya/ns_intl_phone_input
+
+      - name: Run Dart Analysis
+        run: flutter analyze --fatal-infos
+
+      - name: Check Code Formatting
+        run: dart format -o none --set-exit-if-changed .
