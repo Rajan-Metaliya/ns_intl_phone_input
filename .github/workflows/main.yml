@@ -1,27 +1,36 @@
-name: Workflow for Codecov Action
-on: [push, pull_request]
+name: Codecov Coverage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  test:
-    name: Run tests and collect coverage
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
         with:
-          fetch-depth: 2
+          flutter-version: "3.16.0" # Adjust to your Flutter version
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - name: Install Dependencies
+        run: flutter pub get
 
-      - name: Install dependencies
-        run: npm install
+      - name: Run Tests with Coverage
+        run: flutter test --coverage
 
-      - name: Run tests
-        run: npx jest --coverage
-
-      - name: Upload results to Codecov
-        uses: codecov/codecov-action@v5
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: Rajan-Metaliya/ns_intl_phone_input
+          files: ./coverage/lcov.info
+          flags: unittests
+          fail_ci_if_error: true
